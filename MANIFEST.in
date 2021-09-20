@@ -1,0 +1,4 @@
+include gbpartners/schema.sql
+graft gbpartners/static
+graft gbpartners/templates
+global-exclude *.pyc
