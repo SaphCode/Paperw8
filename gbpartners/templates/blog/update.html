@@ -22,7 +22,7 @@
 	{{ form.content.label }} {{ form.content(size=100) }}
 	{% if form.content.errors %}
 		<ul class="errors">
-		{% for error in form.content %}
+		{% for error in form.content.errors %}
 			<li>{{ error }}</li>
 		{% endfor %}
 		</ul>

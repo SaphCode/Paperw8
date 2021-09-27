@@ -22,7 +22,7 @@ class BlogForm(FlaskForm):
 def blog():
     db = get_db()
     posts = db.execute(
-        'SELECT p.id, p.title, p.content, p.created, p.author_id, p.last_edit, u.username'
+        'SELECT p.id, p.title, p.content, p.created, p.author_id, p.last_edit, u.display_name'
         ' FROM post p'
         ' JOIN user u ON p.author_id = u.id'
         ' ORDER BY last_edit DESC'

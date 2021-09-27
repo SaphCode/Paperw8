@@ -1,0 +1,20 @@
+{% extends 'admin/admin.html' %}
+{% block content %}
+<div class="container">
+<form method="post">
+	{{ form.csfr_token }}
+	<fieldset class="form-field">
+		{{ form.performance_file.label }} {{ form.performance_file }}
+		{% if form.performance_file.errors %}
+			<ul class="errors">
+			{% for error in form.performance_file.errors %}
+				<li>{{ error }}</li>
+			{% endfor %}
+			</ul>
+		{% endif %}
+	</fieldset>
+	
+	<input type="submit" value="Upload">
+</form>
+</div>
+{% endblock %}

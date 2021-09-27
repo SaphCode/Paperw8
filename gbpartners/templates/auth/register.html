@@ -5,11 +5,42 @@
 {% endblock %}
 
 {% block content %}
-  <form method="post">
-    <label for="username">Username</label>
-    <input name="username" id="username" required>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
+  <form method="POST" action="{{ url_for('auth.register') }}">
+	{{ form.csrf_token }}
+	
+	<fieldset class="form-field">
+    {{ form.display_name.label }} {{ form.display_name }}
+	{% if form.display_name.errors %}
+		<ul class="errors">
+		{% for error in form.display_name.errors %}
+			<li>{{ error }}</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+	</fieldset>
+	
+	<fieldset class="form-field">
+    {{ form.username.label }} {{ form.username }}
+	{% if form.username.errors %}
+		<ul class="errors">
+		{% for error in form.username.errors %}
+			<li>{{ error }}</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+	</fieldset>
+	
+	<fieldset class="form-field">
+    {{ form.password.label }} {{ form.password }}
+	{% if form.password.errors %}
+		<ul class="errors">
+		{% for error in form.password.errors %}
+			<li>{{ error }}</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+	</fieldset>
+	
     <input type="submit" value="Register">
   </form>
 {% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'admin/admin.html' %}
+{% block content %}
+<div class="container">
+<form method="post">
+	{{ form.csfr_token }}
+	
+	<fieldset class="form-field">
+		{{ form.destination.label }} {{ form.destination }}
+		{% if form.destination.errors %}
+			<ul class="errors">
+			{% for error in form.destination.errors %}
+				<li>{{ error }}</li>
+			{% endfor %}
+			</ul>
+		{% endif %}
+	</fieldset>
+	
+	<fieldset class="form-field">
+		{{ form.image_file.label }} {{ form.image_file }}
+		{% if form.image_file.errors %}
+			<ul class="errors">
+			{% for error in form.image_file.errors %}
+				<li>{{ error }}</li>
+			{% endfor %}
+			</ul>
+		{% endif %}
+	</fieldset>
+	
+	<input type="submit" value="Upload">
+</form>
+</div>
+{% endblock %}
