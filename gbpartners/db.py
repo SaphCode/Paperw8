@@ -30,6 +30,12 @@ def init_db():
         db.executescript(f.read().decode('utf8'))
 
 
+def delete(table_name, identifier):
+    if identifier:
+        return
+    else:
+        raise Exception('No identifier given.')
+
 @click.command('init-db')
 @with_appcontext
 def init_db_command():

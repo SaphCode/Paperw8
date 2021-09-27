@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Edit "{{ post['title'] }}"{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="POST" action="{{ url_for('blog.create') }}">
+	{{ form.csrf_token }}
+	<fieldset class="form-field">
+	{{ form.title.label }} {{ form.title(size=20) }}
+	{% if form.title.errors %}
+		<ul class="errors">
+		{% for error in form.title %}
+			<li>{{ error }}</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+	</fieldset>
+	
+	<fieldset class="form-field">
+	{{ form.content.label }} {{ form.content(size=100) }}
+	{% if form.content.errors %}
+		<ul class="errors">
+		{% for error in form.content %}
+			<li>{{ error }}</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+	</fieldset>
+	
+	<input type="submit" value="Update">
+	
+  </form>
+  
+  <form action="{{ url_for('blog.delete', id=post['id']) }}" method="post">
+    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure? This will delete the post forever. At least make sure you back it up!');">
+  </form>
+{% endblock %}

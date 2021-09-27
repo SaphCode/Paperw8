@@ -1,4 +1,6 @@
 DROP TABLE IF EXISTS historical_performance;
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS post;
 
 -- We start by creating a regular SQL table
 -- Symbol we say for now 7 characters.
@@ -11,19 +13,19 @@ CREATE TABLE historical_performance (
 );
 
 CREATE TABLE user (
-  id 		  SERIAL 		PRIMARY KEY,
-  username    VARCHAR(50) 	UNIQUE NOT NULL,
-  password 	  TEXT 			NOT NULL
+  id 		  	INTEGER 		PRIMARY KEY AUTOINCREMENT,
+  username    	VARCHAR(20) 	UNIQUE NOT NULL,
+  display_name	VARCHAR(50)		NOT NULL,
+  password 	  	TEXT 			NOT NULL
 );
 
-
 -- A post has an author, date, content (markdown), 
-CREATE TABLE post {
-  id		  SERIAL PRIMARY KEY,
+CREATE TABLE post (
+  id 		  INTEGER 			PRIMARY KEY AUTOINCREMENT,
   author_id	  INTEGER			NOT NULL,
   created	  TIMESTAMP			NOT NULL DEFAULT CURRENT_TIMESTAMP,
   title		  VARCHAR(100)		NOT NULL,
   content	  TEXT				NOT NULL,
-  last_edit	  DATE				NULL,
+  last_edit	  TIMESTAMP			NOT NULL,
   FOREIGN KEY (author_id) REFERENCES user(id)
-};
+);

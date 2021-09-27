@@ -10,16 +10,23 @@ bp = Blueprint('performance', __name__)
 @bp.route('/')
 def index():
     db = get_db()
-    historical_spy_performance = db.execute(
-        'SELECT date, symbol, cum_return'
-        ' FROM historical_performance'
-        ' WHERE symbol = "_SPY"'
-    ).fetchall()
-    historical_portfolio_performance = db.execute(
-        'SELECT date, symbol, cum_return'
-        ' FROM historical_performance'
-        ' WHERE symbol = "__BERI"'
-    ).fetchall()
-    print(historical_spy_performance)
-    print(historical_portfolio_performance)
+    table = db.execute(
+        'SELECT name'
+        ' FROM sqlite_master'
+        ' WHERE type="table" AND name="historical_performance"'
+    ).fetchone()
+    
+    if table is not None:
+        historical_spy_performance = db.execute(
+            'SELECT date, symbol, cum_return'
+            ' FROM historical_performance'
+            ' WHERE symbol = "_SPY"'
+        ).fetchall()
+        historical_portfolio_performance = db.execute(
+            'SELECT date, symbol, cum_return'
+            ' FROM historical_performance'
+            ' WHERE symbol = "__BERI"'
+        ).fetchall()
+        print(historical_spy_performance)
+        print(historical_portfolio_performance)
     return render_template('performance/portfolio.html', active='home')

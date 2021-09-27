@@ -1,0 +1,38 @@
+{% extends 'admin/admin.html' %}
+{% block content %}
+	<div class="container">
+		<table class="table table-striped table-sm">
+			<thead>
+				<tr>
+					{% for column in columns %}<th>{{ column }}</th>{% endfor %}
+				</tr>
+			</thead>
+			<tbody>
+				{% for row in rows %}
+				<tr>
+					{% for column in columns %}<td>{{ row[column] }}</td>{% endfor %}
+					<td>
+					{% if table_name == 'user' %}
+					<a type="button" class="btn btn-warning" href="{{ url_for('auth.edit', username=row['username']) }}">Edit</a>
+					{% elif table_name == 'post' %}
+					<a type="button" class="btn btn-warning" href="{{ url_for('blog.update', id=row['id']) }}">Edit</a>
+					{% endif %}
+					</td>
+					<td>
+					{% if table_name == 'user' %}
+					<form action="{{ url_for('auth.delete', id=row['id']) }}" method="post">
+						<input type="submit" name="delete_user" class="btn btn-danger" value="Delete" onclick="return confirm('Are you REALLY sure? This will delete all the posts this user has written. Make sure to back them up, at least.')" />
+					</form>
+					{% elif table_name == 'post' %}
+					<form action="{{ url_for('blog.delete', id=row['id']) }}" method="post">
+						<input type="submit" name="delete_post" class="btn btn-danger" value="Delete" onclick="return confirm('Are you sure? This will delete the post from the database. Make sure to back it up, at least.')" />
+					</form>
+					{% endif %}
+					</td>
+				</tr>
+				
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

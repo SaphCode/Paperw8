@@ -1,6 +1,6 @@
 <!doctype html>
 <head>
-  <title>{% block title %}{% endblock %} - Beri Partners</title>
+  <title>Admin - Beri Partners</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- BOOTSTRAP CSS -->
@@ -15,16 +15,14 @@
 <!-- NAVIGATION -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" href="{{ url_for('performance.index') }}">Beri Partners</a>
+    <a class="navbar-brand" href="{{ url_for('admin.home') }}">Home</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link {% if active == 'home' %} active {% endif %}" {% if active == 'home' %} aria-current="page" {% endif %} href="{{ url_for('performance.index') }}">Home</a>
-        <a class="nav-link {% if active == 'reports' %} active {% endif %}" {% if active == 'reports' %} aria-current="page" {% endif %} href="{{ url_for('blog.blog') }}">Blog</a>
-        <a class="nav-link {% if active == 'pricing' %} active {% endif %}" {% if active == 'pricing' %} aria-current="page" {% endif %} href="#">Pricing</a>
-        <a class="nav-link {% if active == 'home' %} active {% endif %}" {% if active == 'home' %} aria-current="page" {% endif %} href="#">Disabled</a>
+        <a class="nav-link" href="{{ url_for('admin.post_list') }}">Posts</a>
+        <a class="nav-link" href="{{ url_for('admin.user_list') }}">Users</a>
       </div>
     </div>
   </div>
