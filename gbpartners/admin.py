@@ -1,9 +1,12 @@
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for
+    Blueprint, flash, g, redirect, render_template, request, url_for, current_app
 )
+
 from flask_wtf import FlaskForm
-from wtforms import FileField, StringField
-from wtforms.validators import regexp, DataRequired, Length
+from flask_wtf.file import FileField, FileRequired, FileAllowed
+from wtforms import StringField
+from wtforms.validators import InputRequired, Length
+from werkzeug.utils import secure_filename
 
 from gbpartners.auth import admin_login_required
 from gbpartners.db import get_db
@@ -48,30 +51,37 @@ def post_list():
 
 
 class UploadPerformanceForm(FlaskForm):
-    performance_file = FileField('Performance', validators=[DataRequired(), regexp('^.*\.csv', message="File must end in: .csv")])
+    file_field = FileField() #, validators=[FileRequired(), FileAllowed(['csv'], message='File allowed: .csv')]
     
     
 class UploadImageForm(FlaskForm):
-    destination = StringField('Folder', validators=[DataRequired(), Length(min=1)])
-    image_file = FileField('Image', validators=[DataRequired(), regexp('^.*\.(jpg|JPG|jpeg|gif|png)', message="File must end in one of the following: .jpg, .JPG, .jpeg, .gif, .png")])
+    destination = StringField('Folder', validators=[InputRequired(), Length(min=1)])
+    file_field = FileField('Image', validators=[FileRequired(), FileAllowed(['jpg', 'png', 'JPG', 'jpeg', 'gif'], message="File must end in one of the following: .jpg, .JPG, .jpeg, .gif, .png")])
 
 
-def processPerformanceFile(file):
+def process_performance_file(file):
     csv = pd.read_csv(file)
     print(csv)
-    raise NotImplementedError()
+    return
 
 
-@bp.route('/admin/upload_performance', methods=('GET', 'POST'))
+@bp.route('/admin/upload_performance', methods=['GET', 'POST'])
 @admin_login_required
 def upload_performance_file():
     form = UploadPerformanceForm()
+    print(request.files)
+    print(form.file_field)
+    print(form.file_field.data)
     
     if form.validate_on_submit():
         print('success')
-        processPerformanceFile(form.performance_file.read())
+        # todo secure filename
+        print(os.path.join(current_app.config['UPLOAD_FOLDER'], 'performance.csv'))
+        form.file_field.data.save(os.path.join(current_app.config['UPLOAD_FOLDER'], '/performance.csv'))
         return redirect(url_for('admin.home'))
-        
+    print(form.csrf_token)
+    print(form.errors)
+    print(form.hidden_tag())
     return render_template('admin/upload_performance.html', form=form)
 
 

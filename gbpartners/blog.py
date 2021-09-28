@@ -3,7 +3,7 @@ from flask import (
 )
 from flask_wtf import FlaskForm
 from wtforms import StringField
-from wtforms.validators import DataRequired
+from wtforms.validators import InputRequired
 from werkzeug.exceptions import abort
 from datetime import datetime
 
@@ -14,8 +14,8 @@ bp = Blueprint('blog', __name__)
 
 
 class BlogForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired()])
-    content = StringField('Markdown', validators=[DataRequired()])
+    title = StringField('Title', validators=[InputRequired()])
+    content = StringField('Markdown', validators=[InputRequired()])
     
 
 @bp.route('/blog')

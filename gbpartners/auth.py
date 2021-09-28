@@ -5,7 +5,7 @@ from flask import (
 )
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
-from wtforms.validators import DataRequired, Length
+from wtforms.validators import InputRequired, Length
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from gbpartners.db import get_db
@@ -13,9 +13,9 @@ from gbpartners.db import get_db
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 class RegisterForm(FlaskForm):
-    display_name = StringField(validators=[DataRequired()])
-    username = StringField(validators=[DataRequired(), Length(min=1, max=20)])
-    password = PasswordField(validators=[DataRequired(), Length(min=8, max=100)])
+    display_name = StringField(validators=[InputRequired()])
+    username = StringField(validators=[InputRequired(), Length(min=1, max=20)])
+    password = PasswordField(validators=[InputRequired(), Length(min=8, max=100)])
 
 def login_required(view):
     @functools.wraps(view)
@@ -61,8 +61,8 @@ def register():
 
 
 class LoginForm(FlaskForm):
-    username = StringField(validators=[DataRequired()])
-    password = PasswordField(validators=[DataRequired()])
+    username = StringField(validators=[InputRequired()])
+    password = PasswordField(validators=[InputRequired()])
 
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
