@@ -117,3 +117,4 @@ dmypy.json
 .flaskenv
 instance/
 BeriPartners.egg-info/
+upload/

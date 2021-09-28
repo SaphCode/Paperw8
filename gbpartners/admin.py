@@ -77,7 +77,7 @@ def upload_performance_file():
         print('success')
         # todo secure filename
         print(os.path.join(current_app.config['UPLOAD_FOLDER'], 'performance.csv'))
-        form.file_field.data.save('performance.csv')
+        form.file_field.data.save(os.path.join(current_app.config['UPLOAD_FOLDER'], 'performance.csv'))
         return redirect(url_for('admin.home'))
     print(form.csrf_token)
     print(form.errors)
