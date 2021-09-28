@@ -4,7 +4,7 @@ from flask import (
 
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired, FileAllowed
-from wtforms import StringField
+from wtforms import StringField, SelectField
 from wtforms.validators import InputRequired, Length
 from werkzeug.utils import secure_filename
 
@@ -55,33 +55,28 @@ class UploadPerformanceForm(FlaskForm):
     
     
 class UploadImageForm(FlaskForm):
-    destination = StringField('Folder', validators=[InputRequired(), Length(min=1)])
+    destination = SelectField('Folder')
+    new_folder = StringField('New Folder')
     file_field = FileField('Image', validators=[FileRequired(), FileAllowed(['jpg', 'png', 'JPG', 'jpeg', 'gif'], message="File must end in one of the following: .jpg, .JPG, .jpeg, .gif, .png")])
 
 
 def process_performance_file(file):
     csv = pd.read_csv(file)
     print(csv)
-    return
+    raise NotImplementedError()
 
 
 @bp.route('/admin/upload_performance', methods=['GET', 'POST'])
 @admin_login_required
 def upload_performance_file():
     form = UploadPerformanceForm()
-    print(request.files)
-    print(form.file_field)
-    print(form.file_field.data)
-    
+
     if form.validate_on_submit():
-        print('success')
         # todo secure filename
-        print(os.path.join(current_app.config['UPLOAD_FOLDER'], 'performance.csv'))
-        form.file_field.data.save(os.path.join(current_app.config['UPLOAD_FOLDER'], 'performance.csv'))
-        return redirect(url_for('admin.home'))
-    print(form.csrf_token)
-    print(form.errors)
-    print(form.hidden_tag())
+        filename = secure_filename(form.photo.data.filename)
+        form.file_field.data.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
+        return redirect(url_for('admin.upload_performance_file'))
+
     return render_template('admin/upload_performance.html', form=form)
 
 
@@ -89,13 +84,30 @@ def upload_performance_file():
 @admin_login_required
 def upload_image_file():
     form = UploadImageForm()
-
+    
+    root_dir = current_app.config['UPLOAD_FOLDER']
+    choices = [(name.lower(), name) for name in os.listdir(root_dir) if os.path.isdir(os.path.join(root_dir, name))]
+    choices.append(('', ''))
+    form.destination.choices = choices
+    
     if form.validate_on_submit():
-        if not os.path.isdir(form.destination.data):
-            os.mkdir(form.destination.data)
-        with open(os.path.join(form.destination.data, form.image.data), 'w') as f:
-            f.write(form.image.read())
-           
+        directory = None
+        if form.new_folder.data:
+            if not os.path.isdir(os.path.join(root_dir, form.new_folder.data)):
+                directory = os.path.join(root_dir, form.new_folder.data)
+                os.mkdir(directory)
+        
+        if form.destination.data:
+            directory = os.path.join(root_dir, form.destination.data)
+        
+        if directory:
+            print(directory)
+            print(form.file_field.data.filename)
+            print(os.path.join(directory, form.file_field.data.filename))
+            form.file_field.data.save(os.path.join(directory, form.file_field.data.filename))
+        else:
+            flash('No directory supplied.')
+        return redirect(url_for('admin.upload_image_file'))
         
     return render_template('admin/upload_image.html', form=form)
            
