@@ -7,9 +7,9 @@ DROP TABLE IF EXISTS post;
 -- Currency is ISO 3 characters: http://currencysystem.com/codes/
 CREATE TABLE historical_performance (
   date        DATE              NOT NULL,
-  symbol      VARCHAR(8)        NOT NULL,
+  name        VARCHAR(30)       NOT NULL,
   cum_return  FLOAT				NOT NULL,
-  PRIMARY KEY (date, symbol)
+  PRIMARY KEY (date, name)
 );
 
 CREATE TABLE user (
@@ -24,7 +24,7 @@ CREATE TABLE post (
   id 		  INTEGER 			PRIMARY KEY AUTOINCREMENT,
   author_id	  INTEGER			NOT NULL,
   created	  TIMESTAMP			NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  title		  VARCHAR(100)		NOT NULL,
+  title		  VARCHAR(100)		NOT NULL UNIQUE,
   content	  TEXT				NOT NULL,
   last_edit	  TIMESTAMP			NOT NULL,
   FOREIGN KEY (author_id) REFERENCES user(id)

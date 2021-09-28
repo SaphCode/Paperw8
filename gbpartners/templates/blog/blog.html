@@ -2,19 +2,15 @@
 
 {% block title %}Blog{% endblock %}
 
-{% if g.user %}
-	<a class="action" href="{{ url_for('blog.create') }}">New</a>
-{% endif %}
-
 {% block content %}
 
- 
+
 <div class="d-flex align-items-center justify-content-center col-md-12">
 	<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 		<img src="{{url_for('static', filename='images/bp_banner_lq.png')}}" width='auto' height='100%'></img>
 	</div>
 </div>
-  
+
     {% if g.user %}
 	<div class="d-flex align-items-center justify-content-center mt-4 mb-5">
 		<div class="d-flex align-items-center justify-content-center col-md-2">
@@ -22,9 +18,9 @@
 		</div>
 	</div>
   {% endif %}
-  
+
   <div class="container">
-		
+
 	  {% for post in posts %}
 		<article class="col-md-12">
 			<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -44,6 +40,11 @@
 
         </div>
 			</div>
+			{% if g.user['id'] == post['author_id'] or g.user['username'] == 'admin' %}
+			  <a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
+			{% endif %}
+		  </header>
+		  <p class="body">{{ post['content'] }}</p>
 		</article>
 		{% if not loop.last %}
 		  <hr>

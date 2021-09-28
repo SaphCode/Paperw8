@@ -4,7 +4,7 @@ from flask import Flask
 
 from sqlite3 import OperationalError
 
-UPLOAD_FOLDER = '/upload'
+UPLOAD_FOLDER = 'upload'
 MAX_FILE_SIZE = 5 * 10**3 * 10**3
 
 def create_app(test_config=None):

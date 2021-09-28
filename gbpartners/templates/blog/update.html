@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block content %}
-  <form method="POST" action="{{ url_for('blog.create') }}">
-	{{ form.csrf_token }}
+  <form method="POST" action="{{ url_for('blog.update', id=post['id']) }}">
+	{{ form.hidden_tag() }}
 	<fieldset class="form-field">
 	{{ form.title.label }} {{ form.title(size=20) }}
 	{% if form.title.errors %}
