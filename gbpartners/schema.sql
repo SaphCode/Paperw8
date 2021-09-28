@@ -7,9 +7,9 @@ DROP TABLE IF EXISTS post;
 -- Currency is ISO 3 characters: http://currencysystem.com/codes/
 CREATE TABLE historical_performance (
   date        DATE              NOT NULL,
-  symbol      VARCHAR(8)        NOT NULL,
+  name        VARCHAR(30)       NOT NULL,
   cum_return  FLOAT				NOT NULL,
-  PRIMARY KEY (date, symbol)
+  PRIMARY KEY (date, name)
 );
 
 CREATE TABLE user (

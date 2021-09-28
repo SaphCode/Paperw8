@@ -10,6 +10,7 @@ from werkzeug.utils import secure_filename
 
 from gbpartners.auth import admin_login_required
 from gbpartners.db import get_db
+from gbpartners.utils import process_performance_file
 
 import os
 import pandas as pd
@@ -60,12 +61,6 @@ class UploadImageForm(FlaskForm):
     file_field = FileField('Image', validators=[FileRequired(), FileAllowed(['jpg', 'png', 'JPG', 'jpeg', 'gif'], message="File must end in one of the following: .jpg, .JPG, .jpeg, .gif, .png")])
 
 
-def process_performance_file(file):
-    csv = pd.read_csv(file)
-    print(csv)
-    raise NotImplementedError()
-
-
 @bp.route('/admin/upload_performance', methods=['GET', 'POST'])
 @admin_login_required
 def upload_performance_file():
@@ -73,8 +68,10 @@ def upload_performance_file():
 
     if form.validate_on_submit():
         # todo secure filename
-        filename = secure_filename(form.photo.data.filename)
-        form.file_field.data.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
+        filename = secure_filename(form.file_field.data.filename)
+        destination = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
+        form.file_field.data.save(destination)
+        process_performance_file(current_app.config['UPLOAD_FOLDER'], filename, get_db())
         return redirect(url_for('admin.upload_performance_file'))
 
     return render_template('admin/upload_performance.html', form=form)
@@ -101,9 +98,6 @@ def upload_image_file():
             directory = os.path.join(root_dir, form.destination.data)
         
         if directory:
-            print(directory)
-            print(form.file_field.data.filename)
-            print(os.path.join(directory, form.file_field.data.filename))
             form.file_field.data.save(os.path.join(directory, form.file_field.data.filename))
         else:
             flash('No directory supplied.')
