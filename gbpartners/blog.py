@@ -59,8 +59,9 @@ def get_post(id, check_author=True):
     if post is None:
         abort(404, f"Post id {id} doesn't exist.")
 
-    if check_author and post['author_id'] != g.user['id']:
-        abort(403)
+    if (g.user['username'] != 'admin'):
+        if (check_author and post['author_id'] != g.user['id']):
+            abort(403)
 
     return post
     
@@ -72,12 +73,15 @@ def update(id):
     
     form = BlogForm(title=post['title'], content=post['content'])
 
+    print(id)
     if form.validate_on_submit():
+        print('validate success')
         db = get_db()
+        print(id)
         db.execute(
             'UPDATE post SET title = ?, content = ?, last_edit = CURRENT_TIMESTAMP'
             ' WHERE id = ?',
-            (title, content, id)
+            (form.title.data, form.content.data, id)
         )
         db.commit()
         return redirect(url_for('blog.blog'))

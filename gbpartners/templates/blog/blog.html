@@ -2,10 +2,6 @@
 
 {% block title %}Blog{% endblock %}
 
-{% if g.user %}
-	<a class="action" href="{{ url_for('blog.create') }}">New</a>
-{% endif %}
-
 {% block content %}
   {% if g.user %}
   <a type="button" class="btn" href="{{ url_for('blog.create') }}">Create</a>
@@ -19,7 +15,7 @@
 			  <div class="about">by {{ post['display_name'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
 			  {% if post['created'].strftime('%Y-%m-%d') != post['last_edit'].strftime('%Y-%m-%d') %}<div class="about font-italic">last edit on {{ post['last_edit'].strftime('%Y-%m-%d') }}{% endif %}
 			</div>
-			{% if g.user['id'] == post['author_id'] %}
+			{% if g.user['id'] == post['author_id'] or g.user['username'] == 'admin' %}
 			  <a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
 			{% endif %}
 		  </header>
