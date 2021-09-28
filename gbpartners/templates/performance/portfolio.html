@@ -5,9 +5,38 @@ Investing portfolio performance
 {% endblock %}
 
 {% block content %}
+	
+	
+	
 	<div class="container">
-		<div class="catchy_phrase text-center text-muted fs-6">Investing in the market is hard, let us do the work.</div>
-		<div class="company_name text-center display-2">Beri Partners</div>
+		<div class="catchy_phrase text-center text-muted pt-5 fs-6">Investing in the market is hard, let us do the work.</div>
+		<div class="company_name text-center display-2 mb-5">Beri Partners</div>
+		
+		  <div class="row mb-5">
+			<div class="col-md-6 pt-2 mt-5">
+			  <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+				<div class="col-auto d-none d-lg-block">
+					<a href="#">
+						<div class="inner">
+							<img src="{{url_for('static', filename='images/janik_pb.jpg')}}" width='700' height='auto'></img>
+						</div>
+					</a>
+				</div>
+			  </div>
+			</div>
+			<div class="col-md-6 pt-2 mt-5">
+			  <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+				<div class="col-auto d-none d-lg-block">
+					<a class="hover-shadow" href="#">
+						<div class="inner">
+							<img  src="{{url_for('static', filename='images/chris_pb.jpg')}}" width='700' height='auto'></img>
+						</div>
+					</a>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		
 		<div class="performance_chart">
 			<script type="module">
 
