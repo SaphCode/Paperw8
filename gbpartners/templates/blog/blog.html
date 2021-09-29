@@ -34,7 +34,7 @@
 							<a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
 							{% endif %}
 							<p class="mb-auto">{{ post['content'] }}</p>
-							<a href="#" class="stretched-link">Continue reading</a>
+							<a href="{{ url_for('blog.post', title=post['title']) }}" class="stretched-link">Continue reading</a>
 						</div>
 					<div class="col-auto d-none d-lg-block">
 						<svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><img src="{{url_for('static', filename='images/Tandy_tn.jpeg')}}" width='auto' height='250px'></img></svg>

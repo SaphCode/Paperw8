@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container post">
+	<h1>{{ post['title'] }}</h1>
+
+	<div class="post_content">
+		{{ post['content']|safe }}
+	</div>
+	
+	<div class="post_info">
+		<div>Written by <a href="{{ url_for('user.profile', username=post['username']) }}">{{ post['display_name'] }}</a> on {{ post['created'] }}.</div>
+		{% if post['created'].strftime('%Y-%m-%d') != post['last_edit'].strftime('%Y-%m-%d') %}<div>Last edit on {{ post['last_edit'] }}.</div>{% endif %}
+	</div>
+</div>
+{% endblock %}

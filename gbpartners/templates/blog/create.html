@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
-{% block header %}
   <h1>{% block title %}New Post{% endblock %}</h1>
+
+{% block extensions %}
+{{ pagedown.include_pagedown() }}
 {% endblock %}
 
 {% block content %}
@@ -10,6 +12,7 @@
 
   <form method="POST" action="{{ url_for('blog.create') }}">
 	{{ form.csrf_token }}
+	{{ form.hidden_tag() }}
 	<fieldset class="form-field">
 	{{ form.title.label }} {{ form.title(size=20) }}
 	{% if form.title.errors %}
@@ -22,7 +25,7 @@
 	</fieldset>
 	
 	<fieldset class="form-field">
-	{{ form.content.label }} {{ form.content(size=100) }}
+	{{ form.content.label }} {{ form.content(rows=10) }}
 	{% if form.content.errors %}
 		<ul class="errors">
 		{% for error in form.content.errors %}

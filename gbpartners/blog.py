@@ -1,21 +1,24 @@
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for
+    Blueprint, flash, g, redirect, render_template, request, url_for, current_app
 )
 from flask_wtf import FlaskForm
+
+from flask_pagedown.fields import PageDownField
 from wtforms import StringField
 from wtforms.validators import InputRequired
 from werkzeug.exceptions import abort
+
 from datetime import datetime
+import markdown 
 
 from gbpartners.auth import login_required, admin_login_required
 from gbpartners.db import get_db
 
 bp = Blueprint('blog', __name__)
 
-
 class BlogForm(FlaskForm):
     title = StringField('Title', validators=[InputRequired()])
-    content = StringField('Markdown', validators=[InputRequired()])
+    content = PageDownField('Markdown', validators=[InputRequired()])
     
 
 @bp.route('/blog')
@@ -30,6 +33,22 @@ def blog():
     ).fetchall()
 
     return render_template('blog/blog.html', posts=posts)
+
+@bp.route('/post/<title>')    
+def post(title):
+    db = get_db()
+    print(title)
+    post = db.execute(
+        'SELECT p.id AS id, title, content, created, last_edit, display_name, u.id AS author_id, username'
+        ' FROM post p'
+        ' JOIN user u ON p.author_id = u.id'
+        ' WHERE title = ?',
+        (title,)
+    ).fetchone()
+    
+    post = dict(post)
+    post['content'] = markdown.markdown(post['content'])
+    return render_template('blog/post.html', post=post)
     
     
 @bp.route('/blog/create', methods=('GET', 'POST'))

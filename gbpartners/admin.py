@@ -14,7 +14,6 @@ from gbpartners.utils import process_performance_file
 
 import os
 import csv
-import pandas as pd
 
 bp = Blueprint('admin', __name__)
 

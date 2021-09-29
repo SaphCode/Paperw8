@@ -118,3 +118,5 @@ dmypy.json
 instance/
 BeriPartners.egg-info/
 upload/
+gbpartners/static/
+!gbpartners/static/style.css

@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask
+from flask_pagedown import PageDown
 
 from sqlite3 import OperationalError
 
@@ -12,6 +13,7 @@ MAX_FILE_SIZE = 5 * 10**3 * 10**3
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
+    pagedown = PageDown(app)
     app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'gbpartners.sqlite'),
@@ -47,5 +49,8 @@ def create_app(test_config=None):
     
     from . import blog
     app.register_blueprint(blog.bp)
+    
+    from . import user
+    app.register_blueprint(user.bp)
 
     return app
