@@ -13,6 +13,7 @@ from gbpartners.db import get_db
 from gbpartners.utils import process_performance_file
 
 import os
+import csv
 import pandas as pd
 
 bp = Blueprint('admin', __name__)
@@ -72,6 +73,29 @@ def upload_performance_file():
         destination = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
         form.file_field.data.save(destination)
         process_performance_file(current_app.config['UPLOAD_FOLDER'], filename, get_db())
+        
+        root_dir = current_app.config['UPLOAD_FOLDER']
+        db = get_db()
+        
+        historical_snp_performance = db.execute(
+            'SELECT date, name, cum_return'
+            ' FROM historical_performance'
+            ' WHERE name = "SPXTR"'
+        ).fetchall()
+        performance = [(row['date'], row['name'].replace('\\n', ''), row['cum_return']) for row in historical_snp_performance]
+        
+        historical_portfolio_performance = db.execute(
+            'SELECT date, name, cum_return'
+            ' FROM historical_performance'
+            ' WHERE name = "PORTFOLIO"'
+        ).fetchall()
+        performance.extend([(row['date'], row['name'].replace('\\n', ''), row['cum_return']) for row in historical_portfolio_performance])
+
+        with open(os.path.join(root_dir, 'performance_measurement.csv'), 'w') as f:
+            writer = csv.writer(f, lineterminator= '\n')
+            writer.writerow(['date', 'name', 'cum_return'])
+            writer.writerows(performance)
+
         return redirect(url_for('admin.upload_performance_file'))
 
     return render_template('admin/upload_performance.html', form=form)

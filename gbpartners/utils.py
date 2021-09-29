@@ -1,6 +1,7 @@
 import csv
 import os
 from datetime import datetime
+import json
 
 def confirmation_required(desc_fn):
     def inner(f):
@@ -15,9 +16,7 @@ def confirmation_required(desc_fn):
     return inner
     
 def format_date(unformatted):
-    print(unformatted)
     dt = datetime.strptime(unformatted, '%m/%d/%y')
-    print(dt.strftime('%Y-%m-%d'))
     return dt.strftime('%Y-%m-%d')
 
 def process_performance_file(upload_path, filename, db):
@@ -30,7 +29,6 @@ def process_performance_file(upload_path, filename, db):
     with open(os.path.join(upload_path, edited_filename), 'r') as f:
         csvfile = csv.DictReader(f, delimiter=',')
         for row in csvfile:
-            print(row)
             date = format_date(row['Date'])
             db.execute(
                 "INSERT OR REPLACE"
@@ -57,3 +55,7 @@ def process_performance_file(upload_path, filename, db):
                 (date, 'PORTFOLIO', row['ConsolidatedReturn'])
             )
         db.commit()
+    
+
+def sqllite_to_json(query_result):
+    return json.dumps([dict(row) for row in query_result], default=str)
