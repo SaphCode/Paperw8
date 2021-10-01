@@ -6,10 +6,12 @@ Investing portfolio performance
 
 {% block content %}
   <div class="container">
+  
 		<div class="catchy_phrase text-center text-muted pt-5 fs-6">Investing in the market is hard, let us do the work.</div>
+		
 		<div class="company_name text-center display-2 mb-5">Beri Partners</div>
 		
-		  <div class="row mb-5">
+	    <div class="row mb-5">
 			<div class="col-md-6 pt-2 mt-5">
 			  <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 				<div class="col-auto d-none d-lg-block">
@@ -21,6 +23,7 @@ Investing portfolio performance
 				</div>
 			  </div>
 			</div>
+			
 			<div class="col-md-6 pt-2 mt-5">
 			  <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 				<div class="col-auto d-none d-lg-block">
@@ -31,20 +34,24 @@ Investing portfolio performance
 					</a>
 				</div>
 			  </div>
-        <div class="performance_chart" id="chart">
-        </div>
 			</div>
-		  </div>
+
+		</div>
+		
+		<div class="performance_chart" id="chart">
+		</div>
+	</div>
 {% endblock %}
 
 {% block scripts %}
 <script src="https://d3js.org/d3.v6.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="module">
 
 // set the dimensions and margins of the graph
 const margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = 460 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+    width = $(document).width()/3 - margin.left - margin.right,
+    height = $(document).height()/5 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 const svg = d3.select("#chart")

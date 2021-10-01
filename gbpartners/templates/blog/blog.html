@@ -26,16 +26,15 @@
 			<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 				<div class="col p-4 d-flex flex-column position-static">
 					<strong class="d-inline-block mb-2 text-success">Valuation</strong>
-						<h1>{{ post['title'] }}</h1>
-						<div class="mb-1 text-muted">by {{ post['display_name'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
-						{% if post['created'].strftime('%Y-%m-%d') != post['last_edit'].strftime('%Y-%m-%d') %}
-						<div class="about font-italic">last edit on {{ post['last_edit'].strftime('%Y-%m-%d') }}{% endif %}
-							{% if g.user['id'] == post['author_id'] or g.user['username'] == 'admin' %}
-							<a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
-							{% endif %}
-							<p class="mb-auto">{{ post['content'] }}</p>
-							<a href="{{ url_for('blog.post', title=post['title']) }}" class="stretched-link">Continue reading</a>
-						</div>
+					<h1>{{ post['title'] }}</h1>
+					<div class="mb-1 text-muted">by {{ post['display_name'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
+					{% if post['created'].strftime('%Y-%m-%d') != post['last_edit'].strftime('%Y-%m-%d') %}
+					<div class="about font-italic">last edit on {{ post['last_edit'].strftime('%Y-%m-%d') }}{% endif %}
+						{% if g.user['id'] == post['author_id'] or g.user['username'] == 'admin' %}
+						<a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
+						{% endif %}
+						<a href="{{ url_for('blog.post', title=post['title']) }}" class="stretched-link">Read</a>
+					</div>
 					<div class="col-auto d-none d-lg-block">
 						<svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><img src="{{url_for('static', filename='images/Tandy_tn.jpeg')}}" width='auto' height='250px'></img></svg>
 					</div>
