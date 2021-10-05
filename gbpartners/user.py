@@ -23,7 +23,5 @@ def profile(username):
     
     
     images = os.listdir(os.path.join(current_app.static_folder, f'images/profile/{username}/side'))
-    images = [f'images/profile/{username}/side/' + image for image in images]
-    
     
     return render_template('user/user.html', user=user, images=images)

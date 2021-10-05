@@ -28,12 +28,8 @@ About Janik
 			<div class="d-flex justify-content-center me-7">
 				<p class="black_heading_2">
 					<span style="color: grey;">Hi, I'm </span>
-				{% if user['username'] == 'janik' %}
-					<span style="color: black;">Janik, </span><br>
-				{% elif user['username'] == 'chris' %}
-					<span style="color: black;">Chris, </span><br>
-				{% endif %}
-					<span style="color: grey;">founder of <br></span>
+					<span style="color: black;">{{ user['username'].capitalize() }}, </span><br>
+					<span style="color: grey;">founder of </span><br>
 					<span style="color: black;">Beri Partners.</span>
 				</p>
 			</div>
@@ -76,39 +72,16 @@ About Janik
 				<div class="row d-flex justify-content-center">
 					<!-- Gallery -->
 					<div class="row mt-7 mb-8" style="width:70%">
-					{% for image in images %}
-					<div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-						<img
-						src="{{ url_for('static', filename=image) }}"
-						class="w-100 shadow-1-strong rounded mb-4"
-						alt=""
-						/>
-					</div>
-					{% endfor %}
-					<!--
+					{% if user['username'] == 'janik' %}
 						<div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
 							<img
-							src="{{ url_for('static', filename='images/profile/janik/cards.jpg.png') }}"
+							src="{{ url_for('static', filename='images/profile/janik/side/cards.jpg') }}"
 							class="w-100 shadow-1-strong rounded mb-4"
 							alt=""
 							/>
 
 							<img
-							src="{{ url_for('static', filename='images/profile/janik/donauinsel.jpg') }}"
-							class="w-100 shadow-1-strong rounded mb-4"
-							alt=""
-							/>
-						</div>
-
-						<div class="col-lg-4 mb-4 mb-lg-0">
-							<img
-							src="{{ url_for('static', filename='images/profile/janik/norway.jpg') }}"
-							class="w-100 shadow-1-strong rounded mb-4"
-							alt=""
-							/>
-
-							<img
-							src="{{ url_for('static', filename='images/profile/janik/floating.jpg') }}"
+							src="{{ url_for('static', filename='images/profile/janik/side/donauinsel.jpg') }}"
 							class="w-100 shadow-1-strong rounded mb-4"
 							alt=""
 							/>
@@ -116,7 +89,21 @@ About Janik
 
 						<div class="col-lg-4 mb-4 mb-lg-0">
 							<img
-							src="{{ url_for('static', filename='images/profile/janik/rnb_face.jpg') }}"
+							src="{{ url_for('static', filename='images/profile/janik/side/norway.jpg') }}"
+							class="w-100 shadow-1-strong rounded mb-4"
+							alt=""
+							/>
+
+							<img
+							src="{{ url_for('static', filename='images/profile/janik/side/floating.jpg') }}"
+							class="w-100 shadow-1-strong rounded mb-4"
+							alt=""
+							/>
+						</div>
+
+						<div class="col-lg-4 mb-4 mb-lg-0">
+							<img
+							src="{{ url_for('static', filename='images/profile/janik/side/rnb_face.jpg') }}"
 							class="w-100 shadow-1-strong rounded mb-4"
 							alt=""
 							/>
@@ -133,8 +120,10 @@ About Janik
 							class="w-100 shadow-1-strong rounded mb-4"
 							alt=""
 							/>
+					{% elif user['username'] == 'chris' %}
 					
-					-->
+					{% endif %}
+					
 					</div>
 				</div>
 			<!-- Gallery -->
@@ -142,7 +131,7 @@ About Janik
 	<!--- black bg --->
 	
 	<!--- quote --->
-	<div class="lights-bg-image" style="height: 1600px;">
+	<div class="lights-bg-image" style="height: 1600px; background-image: url('{{ url_for ("static", filename="images/bg/lights_black.jpg") }}');">
 		<div class="row d-flex justify-content-center">
 			<div class="col-md-6 mt-8">
 				<p class="heading_2">

@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
+{% block title %}
+{{ post['title'] }}
+{% endblock %}
+
 {% block content %}
 <div class="container post">
-	<h1>{{ post['title'] }}</h1>
-
 	<div class="post_content">
 		{{ post['content']|safe }}
 	</div>

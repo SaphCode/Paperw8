@@ -41,7 +41,7 @@
   white-space: nowrap; /* Keeps the content on a single line */
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
   letter-spacing: .15em; /* Adjust as needed */
-  animation: 
+  animation:
     typing 3.5s steps(40, end),
     blink-caret .75s step-end infinite;
 }
@@ -102,7 +102,7 @@
 }
 
 .lights-bg-image{
-	background-image: url('pictures/photoshop/profil_janik/lights_black.jpg');
+	/* set image in html & jinja with style= */
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -188,4 +188,3 @@
 .me-10{
 	margin-right:500px;
 }
-
