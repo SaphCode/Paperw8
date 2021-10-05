@@ -12,6 +12,12 @@
 
 .company_name{
 	font-size:100px;
+	line-height:100%
+}
+
+.catch_phrase{
+	font-size:40px;
+	line-height:120%
 }
 
 .test_font{
@@ -41,7 +47,7 @@
   white-space: nowrap; /* Keeps the content on a single line */
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
   letter-spacing: .15em; /* Adjust as needed */
-  animation: 
+  animation:
     typing 3.5s steps(40, end),
     blink-caret .75s step-end infinite;
 }
@@ -73,6 +79,11 @@
 
 .about_text{
 	font-size: 60px;
+	line-height: 120%;
+}
+
+.catch_line_text{
+	font-size: 40px;
 	line-height: 120%;
 }
 
@@ -188,4 +199,3 @@
 .me-10{
 	margin-right:500px;
 }
-
