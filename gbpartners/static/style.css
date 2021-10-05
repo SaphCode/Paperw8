@@ -11,5 +11,181 @@
 }
 
 .company_name{
-	font-size:1000px;
+	font-size:100px;
 }
+
+.test_font{
+	font-size:100px;
+	color:green;
+}
+
+.imageBox {
+  position: relative;
+  float: left;
+}
+
+.imageBox .hoverImg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+}
+
+.imageBox:hover .hoverImg {
+  display: block;
+}
+
+.typewriter h1 {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}
+
+.heading_1{
+	font-size: 100px;
+}
+
+.heading_2{
+	font-size: 70px;
+	line-height: 100%;
+}
+
+.normal_text{
+	font-size: 35px;
+}
+
+.about_text{
+	font-size: 60px;
+	line-height: 120%;
+}
+
+.black_heading{
+	font-size: 90px;
+	font-weight:500;
+	line-height: 100%;
+}
+
+.black_heading_2{
+	font-size: 70px;
+	font-weight:500;
+	line-height: 100%;
+}
+
+.bold_gray_text{
+	color: gray;
+	font-size: 18px;
+	font-weight:600;
+	line-height: 120%;
+}
+
+.normal_gray_text{
+	color: gray;
+	font-size: 17px;
+	line-height: 120%;
+}
+
+.lights-bg-image{
+	background-image: url('pictures/photoshop/profil_janik/lights_black.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.mt-6{
+	margin-top:100px;
+}
+.mt-7{
+	margin-top:200px;
+}
+.mt-8{
+	margin-top:300px;
+}
+.mt-9{
+	margin-top:400px;
+}
+.mt-10{
+	margin-top:500px;
+}
+
+.pt-6{
+	padding-top:100px;
+}
+.pt-7{
+	padding-top:200px;
+}
+.pt-8{
+	padding-top:300px;
+}
+.pt-9{
+	padding-top:400px;
+}
+.pt-10{
+	padding-top:500px;
+}
+
+
+.mb-6{
+	margin-bottom:100px;
+}
+.mb-7{
+	margin-bottom:200px;
+}
+.mb-8{
+	margin-bottom:300px;
+}
+.mb-9{
+	margin-bottom:400px;
+}
+.mb-10{
+	margin-bottom:500px;
+}
+
+
+.ms-6{
+	margin-left:100px;
+}
+.ms-7{
+	margin-left:200px;
+}
+.ms-8{
+	margin-left:300px;
+}
+.ms-9{
+	margin-left:400px;
+}
+.ms-10{
+	margin-left:500px;
+}
+
+.me-6{
+	margin-right:100px;
+}
+.me-7{
+	margin-right:200px;
+}
+.me-8{
+	margin-right:300px;
+}
+.me-9{
+	margin-right:400px;
+}
+.me-10{
+	margin-right:500px;
+}
+
