@@ -6,30 +6,30 @@ Investing portfolio performance
 
 {% block content %}
   <div class="container">
-  
+		<div class="test_font">Beri Partners</div>
 		<div class="catchy_phrase text-center text-muted pt-5 fs-6">Investing in the market is hard, let us do the work.</div>
-		
+
 		<div class="company_name text-center display-2 mb-5">Beri Partners</div>
-		
+
 	    <div class="row mb-5">
 			<div class="col-md-6 pt-2 mt-5">
 			  <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 				<div class="col-auto d-none d-lg-block">
 					<a class="hover-shadow" href="{{ url_for('user.profile', username='chris') }}">
 						<div class="inner">
-							<img src="{{url_for('static', filename='images/janik_pb.jpg')}}" width='700' height='auto'></img>
+							<img src="{{url_for('static', filename='images/pb_janik.png')}}" width='700' height='auto'></img>
 						</div>
 					</a>
 				</div>
 			  </div>
 			</div>
-			
+
 			<div class="col-md-6 pt-2 mt-5">
 			  <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 				<div class="col-auto d-none d-lg-block">
 					<a class="hover-shadow" href="{{ url_for('user.profile', username='chris') }}">
 						<div class="inner">
-							<img src="{{url_for('static', filename='images/chris_pb.jpg')}}" width='700' height='auto'></img>
+							<img src="{{url_for('static', filename='images/pb_chris.png')}}" width='700' height='auto'></img>
 						</div>
 					</a>
 				</div>
@@ -37,7 +37,7 @@ Investing portfolio performance
 			</div>
 
 		</div>
-		
+
 		<div class="performance_chart" id="chart">
 		</div>
 	</div>
@@ -60,15 +60,15 @@ const svg = d3.select("#chart")
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
-	
+
 	// legend
 	svg.append("circle").attr("cx",20).attr("cy",20).attr("r", 6).style("fill", "#69b3a2")
 	svg.append("circle").attr("cx",20).attr("cy",50).attr("r", 6).style("fill", "#404080")
 	svg.append("text").attr("x", 30).attr("y", 20).text("Portfolio").style("font-size", "15px").attr("alignment-baseline","middle")
 	svg.append("text").attr("x", 30).attr("y", 50).text("S&P 500").style("font-size", "15px").attr("alignment-baseline","middle")
-	
 
-	
+
+
 function tweenDash() {
   const l = this.getTotalLength(),
       i = d3.interpolateString("0," + l, l + "," + l);
@@ -92,11 +92,11 @@ const data = d3.csv("{{ url_for('static', filename='performance_measurement.csv'
 	  })
   .then(
 	// Now I can use this dataset:
-	
+
 	  function(data) {
 
 		const sumstat = d3.group(data, d => d.name);
-		
+
 		// Add X axis --> it is a date format
 		const x = d3.scaleTime()
 		  .domain(d3.extent(data, function(d) { return d.date; }))
@@ -111,7 +111,7 @@ const data = d3.csv("{{ url_for('static', filename='performance_measurement.csv'
 		  .range([ height, 0 ]);
 		svg.append("g")
 		  .call(d3.axisLeft(y).tickFormat(d => d + "%"));
-		  
+
 		// color palette
 		const color = d3.scaleOrdinal()
 			.range(['#404080','#69b3a2','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
@@ -129,7 +129,7 @@ const data = d3.csv("{{ url_for('static', filename='performance_measurement.csv'
 				(d[1])
 			})
 			.call(transition);
-			
+
 
 	});
 
