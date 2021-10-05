@@ -28,12 +28,8 @@ About Janik
 			<div class="d-flex justify-content-center me-7">
 				<p class="black_heading_2">
 					<span style="color: grey;">Hi, I'm </span>
-				{% if user['username'] == 'janik' %}
-					<span style="color: black;">Janik, </span><br>
-				{% elif user['username'] == 'chris' %}
-					<span style="color: black;">Chris, </span><br>
-				{% endif %}
-					<span style="color: grey;">founder of <br></span>
+					<span style="color: black;">{{ user['username'].capitalize() }}, </span><br>
+					<span style="color: grey;">founder of </span><br>
 					<span style="color: black;">Beri Partners.</span>
 				</p>
 			</div>
@@ -79,7 +75,7 @@ About Janik
 					{% for image in images %}
 					<div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
 						<img
-						src="{{ url_for('static', filename=image) }}"
+						src="{{ url_for('static', filename='images/profile/' + user['username'] + '/side/' + image) }}"
 						class="w-100 shadow-1-strong rounded mb-4"
 						alt=""
 						/>
