@@ -18,7 +18,8 @@ def create_app(test_config=None):
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'gbpartners.sqlite'),
         UPLOAD_FOLDER=UPLOAD_FOLDER,
-        MAX_CONTENT_LENGTH=MAX_FILE_SIZE
+        MAX_CONTENT_LENGTH=MAX_FILE_SIZE,
+        STATIC_FOLDER='static'
     )
 
     if test_config is None:

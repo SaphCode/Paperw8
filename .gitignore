@@ -117,6 +117,6 @@ dmypy.json
 .flaskenv
 instance/
 BeriPartners.egg-info/
-upload/
-gbpartners/static/
-!gbpartners/static/style.css
+gbpartners/static/images/
+gbpartners/static/data/
+gbpartners/static/js/
