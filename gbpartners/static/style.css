@@ -12,6 +12,12 @@
 
 .company_name{
 	font-size:100px;
+	line-height:100%
+}
+
+.catch_phrase{
+	font-size:40px;
+	line-height:120%
 }
 
 .test_font{

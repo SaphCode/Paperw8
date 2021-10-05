@@ -5,38 +5,54 @@ Investing portfolio performance
 {% endblock %}
 
 {% block content %}
-  <div class="container">
-		<div class="catchy_phrase text-center text-muted pt-5 fs-6">Investing in the market is hard, let us do the work.</div>
-
-		<div class="company_name text-center display-2 mb-5">Beri Partners</div>
-
-	    <div class="row mb-5">
-			<div class="col-md-6 pt-2 mt-5">
-			  <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-				<div class="col-auto d-none d-lg-block">
+	
+	<div class="container-fluid bg-light pt-6">
+		<div class="row d-flex justify-content-center align-items-end">
+			<div class="col-md-3 pt-2">
+				<div class="imageBox">
 					<a class="hover-shadow" href="{{ url_for('user.profile', username='janik') }}">
-						<div class="inner">
-							<img src="{{ url_for('static', filename='images/profile/janik/pb.png') }}" width='700' height='auto'></img>
+						<div class="bg-light imageInn">
+							<img src="{{ url_for('static', filename='images/profile/janik/pb.png') }}" width="100%" height="auto" alt="Janik Grassberger">
+						</div>
+						<div class=" bg-light hoverImg">
+							<img src="{{url_for('static', filename='images/janik_ribbon.png')}}" width="100%" height="auto" alt="Janik Grassberger on hover">
 						</div>
 					</a>
 				</div>
-			  </div>
 			</div>
 
-			<div class="col-md-6 pt-2 mt-5">
-			  <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-				<div class="col-auto d-none d-lg-block">
-					<a class="hover-shadow" href="{{ url_for('user.profile', username='chris') }}">
-						<div class="inner">
-							<img src="{{url_for('static', filename='images/profile/chris/pb.png')}}" width='700' height='auto'></img>
+			<div class="col-md-3 pt-2">
+				<div class="row">
+					<div class="col-auto">
+						<div class="company_name text-center">
+							Beri Partners
+						</div>
+						<div class="catch_phrase text-center">
+							Investing in the market is hard, let us do the work for you.
+						</div>
+						<div class="d-flex justify-content-center pt-5 pb-5">
+							<img src="{{url_for('static', filename='images/beri.png')}}" width="10%" height="auto" alt="Beri">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3 pt-2">
+				<div class="imageBox">
+					<a class="hover-shadow" href="{{ url_for('user.profile', username='janik') }}">
+						<div class="bg-light imageInn">
+							<img src="{{url_for('static', filename='images/profile/chris/pb.png')}}" width="100%" height="auto" alt="Christopher Stanek">
+						</div>
+						<div class="bg-light hoverImg">
+							<img src="{{url_for('static', filename='images/chris_ribbon.png')}}" width="100%" height="auto" alt="Christopher Stanek on hover">
 						</div>
 					</a>
 				</div>
-			  </div>
 			</div>
-
 		</div>
+	</div>
 
+	<div class="container-fluid bg-dark" style="height: 2000px;">
 		<div class="performance_chart" id="chart">
 		</div>
 	</div>
