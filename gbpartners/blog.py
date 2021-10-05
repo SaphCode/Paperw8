@@ -37,7 +37,6 @@ def blog():
 @bp.route('/post/<title>')    
 def post(title):
     db = get_db()
-    print(title)
     post = db.execute(
         'SELECT p.id AS id, title, content, created, last_edit, display_name, u.id AS author_id, username'
         ' FROM post p'
