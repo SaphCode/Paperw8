@@ -10,19 +10,26 @@ About Janik
 	<div class="row d-flex justify-content-center">
 		<!--- profile picture --->
 		<div class="col-md-5 pt-2">
-			<div class="imageInn align-items-end">
-				<img src="{{ url_for('static', filename='images/profile/' + user['username'] + '/pb.png') }}" width="100%" height="auto" alt="Founder of Beri Partners">
-			</div>
+			<a class="hover-shadow">
+				<div class="imageBox">
+					<div class="imageInn align-items-end">
+						<img src="pictures/photoshop/pb_janik.png" width="100%" height="auto" alt="Default Image">
+					</div>
+					<div class="hoverImg">
+						<img src="pictures/photoshop/janik_ribbon.png" width="100%" height="auto" alt="Profile Image">
+					</div>
+				</div>
+			</a>
 		</div>
 		<!--- profile picture --->
-		
+
 		<!--- profile text --->
 		<div class="col-md-6 pt-2 text-monospace text-decoration-none d-flex justify-content-center align-items-center">
 			<div class="d-flex justify-content-center me-7">
 				<p class="black_heading_2">
 					<span style="color: grey;">Hi, I'm </span>
-					<span style="color: black;">{{ user['username'].capitalize() }}, </span><br>
-					<span style="color: grey;">founder of </span><br>
+					<span style="color: black;">Janik, </span><br>
+					<span style="color: grey;">founder of <br></span>
 					<span style="color: black;">Beri Partners.</span>
 				</p>
 			</div>
@@ -32,49 +39,43 @@ About Janik
 </div>
 <!--- profile section --->
 
-<!--- about, gallery and quote --->	
+<!--- about, gallery and quote --->
 <div>
-	<!--- black bg --->	
+	<!--- black bg --->
 	<div style="background-color: black;">
-		<!--- About me --->	
+		<!--- About me --->
 		<div class="container-sm">
-						<div class="heading_2 pt-8">
-							<span style="color: gray;">About me</span>
-						</div>
-						<div class="about_text mb-7">
-						{% if user['username'] == 'janik' %}
-							<span style="color: gray;">I started investing when I was </span>
-							<span style="color: white;">19 years </span>
-							<span style="color: gray;">old. It was actually </span>
-							<span style="color: white;">Chris, co-founder of Beri Partners, </span>
-							<span style="color: gray;">who got me interested in the topic by making me read an </span>
-							<span style="color: white;">annual report </span>
-							<span style="color: gray;">of a company called Regi Inc. However, if I'm being </span>
-							<span style="color: white;">completely honest, </span>
-							<span style="color: gray;">at that time I didn't understand a </span>
-							<span style="color: white;">single word...</span>
-						{% elif user['username'] == 'chris' %}
-							<span style="color: black;">Example, </span>
-						{% endif %}
-							
-						</div>
+			<div class="heading_2 pt-8">
+				<span style="color: gray;">About me</span>
+			</div>
+			<div class="about_text mb-7">
+				<span style="color: gray;">I started investing when I was </span>
+				<span style="color: white;">19 years </span>
+				<span style="color: gray;">old. It was actually </span>
+				<span style="color: white;">Chris, co-founder of Beri Partners, </span>
+				<span style="color: gray;">who got me interested in the topic by making me read an </span>
+				<span style="color: white;">annual report </span>
+				<span style="color: gray;">of a company called Regi Inc. However, if I'm being </span>
+				<span style="color: white;">completely honest, </span>
+				<span style="color: gray;">at that time I didn't understand a </span>
+				<span style="color: white;">single word...</span>
+			</div>
 		</div>
-		<!--- About me --->	
-		
+		<!--- About me --->
+
 		<!--- gallery --->
 				<div class="row d-flex justify-content-center">
 					<!-- Gallery -->
 					<div class="row mt-7 mb-8" style="width:70%">
-					{% if user['username'] == 'janik' %}
 						<div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
 							<img
-							src="{{ url_for('static', filename='images/profile/janik/side/cards.jpg') }}"
+							src="pictures/photoshop/profil_janik/cards.jpg"
 							class="w-100 shadow-1-strong rounded mb-4"
 							alt=""
 							/>
 
 							<img
-							src="{{ url_for('static', filename='images/profile/janik/side/donauinsel.jpg') }}"
+							src="pictures/photoshop/profil_janik/donauinsel.jpg"
 							class="w-100 shadow-1-strong rounded mb-4"
 							alt=""
 							/>
@@ -82,13 +83,13 @@ About Janik
 
 						<div class="col-lg-4 mb-4 mb-lg-0">
 							<img
-							src="{{ url_for('static', filename='images/profile/janik/side/norway.jpg') }}"
+							src="pictures/photoshop/profil_janik/norway.jpg"
 							class="w-100 shadow-1-strong rounded mb-4"
 							alt=""
 							/>
 
 							<img
-							src="{{ url_for('static', filename='images/profile/janik/side/floating.jpg') }}"
+							src="pictures/photoshop/profil_janik/floating.jpg"
 							class="w-100 shadow-1-strong rounded mb-4"
 							alt=""
 							/>
@@ -96,49 +97,35 @@ About Janik
 
 						<div class="col-lg-4 mb-4 mb-lg-0">
 							<img
-							src="{{ url_for('static', filename='images/profile/janik/side/rnb_face.jpg') }}"
+							src="pictures/photoshop/profil_janik/rnb_face.jpg"
 							class="w-100 shadow-1-strong rounded mb-4"
 							alt=""
 							/>
 
 							<img
-							src="{{ url_for('static', filename='donaukanal.jpg') }}"
+							src="pictures/photoshop/profil_janik/donaukanal.jpg"
 							class="w-100 shadow-1-strong rounded mb-4"
 							alt=""
 							/>
 						</div>
-		
-						<img
-							src="{{ url_for('static', filename='cards.jpg') }}"
-							class="w-100 shadow-1-strong rounded mb-4"
-							alt=""
-							/>
-					{% elif user['username'] == 'chris' %}
-					
-					{% endif %}
-					
 					</div>
 				</div>
 			<!-- Gallery -->
 	</div>
 	<!--- black bg --->
-	
+
 	<!--- quote --->
-	<div class="lights-bg-image" style="height: 1600px; background-image: url('{{ url_for ("static", filename="images/bg/lights_black.jpg") }}');">
+	<div class="lights-bg-image" style="height: 1600px;">
 		<div class="row d-flex justify-content-center">
 			<div class="col-md-6 mt-8">
 				<p class="heading_2">
 					<span style="color: gray;">My favourite quote.</span><br>
-				{% if user['username'] == 'janik' %}
 					<span style="color: gray;">It's only when </span>
 					<span style="color: white;">the tide </span>
 					<span style="color: gray;">goes out that </span>
 					<span style="color: white;">you discover </span>
 					<span style="color: gray;">who's been </span>
 					<span style="color: white;">swimming naked.</span>
-				{% elif user['username'] == 'chris' %}
-					<span>Eyo</span>
-				{% endif %}
 				</p>
 			</div>
 		</div>
@@ -162,19 +149,19 @@ About Janik
 		</div>
 		<div class="col-md-2 mt-8 me-6">
 			<img
-			src="{{ url_for('static', filename='images/profile/' + user['username'] + '/story/1.jpg') }}"
+			src="pictures/photoshop/profil_janik/shoe.jpg"
 			class="w-100"
 			alt=""
 			/>
 		</div>
 	</div>
 	<!--- end of story 1 --->
-	
+
 	<!--- end of story 2 --->
 	<div class="row d-flex justify-content-center mt-6">
 		<div class="col-md-2 ms-6 mb-7">
 			<img
-			src="{{ url_for('static', filename='images/profile/' + user['username'] + '/story/2.jpg') }}"
+			src="pictures/photoshop/profil_janik/rnb.jpg"
 			class="w-100"
 			alt=""
 			/>
