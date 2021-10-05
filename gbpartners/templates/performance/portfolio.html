@@ -39,6 +39,7 @@ Investing portfolio performance
 
 		<div class="performance_chart" id="chart">
 		</div>
+		<div id="tooltip" class="position-absolute" style="display:block;background-color:lightgray;padding:5px"></div>
 	</div>
 {% endblock %}
 
@@ -49,8 +50,8 @@ Investing portfolio performance
 
 // set the dimensions and margins of the graph
 const margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = $(document).width()/3 - margin.left - margin.right,
-    height = $(document).height()/5 - margin.top - margin.bottom;
+    width = $('#chart').width() - margin.left - margin.right,
+    height = $(document).height()/2 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 const svg = d3.select("#chart")
@@ -66,7 +67,8 @@ const svg = d3.select("#chart")
 	svg.append("text").attr("x", 30).attr("y", 20).text("Portfolio").style("font-size", "15px").attr("alignment-baseline","middle")
 	svg.append("text").attr("x", 30).attr("y", 50).text("S&P 500").style("font-size", "15px").attr("alignment-baseline","middle")
 
-
+const tooltip = d3.select('#tooltip');
+const tooltipLine = svg.append('line');
 
 function tweenDash() {
   const l = this.getTotalLength(),
@@ -83,8 +85,11 @@ function transition(path) {
 
 const parseDate = d3.timeParse("%Y-%m-%d");
 const formatPercent = d3.format(".0%");
-const data = d3.csv("{{ url_for('static', filename='performance_measurement.csv') }}",
 
+let x, y, performance;
+let color, tipBox;
+const data = d3.csv("{{ url_for('static', filename='performance_measurement.csv') }}",
+	
 	// When reading the csv, I must format variables:
 	  function(d){
 		return { date: parseDate(d.date), name: d.name, value: +d.cum_return}
@@ -93,11 +98,12 @@ const data = d3.csv("{{ url_for('static', filename='performance_measurement.csv'
 	// Now I can use this dataset:
 
 	  function(data) {
+		performance = data;
 
 		const sumstat = d3.group(data, d => d.name);
 
 		// Add X axis --> it is a date format
-		const x = d3.scaleTime()
+		x = d3.scaleTime()
 		  .domain(d3.extent(data, function(d) { return d.date; }))
 		  .range([ 0, width ]);
 		svg.append("g")
@@ -105,14 +111,14 @@ const data = d3.csv("{{ url_for('static', filename='performance_measurement.csv'
 		  .call(d3.axisBottom(x).ticks(d3.timeMonth.every(2)).tickFormat(d3.timeFormat("%b %Y")));
 
 		// Add Y axis
-		const y = d3.scaleLinear()
+		y = d3.scaleLinear()
 		  .domain([0, d3.max(data, function(d) { return +d.value; })])
 		  .range([ height, 0 ]);
 		svg.append("g")
 		  .call(d3.axisLeft(y).tickFormat(d => d + "%"));
 
 		// color palette
-		const color = d3.scaleOrdinal()
+		color = d3.scaleOrdinal()
 			.range(['#404080','#69b3a2','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
 		// Add the line
 		svg.selectAll(".line")
@@ -127,10 +133,72 @@ const data = d3.csv("{{ url_for('static', filename='performance_measurement.csv'
 				.y(function(d) { return y(+d.value); })
 				(d[1])
 			})
+			.text((d) => `Return was ${d.value} on ${d.date}`)
 			.call(transition);
 
-
+		svg.selectAll()
+			.data(sumstat)
+			.enter()
+			.append("text")
+			.html(d => d.value)
+			.attr('fill', function(d){ return color(d.name) })
+			.attr('alignment-baseline', 'middle')
+			.attr('x', width)
+			.attr('dx', '.5em')
+			.attr('y', d => y(+d.value));
+		
+		tipBox = svg.append('rect')
+			.attr('width', width)
+			.attr('height', height)
+			.attr('opacity', 0)
+			.on('mousemove', drawTooltip)
+			.on('mouseout', removeTooltip);
+			
+		
 	});
+function removeTooltip() {
+  if (tooltip) tooltip.style('display', 'none');
+  //if (tooltipLine) tooltipLine.attr('stroke', 'none');
+}
+
+function drawTooltip(event) {
+  const mousePos = d3.pointer(event);
+  const date = new Date(x.invert(mousePos[0]));
+  
+  performance.sort( function(a, b) {
+	const distA = Math.abs(date - a.date);
+	const distB = Math.abs(date - b.date);
+	
+	return distA - distB;
+  });
+	
+  tooltipLine.attr('stroke', 'black')
+	.attr('x1', x(date))
+	.attr('x2', x(date))
+	.attr('y1', 0)
+	.attr('y2', height);
+  
+  const day = date.getDate();
+  const monthNames =["Jan","Feb","Mar","Apr",
+                      "May","Jun","Jul","Aug",
+                      "Sep", "Oct","Nov","Dec"];
+  const monthName = monthNames[date.getMonth()];
+  const year = date.getFullYear();
+
+  
+  console.log($('#chart').position().left);
+  console.log($('#chart').position().top);
+  tooltip.html(`${day} ${monthName} ${year}`)
+	.style('display', 'block')
+	.style('left', ($('#chart').position().left + mousePos[0] + 20) + "px")
+	.style('top', ($('#chart').position().top + mousePos[1] + 20) + "px")
+	.selectAll()
+	.data(performance.slice(0,2)).enter()
+	.append('div')
+	.style('color', d => color(d.name))
+	.html(d => d.name + ': ' + Math.round(d.value) + '%');
+	
+}
 
 </script>
 {% endblock %}
