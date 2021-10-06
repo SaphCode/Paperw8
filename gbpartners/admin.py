@@ -28,7 +28,7 @@ def home():
 def user_list():
     db = get_db()
     users = db.execute(
-        'SELECT *'
+        'SELECT id, username, display_name'
         ' FROM user'
     ).fetchall()
     if len(users) > 0:
@@ -42,7 +42,7 @@ def user_list():
 def post_list():
     db = get_db()
     posts = db.execute(
-        'SELECT id, title, created, last_edit'
+        'SELECT id, title, category, created, last_edit'
         ' FROM post'
     ).fetchall()
     if len(posts) > 0:

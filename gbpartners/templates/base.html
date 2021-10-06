@@ -23,9 +23,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="text-light nav-link {% if active == 'home' %} active {% endif %}" {% if active == 'home' %} aria-current="page" {% endif %} href="{{ url_for('performance.index') }}">Home</a>
-        <a class="text-light nav-link {% if active == 'reports' %} active {% endif %}" {% if active == 'reports' %} aria-current="page" {% endif %} href="{{ url_for('blog.blog') }}">Blog</a>
-        <a class="text-light nav-link {% if active == 'pricing' %} active {% endif %}" {% if active == 'pricing' %} aria-current="page" {% endif %} href="#">Pricing</a>
-        <a class="text-light nav-link {% if active == 'home' %} active {% endif %}" {% if active == 'home' %} aria-current="page" {% endif %} href="#">Disabled</a>
+        <a class="text-light nav-link {% if active == 'blog' %} active {% endif %}" {% if active == 'blog' %} aria-current="page" {% endif %} href="{{ url_for('blog.blog', group_by='all', sort_by='date_desc', page=1) }}">Blog</a>
       </div>
     </div>
   </div>
