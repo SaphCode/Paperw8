@@ -148,6 +148,7 @@ const svg = d3.select("#chart")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
+	.attr("id", "chart-g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
 
 const tooltip = d3.select('#tooltip');
@@ -310,8 +311,6 @@ function drawTooltip(event) {
   const year = date.getFullYear();
 
   
-  console.log($('#chart').position().left);
-  console.log($('#chart').position().top);
   tooltip.html(`${day} ${monthName} ${year}`)
 	.style('display', 'block')
 	.style('left', ($('#chart').position().left + mousePos[0] + 70) + "px")
@@ -325,10 +324,10 @@ function drawTooltip(event) {
 }
 
 function updateWindow(){
-    x = w.innerWidth || e.clientWidth || g.clientWidth;
-    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+    const temp_width = $(window).innerWidth || $('chart').clientWidth || $('chart-g').clientWidth;
+    const temp_height = $(window).innerHeight|| $('chart').clientHeight|| $('chart-g').clientHeight;
 
-    svg.attr("width", x).attr("height", y);
+    svg.attr("width", temp_width).attr("height", temp_height);
 }
 
 d3.select(window).on('resize.updatesvg', updateWindow);
