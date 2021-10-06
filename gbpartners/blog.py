@@ -41,23 +41,28 @@ def blog(group_by, sort_by, page):
     sql = 'SELECT p.id, p.title, p.content, p.created, p.author_id, p.last_edit, p.category, u.display_name'\
             ' FROM post p'\
             ' JOIN user u ON p.author_id = u.id'
+    sql_max_posts = 'SELECT COUNT(p.id) as number'\
+            ' FROM post p'
     if group_by != 'all':
-        sql += f' WHERE category="{group_by}"'
+        statement = f' WHERE category="{group_by}"'
+        sql += statement
+        sql_max_posts += statement
     sql += f' ORDER BY {sql_sort}'
     sql += f' LIMIT {5*page}'
     
-    print(sql)
+    print(page*5)
     
+    max_posts = db.execute(sql_max_posts).fetchone()['number']
+    print(max_posts)
     
     posts = []
-
     try:
         posts = db.execute(sql).fetchall()
     except OperationalError as e:
         flash(e)
     
 
-    return render_template('blog/blog.html', active='blog', posts=posts, page=page, sort_by=sort_by, group_by=group_by)
+    return render_template('blog/blog.html', active='blog', posts=posts, page=page, sort_by=sort_by, group_by=group_by, max_posts=max_posts)
 
 @bp.route('/post/<title>')    
 def post(title):
