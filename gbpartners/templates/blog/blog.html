@@ -5,11 +5,31 @@
 {% block content %}
 
 
-<div class="d-flex align-items-center justify-content-center col-md-12">
-	<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-		<img src="{{url_for('static', filename='images/bp_banner_lq.png')}}" width='auto' height='100%'></img>
+	<div class="d-flex align-items-center justify-content-center col-md-12">
+		<div class="row g-0 overflow-hidden flex-md-row shadow-sm h-md-250 position-relative">
+			<img src="{{url_for('static', filename='images/bp_banner_hq.png')}}" width='auto' height='100%'></img>
+		</div>
 	</div>
-</div>
+
+	<div class="container d-flex justify-content-center mt-5 mb-5">
+		<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+		<button type="button" class="btn btn-outline-danger btn-lg">All</button>
+			<button type="button" class="btn btn-outline-danger btn-lg">Businesses</button>
+			<button type="button" class="btn btn-outline-danger btn-lg">Book reviews</button>
+			<button type="button" class="btn btn-outline-danger btn-lg">Annul letters</button>
+
+			<div class="btn-group" role="group">
+				<button id="btnGroupDrop1" type="button" class="btn btn-outline-danger btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+				Sort
+				</button>
+				<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+					<li><a class="dropdown-item" href="#">New to old</a></li>
+					<li><a class="dropdown-item" href="#">Old to new</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
 
     {% if g.user %}
 	<div class="d-flex align-items-center justify-content-center mt-4 mb-5">
