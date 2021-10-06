@@ -55,7 +55,7 @@ Investing portfolio performance
 	<div class="container-fluid bg-dark">
 		<div class="performance_chart" id="chart">
 		</div>
-		<div id="tooltip" class="position-absolute" style="display:block;background-color:lightgray;padding:5px"></div>
+		<div id="tooltip" class="position-absolute border rounded" style="display:block;color:white;background-color:#212529;padding:5px;border-color:white;"></div>
 	</div>
 {% endblock %}
 
@@ -65,23 +65,18 @@ Investing portfolio performance
 <script type="module">
 
 // set the dimensions and margins of the graph
-const margin = {top: 10, right: 30, bottom: 30, left: 60},
+const margin = {top: 70, right: 100, bottom: 50, left: 100},
     width = $('#chart').width() - margin.left - margin.right,
     height = $(document).height()/2 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 const svg = d3.select("#chart")
+  .style("cursor", "none")
   .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
-
-	// legend
-	svg.append("circle").attr("cx",20).attr("cy",20).attr("r", 6).style("fill", "#69b3a2")
-	svg.append("circle").attr("cx",20).attr("cy",50).attr("r", 6).style("fill", "#404080")
-	svg.append("text").attr("x", 30).attr("y", 20).text("Portfolio").style("font-size", "15px").attr("alignment-baseline","middle")
-	svg.append("text").attr("x", 30).attr("y", 50).text("S&P 500").style("font-size", "15px").attr("alignment-baseline","middle")
 
 const tooltip = d3.select('#tooltip');
 const tooltipLine = svg.append('line');
@@ -104,7 +99,7 @@ const formatPercent = d3.format(".0%");
 
 let x, y, performance;
 let color, tipBox;
-const data = d3.csv("{{ url_for('static', filename='performance_measurement.csv') }}",
+const data = d3.csv("{{ url_for('static', filename='data/performance_measurement.csv') }}",
 	
 	// When reading the csv, I must format variables:
 	  function(d){
@@ -132,17 +127,52 @@ const data = d3.csv("{{ url_for('static', filename='performance_measurement.csv'
 		  .range([ height, 0 ]);
 		svg.append("g")
 		  .call(d3.axisLeft(y).tickFormat(d => d + "%"));
+		  
+		svg.selectAll('line')
+			.style("stroke", '#f8f9fa');
+		svg.selectAll('path')
+			.style("stroke", "#f8f9fa");
+		svg.selectAll("text")
+			.style("fill", "#a2a2a2");
+			
+		// legend
+	svg.append("circle")
+		.attr("cx",40)
+		.attr("cy",30)
+		.attr("r", 6)
+		.style("fill", "#69b3a2");
+	svg.append("circle")
+		.attr("cx",40)
+		.attr("cy",60)
+		.attr("r", 6)
+		.style("fill", "#ff7f00");
+	svg.append("text")
+		.attr("x", 50)
+		.attr("y", 30)
+		.text("Portfolio")
+		.style("font-size", "15px")
+		.style("font-weight", "500")
+		.style("fill","white")
+		.attr("alignment-baseline","middle");
+	svg.append("text")
+		.attr("x", 50)
+		.attr("y", 60)
+		.text("S&P 500")
+		.style("font-size", "15px")
+		.style("font-weight", "500")
+		.style("fill","white")
+		.attr("alignment-baseline","middle");
 
 		// color palette
 		color = d3.scaleOrdinal()
-			.range(['#404080','#69b3a2','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
+			.range(['#ff7f00','#69b3a2','#4daf4a','#984ea3','#404080','#ffff33','#a65628','#f781bf','#999999'])
 		// Add the line
 		svg.selectAll(".line")
 		  .data(sumstat)
 		  .join("path")
 			.attr("fill", "none")
 			.attr("stroke", function(d){ return color(d[0]) })
-			.attr("stroke-width", 1.5)
+			.attr("stroke-width", 3.5)
 			.attr("d", function(d){
 			  return d3.line()
 				.x(function(d) { return x(d.date); })
@@ -169,12 +199,12 @@ const data = d3.csv("{{ url_for('static', filename='performance_measurement.csv'
 			.attr('opacity', 0)
 			.on('mousemove', drawTooltip)
 			.on('mouseout', removeTooltip);
-			
-		
 	});
+	
+
 function removeTooltip() {
   if (tooltip) tooltip.style('display', 'none');
-  //if (tooltipLine) tooltipLine.attr('stroke', 'none');
+  if (tooltipLine) tooltipLine.attr('stroke', 'none');
 }
 
 function drawTooltip(event) {
@@ -182,11 +212,17 @@ function drawTooltip(event) {
   const date = new Date(x.invert(mousePos[0]));
   
   performance.sort( function(a, b) {
+	if (a.name < b.name) { return -1; }
+	if (a.name > b.name) { return 1; }
+	return 0;
+  });
+  performance.sort( function(a, b) {
 	const distA = Math.abs(date - a.date);
 	const distB = Math.abs(date - b.date);
 	
 	return distA - distB;
   });
+  
 	
   tooltipLine.attr('stroke', 'black')
 	.attr('x1', x(date))
@@ -206,13 +242,13 @@ function drawTooltip(event) {
   console.log($('#chart').position().top);
   tooltip.html(`${day} ${monthName} ${year}`)
 	.style('display', 'block')
-	.style('left', ($('#chart').position().left + mousePos[0] + 20) + "px")
-	.style('top', ($('#chart').position().top + mousePos[1] + 20) + "px")
+	.style('left', ($('#chart').position().left + mousePos[0] + 70) + "px")
+	.style('top', ($('#chart').position().top + mousePos[1] - 20) + "px")
 	.selectAll()
 	.data(performance.slice(0,2)).enter()
 	.append('div')
 	.style('color', d => color(d.name))
-	.html(d => d.name + ': ' + Math.round(d.value) + '%');
+	.html(d => d.name.replace("SPXTR", "S&P 500").replace("PORTFOLIO", "Portfolio") + ': ' + Math.round(d.value) + '%');
 	
 }
 
