@@ -26,7 +26,7 @@ Investing portfolio performance
 					<div class="col-auto">
 						<div class="company_name text-center">Beri Partners</div>
 						<div class="catch_phrase text-center">
-							Investing in the market is hard, let us do the work for you.
+							Investing in the market is hard.<br>Let us do the work for you.
 						</div>
 						<div class="d-flex justify-content-center pt-5 pb-5">
 							<img src="{{url_for('static', filename='images/beri.png')}}" width="10%" height="auto" alt="Beri">
@@ -56,9 +56,19 @@ Investing portfolio performance
 		<div id="tooltip" class="position-absolute border rounded" style="display:block;color:white;background-color:#212529;padding:5px;border-color:white;"></div>
 	</div>
 	
-	<div class="border container-fluid bg-dark">
-		<div class="row d-flex justify-content-center pt-7 pb-5">
-			<div class="border col-md-4">
+	<div class="container-fluid bg-dark">
+		<div class="row d-flex justify-content-center pb-4">
+			<div class="col-md-3 catch_line_text pt-7">
+				<span style="color: gray;">Here are </span>
+				<span style="color: white;">our returns </span>
+				<span style="color: gray;">per year </span>
+				<span style="color: white;">compared </span>
+				<span style="color: gray;">to the S&P 500 as well as </span>
+				<span style="color: white;">our cumulative returns.</span>
+			</div>
+		</div>
+		<div class="row d-flex justify-content-center pb-8">
+			<div class="col-md-3">
 				<table class="table table-dark table-hover">
 					<thead>
 						<tr>
@@ -90,20 +100,33 @@ Investing portfolio performance
 					 </tbody>
 				</table>
 			</div>
-			<div class="border col-md-4">
-				<div class="border row">
+		</div>
+	</div>
+	<div class="container-fluid bg-light">
+		<div class="row d-flex justify-content-center pb-4">
+			<div class="col-md-3 catch_line_text pt-7">
+				<span style="color: black;">Pick a year</span>
+				<span style="color: grey;">and choose an amount</span>
+				<span style="color: black;">to invest.</span>
+				<span style="color: grey;">That's </span>
+				<span style="color: black;">how much</span>
+				<span style="color: grey;">money you could have </span>
+				<span style="color: black;">right now.</span>
+			</div>
+		</div>
+		<div class="row d-flex justify-content-center pb-4">
+			<div class="col-md-3">
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" placeholder="Amount invested" aria-label="Amount invested" aria-describedby="button-addon2">
 				</div>
-				<div class="border row text-light">
-				invested into the Beri Partners fund in
-				</div>
-				<div class="border row">
-				</div>
-				<div class="border row text-light">
-				I would now have
-				</div>
-				<div class="border row">
+				<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="Year" aria-label="Year" aria-describedby="button-addon2">
+						<button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
 				</div>
 			</div>
+		</div>
+		<div class="row company_name text-black d-flex justify-content-center pb-8">
+			$1,000,000.00
 		</div>
 	</div>
 {% endblock %}
