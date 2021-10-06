@@ -27,5 +27,6 @@ CREATE TABLE post (
   title		  VARCHAR(100)		NOT NULL UNIQUE,
   content	  TEXT				NOT NULL,
   last_edit	  TIMESTAMP			NOT NULL,
+  category	  VARCHAR(50)		NOT NULL,
   FOREIGN KEY (author_id) REFERENCES user(id)
 );

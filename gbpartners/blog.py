@@ -5,7 +5,7 @@ from flask_wtf import FlaskForm
 
 from flask_pagedown.fields import PageDownField
 from wtforms import StringField
-from wtforms.validators import InputRequired
+from wtforms.validators import InputRequired, Length
 from werkzeug.exceptions import abort
 
 from datetime import datetime
@@ -19,20 +19,28 @@ bp = Blueprint('blog', __name__)
 class BlogForm(FlaskForm):
     title = StringField('Title', validators=[InputRequired()])
     content = PageDownField('Markdown', validators=[InputRequired()])
+    category = StringField('Category', validators=[InputRequired(), Length(max=50)])
     
 
 @bp.route('/blog')
 def blog():
     db = get_db()
     posts = db.execute(
-        'SELECT p.id, p.title, p.content, p.created, p.author_id, p.last_edit, u.display_name'
+        'SELECT p.id, p.title, p.content, p.created, p.author_id, p.last_edit, p.category, u.display_name'
         ' FROM post p'
         ' JOIN user u ON p.author_id = u.id'
         ' ORDER BY last_edit DESC'
         ' LIMIT 5'
     ).fetchall()
+    
+    grouped_posts = db.execute(
+        'SELECT id, title, category'
+        ' FROM post p'
+        ' GROUP BY category'
+        ' ORDER BY category DESC'
+    ).fetchall()
 
-    return render_template('blog/blog.html', posts=posts)
+    return render_template('blog/blog.html', posts=posts, grouped_posts=grouped_posts)
 
 @bp.route('/post/<title>')    
 def post(title):
@@ -57,9 +65,9 @@ def create():
     if form.validate_on_submit():
         db = get_db()
         db.execute(
-            'INSERT INTO post (author_id, title, content, last_edit)'
-            ' VALUES (?, ?, ?, CURRENT_TIMESTAMP)',
-            (g.user['id'], form.title.data, form.content.data)
+            'INSERT INTO post (author_id, title, content, category, last_edit)'
+            ' VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)',
+            (g.user['id'], form.title.data, form.content.data, form.category.data)
         )
         db.commit()
         return redirect(url_for('blog.blog'))
@@ -68,7 +76,7 @@ def create():
 
 def get_post(id, check_author=True):
     post = get_db().execute(
-        'SELECT p.id, title, content, created, author_id'
+        'SELECT p.id, title, content, created, author_id, category'
         ' FROM post p'
         ' WHERE p.id = ?',
         (id,)
@@ -89,17 +97,14 @@ def get_post(id, check_author=True):
 def update(id):
     post = get_post(id)
     
-    form = BlogForm(title=post['title'], content=post['content'])
+    form = BlogForm(title=post['title'], content=post['content'], category=post['category'])
 
-    print(id)
     if form.validate_on_submit():
-        print('validate success')
         db = get_db()
-        print(id)
         db.execute(
-            'UPDATE post SET title = ?, content = ?, last_edit = CURRENT_TIMESTAMP'
+            'UPDATE post SET title = ?, content = ?, category = ?, last_edit = CURRENT_TIMESTAMP'
             ' WHERE id = ?',
-            (form.title.data, form.content.data, id)
+            (form.title.data, form.content.data, form.category.data, id)
         )
         db.commit()
         return redirect(url_for('blog.blog'))
