@@ -114,9 +114,11 @@ Investing portfolio performance
 <script type="module">
 
 // set the dimensions and margins of the graph
-const margin = {top: 70, right: 100, bottom: 50, left: 100},
+const margin = {top: 0.05*$(window).height()*0.5, right: 0.1*$('#chart').width(), bottom: 0.1*$(window).height()*0.5, left: 0.1*$('#chart').width()},
     width = $('#chart').width() - margin.left - margin.right,
-    height = $(document).height()/2 - margin.top - margin.bottom;
+    height = $(window).height()*0.5 - margin.top - margin.bottom;
+	
+	
 
 // append the svg object to the body of the page
 const svg = d3.select("#chart")
@@ -187,26 +189,30 @@ const data = d3.csv("{{ url_for('static', filename='data/performance_measurement
 			
 		// legend
 	svg.append("circle")
-		.attr("cx",40)
-		.attr("cy",30)
+		.attr("cx","5%")
+		.attr("cy","0%")
 		.attr("r", 6)
+		.attr("class", "chart-legend")
 		.style("fill", "#69b3a2");
 	svg.append("circle")
-		.attr("cx",40)
-		.attr("cy",60)
+		.attr("cx","5%")
+		.attr("cy","8%")
 		.attr("r", 6)
+		.attr("class", "chart-legend")
 		.style("fill", "#ff7f00");
 	svg.append("text")
-		.attr("x", 50)
-		.attr("y", 30)
+		.attr("x", "7%")
+		.attr("y", "0%")
+		.attr("class", "chart-legend")
 		.text("Portfolio")
 		.style("font-size", "15px")
 		.style("font-weight", "500")
 		.style("fill","white")
 		.attr("alignment-baseline","middle");
 	svg.append("text")
-		.attr("x", 50)
-		.attr("y", 60)
+		.attr("x", "7%")
+		.attr("y", "8%")
+		.attr("class", "chart-legend")
 		.text("S&P 500")
 		.style("font-size", "15px")
 		.style("font-weight", "500")
@@ -279,7 +285,7 @@ function drawTooltip(event) {
 	.attr('x2', x(date))
 	.attr('y1', 0)
 	.attr('y2', height);
-  
+  	
   const day = date.getDate();
   const monthNames =["Jan","Feb","Mar","Apr",
                       "May","Jun","Jul","Aug",
@@ -290,8 +296,8 @@ function drawTooltip(event) {
   
   tooltip.html(`${day} ${monthName} ${year}`)
 	.style('display', 'block')
-	.style('left', ($('#chart').position().left + mousePos[0] + 70) + "px")
-	.style('top', ($('#chart').position().top + mousePos[1] - 20) + "px")
+	.style('left', ($('#chart').position().left + margin.left + mousePos[0] + 10) + "px")
+	.style('top', ($('#chart').position().top + margin.top +  mousePos[1] - 10) + "px")
 	.selectAll()
 	.data(performance.slice(0,2)).enter()
 	.append('div')
@@ -301,10 +307,10 @@ function drawTooltip(event) {
 }
 
 function updateWindow(){
-    const temp_width = $(window).innerWidth || $('chart').clientWidth || $('chart-g').clientWidth;
-    const temp_height = $(window).innerHeight|| $('chart').clientHeight|| $('chart-g').clientHeight;
+    const width = $('#chart').width() - margin.left - margin.right;
+    const height = $(document).height()/2 - margin.top - margin.bottom;
 
-    svg.attr("width", temp_width).attr("height", temp_height);
+    svg.attr("width", width).attr("height", height);
 }
 
 d3.select(window).on('resize.updatesvg', updateWindow);
