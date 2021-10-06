@@ -117,15 +117,18 @@ Investing portfolio performance
 		<div class="row d-flex justify-content-center pb-4">
 			<div class="col-md-3">
 				<div class="input-group mb-3">
-					<input type="text" class="form-control" placeholder="Amount invested" aria-label="Amount invested" aria-describedby="button-addon2">
+					<span>$</span><input type="text" class="form-control" value="1000" onchange="inputChanged(event);" aria-label="Amount invested">
 				</div>
 				<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Year" aria-label="Year" aria-describedby="button-addon2">
-						<button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+					<select size="1" class="form-select" onchange="yearChanged(event);" aria-label="Select year">
+						{% for year in years %}
+						<option value={{ year }} {% if loop.first %} selected {% endif %}>{{ year }}</option>
+						{% endfor %}
+					</select>
 				</div>
 			</div>
 		</div>
-		<div class="row company_name text-black d-flex justify-content-center pb-8">
+		<div id="money_now" class="row company_name text-black d-flex justify-content-center pb-8">
 			$1,000,000.00
 		</div>
 	</div>
@@ -135,7 +138,19 @@ Investing portfolio performance
 <script src="https://d3js.org/d3.v6.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="module">
+/* Responsive Input */
+function yearChanged(event) {
+	startYear = event.target.value;
+	endYear = {{ years[-1] }};
+	calculateMoneyNow(1);
+}
 
+function calculateMoneyNow(performanceDict) {
+	$('#money_now').text('test');
+}
+
+
+/* Chart */
 // set the dimensions and margins of the graph
 const margin = {top: 0.05*$(window).height()*0.5, right: 0.1*$('#chart').width(), bottom: 0.1*$(window).height()*0.5, left: 0.1*$('#chart').width()},
     width = $('#chart').width() - margin.left - margin.right,

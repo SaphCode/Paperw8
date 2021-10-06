@@ -30,7 +30,7 @@
 			</div>
 		</div>
 	</div>
-
+	
 
     {% if g.user %}
 	<div class="d-flex align-items-center justify-content-center mt-4 mb-5">
@@ -62,7 +62,7 @@
 		</article>
 	  {% endfor %}
   </div>
-
+  
   <div class="container d-flex justify-content-center mb-5">
 	<a {% if (max_posts <= (page+1)*5) %} style="display:none;" {% endif %} type="button" class="btn btn-primary" href="{{ url_for('blog.blog', group_by=group_by, sort_by=sort_by, page=page+1) }}">Older Posts</a>
   </div>

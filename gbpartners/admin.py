@@ -69,11 +69,12 @@ def upload_performance_file():
     if form.validate_on_submit():
         # todo secure filename
         filename = secure_filename(form.file_field.data.filename)
-        destination = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
+        root_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'data')
+        destination = os.path.join(root_dir, filename)
         form.file_field.data.save(destination)
-        process_performance_file(current_app.config['UPLOAD_FOLDER'], filename, get_db())
+        process_performance_file(root_dir, filename, get_db())
         
-        root_dir = current_app.config['UPLOAD_FOLDER']
+        
         db = get_db()
         
         historical_snp_performance = db.execute(

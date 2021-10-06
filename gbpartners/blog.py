@@ -50,10 +50,7 @@ def blog(group_by, sort_by, page):
     sql += f' ORDER BY {sql_sort}'
     sql += f' LIMIT {5*page}'
     
-    print(page*5)
-    
     max_posts = db.execute(sql_max_posts).fetchone()['number']
-    print(max_posts)
     
     posts = []
     try:
