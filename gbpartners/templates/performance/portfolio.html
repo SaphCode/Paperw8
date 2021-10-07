@@ -228,19 +228,19 @@ const data = d3.csv("{{ url_for('static', filename='data/performance_measurement
 		// legend
 	svg.append("circle")
 		.attr("cx","5%")
-		.attr("cy","0%")
+		.attr("cy","50px")
 		.attr("r", 6)
 		.attr("class", "chart-legend")
 		.style("fill", "#69b3a2");
 	svg.append("circle")
 		.attr("cx","5%")
-		.attr("cy","8%")
+		.attr("cy","70px")
 		.attr("r", 6)
 		.attr("class", "chart-legend")
 		.style("fill", "#ff7f00");
 	svg.append("text")
 		.attr("x", "7%")
-		.attr("y", "0%")
+		.attr("y", "52px")
 		.attr("class", "chart-legend")
 		.text("Portfolio")
 		.style("font-size", "15px")
@@ -249,7 +249,7 @@ const data = d3.csv("{{ url_for('static', filename='data/performance_measurement
 		.attr("alignment-baseline","middle");
 	svg.append("text")
 		.attr("x", "7%")
-		.attr("y", "8%")
+		.attr("y", "72px")
 		.attr("class", "chart-legend")
 		.text("S&P 500")
 		.style("font-size", "15px")
