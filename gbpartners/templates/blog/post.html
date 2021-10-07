@@ -5,14 +5,66 @@
 {% endblock %}
 
 {% block content %}
-<div class="container post">
-	<div class="post_content">
-		{{ post['content']|safe }}
+
+<div class="container-fluid bg-light"
+	<div class="d-flex justify-content-center">
+		<div class="row g-0">
+			<img src="{{url_for('static', filename='images/bp_banner_hq.png')}}" width='auto' height='100%'></img>
+		</div>
 	</div>
+</div>
+
+<div class="container-fluid post bg-light">
 	
-	<div class="post_info">
-		<div>Written by <a href="{{ url_for('user.profile', username=post['username']) }}">{{ post['display_name'] }}</a> on {{ post['created'] }}.</div>
-		{% if post['created'].strftime('%Y-%m-%d') != post['last_edit'].strftime('%Y-%m-%d') %}<div>Last edit on {{ post['last_edit'] }}.</div>{% endif %}
-	</div>
+	<div class="row d-flex justify-content-center pt-5">
+		<div class="col-md-7">
+			<div class="row post_title d-flex justify-content-center">
+				<div class="col-md-auto">
+				{{ post['title'] }}
+				</div>
+			</div>
+			
+			<div class="row post_info d-flex align-items-center justify-content-center">
+				<div class="col-md-auto pb-5">
+					<div>Written by <a href="{{ url_for('user.profile', username=post['username']) }}">{{ post['display_name'] }}</a> on {{ post['created'] }}.</div>
+					{% if post['created'].strftime('%Y-%m-%d') != post['last_edit'].strftime('%Y-%m-%d') %}<div>Last edit on {{ post['last_edit'] }}.</div>{% endif %}
+				</div>
+			</div>
+				
+			<div class="row post_pic d-flex align-items-center justify-content-center">
+				<div class="col-md-8">
+					<img src="{{url_for('static', filename='images/Tandy_tn.jpeg')}}" style="width:100%;"></img>
+				</div>
+			</div>
+			
+			<div class="row post_pic d-flex align-items-center justify-content-center pt-5">
+				<div class="col-md-8">
+					{{ post['content']|safe }}
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="col-md-3 pt-4">
+			<div class="row d-flex align-items-center justify-content-center pb-3">
+				<div class="col-md-6 normal_text d-flex align-items-center justify-content-center">
+					Related posts
+				</div>
+			</div>
+			<div class="border row d-flex align-items-center justify-content-center">
+				<div class="col-md-6 p-3">
+					<div class=" small-text">{{ post['title'] }}</div>
+					<div class=" small-text-gray">
+						<div>Written by <a href="{{ url_for('user.profile', username=post['username']) }}">{{ post['display_name'] }}</a> on {{ post['created'] }}.</div>
+						{% if post['created'].strftime('%Y-%m-%d') != post['last_edit'].strftime('%Y-%m-%d') %}<div>Last edit on {{ post['last_edit'] }}.</div>{% endif %}
+					</div>
+				</div>
+				<div class="col-md-6">
+					<img src="{{url_for('static', filename='images/Tandy_tn.jpeg')}}" style="width:100%;"></img>
+				</div>
+			</div>
+		</div>
+	
+	
 </div>
 {% endblock %}
