@@ -22,6 +22,18 @@ bp = Blueprint('admin', __name__)
 def home():
     return render_template('admin/admin.html')
 
+@bp.route('/admin/performance')
+@admin_login_required
+def performance_list():
+    db = get_db()
+    performance = db.execute(
+        'SELECT date, name, cum_return'
+        ' FROM historical_performance'
+    ).fetchall()
+    if len(performance) > 0:
+        columns = performance[0].keys()
+        return render_template('admin/database/database.html', columns = columns, rows = performance, table_name = 'historical_performance')
+    return render_template('admin/database/database.html')
 
 @bp.route('/admin/user')
 @admin_login_required
