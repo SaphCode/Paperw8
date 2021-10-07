@@ -142,7 +142,7 @@ function calculateMoneyNow(amount, startYear, endYear) {
 	<div class="row d-flex justify-content-center pb-4">
 		<div class="col-md-3">
 			<div class="input-group mb-3">
-				<span class="input-group-text">$</span><input type="text" id="amount_input" class="form-control" value="1000" onchange="amountChanged(event);" aria-label="Amount invested">
+				<span class="input-group-text">$</span><input type="text" id="amount_input" class="form-control" value="10000" onchange="amountChanged(event);" aria-label="Amount invested">
 			</div>
 			<div class="input-group mb-3">
 				<select id="year_selector" size="1" class="form-select" onchange="yearChanged(event);" aria-label="Select year">
@@ -154,7 +154,7 @@ function calculateMoneyNow(amount, startYear, endYear) {
 		</div>
 	</div>
 	<div id="amount_display" class="row company_name text-black d-flex justify-content-center pb-8">
-		$1,000,000.00
+		$?
 	</div>
 </div>
 {% endblock %}
@@ -164,6 +164,11 @@ function calculateMoneyNow(amount, startYear, endYear) {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="module">
 
+/* Amount */
+const mockYear = {target: {value: $('#year_selector option:selected').text()}}
+const mockAmount = {target: {value: $('#amount_input').val()}}
+yearChanged(mockYear);
+amountChanged(mockAmount);
 
 /* Chart */
 // set the dimensions and margins of the graph
