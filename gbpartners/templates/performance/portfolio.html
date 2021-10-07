@@ -118,10 +118,10 @@ Investing portfolio performance
 		<div class="row d-flex justify-content-center pb-4">
 			<div class="col-md-3">
 				<div class="input-group mb-3">
-					<span>$</span><input type="text" class="form-control" value="1000" onchange="inputChanged(event);" aria-label="Amount invested">
+					<span class="input-group-text">$</span><input type="text" class="form-control" value="1000" onchange="amountChanged(event);" aria-label="Amount invested">
 				</div>
 				<div class="input-group mb-3">
-					<select size="1" class="form-select" onchange="yearChanged(event);" aria-label="Select year">
+					<select id="year_selector" size="1" class="form-select" onchange="yearChanged(event);" aria-label="Select year">
 						{% for year in years %}
 						<option value={{ year }} {% if loop.first %} selected {% endif %}>{{ year }}</option>
 						{% endfor %}
@@ -140,14 +140,22 @@ Investing portfolio performance
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="module">
 /* Responsive Input */
+function amountChanged(event) {
+	amount = event.target.value;
+	startYear = parseInt($('#year_selector option:selected').text());
+	endYear = {{ years[-1] }};
+	calculateMoneyNow(amount, startYear, endYear);
+}
+
 function yearChanged(event) {
 	startYear = event.target.value;
 	endYear = {{ years[-1] }};
 	calculateMoneyNow(1);
 }
 
-function calculateMoneyNow(performanceDict) {
-	$('#money_now').text('test');
+function calculateMoneyNow(amount, startYear, endYear) {
+	performance_dict = {{ performance_dict }};
+	
 }
 
 
