@@ -10,7 +10,7 @@
 <div class="container">
 
 
-  <form method="POST" action="{{ url_for('blog.create') }}">
+  <form method="POST" action="{{ url_for('blog.create') }}" enctype="multipart/form-data">
 	{{ form.csrf_token }}
 	{{ form.hidden_tag() }}
 	
@@ -18,7 +18,18 @@
 	{{ form.title.label }} {{ form.title(size=20) }}
 	{% if form.title.errors %}
 		<ul class="errors">
-		{% for error in form.title %}
+		{% for error in form.title.errors %}
+			<li>{{ error }}</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+	</fieldset>
+	
+	<fieldset class="form-field">
+	{{ form.parent_dir.label }} {{ form.parent_dir(size=20) }}
+	{% if form.parent_dir.errors %}
+		<ul class="errors">
+		{% for error in form.parent_dir.errors %}
 			<li>{{ error }}</li>
 		{% endfor %}
 		</ul>
@@ -29,7 +40,7 @@
 	{{ form.title_img.label }} {{ form.title_img(size=20) }}
 	{% if form.title_img.errors %}
 		<ul class="errors">
-		{% for error in form.title_img %}
+		{% for error in form.title_img.errors %}
 			<li>{{ error }}</li>
 		{% endfor %}
 		</ul>
@@ -72,5 +83,18 @@
 	<input type="submit" value="Publish">
 	
   </form>
+  
+	{% if message %}
+	<div class="alert alert-success" role="alert">
+	  {{ message }}
+	</div>
+	{% endif %}
+
+	{% if error %}
+	<div class="alert alert-danger" role="alert">
+	  {{ error }}
+	</div>
+	{% endif %}
+  
 </div>
 {% endblock %}

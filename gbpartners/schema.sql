@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS historical_performance;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS post;
+DROP TABLE IF EXISTS related;
 
 -- We start by creating a regular SQL table
 -- Symbol we say for now 7 characters.
@@ -25,6 +26,7 @@ CREATE TABLE post (
   author_id	  INTEGER			NOT NULL,
   created	  TIMESTAMP			NOT NULL DEFAULT CURRENT_TIMESTAMP,
   title		  VARCHAR(100)			NOT NULL UNIQUE,
+  title_img_parent_dir TEXT		NOT NULL,
   title_img   TEXT				NOT NULL,
   content	  TEXT				NOT NULL,
   last_edit	  TIMESTAMP			NOT NULL,

@@ -3,6 +3,8 @@ import os
 from datetime import datetime
 import json
 
+from werkzeug.utils import secure_filename
+
 def percent(number):
     return number/100
 
@@ -21,6 +23,12 @@ def confirmation_required(desc_fn):
 def format_date(unformatted):
     dt = datetime.strptime(unformatted, '%m/%d/%y')
     return dt.strftime('%Y-%m-%d')
+
+def upload_image(parent_dir, filename, file):
+    if not os.path.exists(os.path.join(parent_dir, secure_filename(filename))):
+        file.save(os.path.join(parent_dir, secure_filename(filename)))
+    else:
+        raise FileExistsError(f'File already exists: {secure_filename(filename)}')
 
 def process_performance_file(upload_path, filename, db):
     performance_data = [line.rstrip().split(',') for line in open(os.path.join(upload_path, filename), 'r') if line.startswith('Cumulative')]

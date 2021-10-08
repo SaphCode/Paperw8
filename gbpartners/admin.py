@@ -10,7 +10,7 @@ from werkzeug.utils import secure_filename
 
 from gbpartners.auth import admin_login_required
 from gbpartners.db import get_db
-from gbpartners.utils import process_performance_file
+from gbpartners.utils import process_performance_file, upload_image
 
 import os
 import csv
@@ -63,13 +63,41 @@ def post_list():
     return render_template('admin/database/database.html')
 
 
+class NewFolderForm(FlaskForm):
+    parent_dir = SelectField('Parent Directory', validators=[InputRequired()])
+    new_folder = StringField('New Folder', validators=[InputRequired()])
+
+
+@bp.route('/admin/new_folder', methods=['GET', 'POST'])
+@admin_login_required
+def new_folder():
+    form = NewFolderForm()
+    
+    root_dir = current_app.config['UPLOAD_FOLDER']
+    choices = [(name.lower(), name) for name in os.listdir(root_dir) if os.path.isdir(os.path.join(root_dir, name))]
+    form.parent_dir.choices = choices
+    
+    if form.validate_on_submit():
+        #create a new folder in parent dir if not exists
+        parent_dir = os.path.join(root_dir, secure_filename(form.parent_dir.data))
+        new_folder_name = secure_filename(form.new_folder.data)
+        
+        if not os.path.isdir(os.path.join(parent_dir, new_folder_name)):
+            os.mkdir(os.path.join(parent_dir, new_folder_name))
+            return render_template('admin/new_folder.html', form=form, message='success')
+        else:
+            return render_template('admin/new_folder.html', form=form, error='Directory already exists')
+        
+    return render_template('admin/new_folder.html', form=form)
+
+
 class UploadPerformanceForm(FlaskForm):
     file_field = FileField() #, validators=[FileRequired(), FileAllowed(['csv'], message='File allowed: .csv')]
     
     
 class UploadImageForm(FlaskForm):
-    destination = SelectField('Folder')
-    new_folder = StringField('New Folder')
+    destination = SelectField('Folder', validators=[InputRequired()])
+    
     file_field = FileField('Image', validators=[FileRequired(), FileAllowed(['jpg', 'png', 'JPG', 'jpeg', 'gif'], message="File must end in one of the following: .jpg, .JPG, .jpeg, .gif, .png")])
 
 
@@ -83,9 +111,7 @@ def upload_performance_file():
         filename = secure_filename(form.file_field.data.filename)
         root_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'data')
         destination = os.path.join(root_dir, filename)
-        if not os.path.exists(os.path.abspath(os.path.join(destination, os.pardir))):
-            flash("Path does not exist")
-            return render_template('admin/upload_performance.html', form=form)
+        
         form.file_field.data.save(destination)
         process_performance_file(root_dir, filename, get_db())
         
@@ -121,26 +147,28 @@ def upload_performance_file():
 def upload_image_file():
     form = UploadImageForm()
     
-    root_dir = current_app.config['UPLOAD_FOLDER']
+    # get upload directory
+    root_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'images')
+    # load choices into form
     choices = [(name.lower(), name) for name in os.listdir(root_dir) if os.path.isdir(os.path.join(root_dir, name))]
     choices.append(('', ''))
     form.destination.choices = choices
-    
+
     if form.validate_on_submit():
-        directory = None
-        if form.new_folder.data:
-            if not os.path.isdir(os.path.join(root_dir, form.new_folder.data)):
-                directory = os.path.join(root_dir, form.new_folder.data)
-                os.mkdir(directory)
+        # get parent dir
+        directory = os.path.join(root_dir, secure_filename(form.destination.data))
+        try:
+            # upload image (dir, filename, file (form.field.data))
+            upload_image(directory, secure_filename(form.file_field.data.filename), form.file_field.data)
+            message = 'Success!'
+            return render_template('admin/upload_image.html', form=form, message=message)
+        except FileExistsError as e:
+            # print error
+            error = e
+            return render_template('admin/upload_image.html', form=form, error=error)
         
-        if form.destination.data:
-            directory = os.path.join(root_dir, form.destination.data)
-        
-        if directory:
-            form.file_field.data.save(os.path.join(directory, form.file_field.data.filename))
-        else:
-            flash('No directory supplied.')
-        return redirect(url_for('admin.upload_image_file'))
+        # woops, shouldn't happen
+        return render_template('admin/upload_image.html', form=form, error='Something else went wrong')
         
     return render_template('admin/upload_image.html', form=form)
            
