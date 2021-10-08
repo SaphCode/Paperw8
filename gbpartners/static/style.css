@@ -160,11 +160,30 @@
   left: 0;
 }
 
-.lato-font-flow{
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
+.merri-font-flow{
+    font-family: 'Merriweather', serif;
 	font-size:20px;
-	line-height:50%;
+	line-height:200%;
+}
+
+.bodoni-font-flow{
+    font-family: 'Bodoni Moda', serif;
+	font-weight: 300;
+	font-size:20px;
+	line-height:200%;
+}
+
+.irina-font-flow{
+	font-family: 'Inria Serif', serif;
+	font-weight: 400;
+	font-size:20px;
+	line-height:200%;
+}
+
+.normal-font-flow{
+	font-weight: 400;
+	font-size:20px;
+	line-height:200%;
 }
 
 .mt-6{
