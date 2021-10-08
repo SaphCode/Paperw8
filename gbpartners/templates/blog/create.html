@@ -46,6 +46,17 @@
 	{% endif %}
 	</fieldset>
 	
+	<fieldset class="form-field">
+	{{ form.related_to.label }} {{ form.related_to(size=20) }}
+	{% if form.related_to.errors %}
+		<ul class="errors">
+		{% for error in form.related_to.errors %}
+			<li>{{ error }}</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+	</fieldset>
+	
 	<input type="submit" value="Publish">
 	
   </form>

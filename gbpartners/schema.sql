@@ -24,9 +24,18 @@ CREATE TABLE post (
   id 		  INTEGER 			PRIMARY KEY AUTOINCREMENT,
   author_id	  INTEGER			NOT NULL,
   created	  TIMESTAMP			NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  title		  VARCHAR(100)		NOT NULL UNIQUE,
+  title		  VARCHAR(100)			NOT NULL UNIQUE,
   content	  TEXT				NOT NULL,
   last_edit	  TIMESTAMP			NOT NULL,
-  category	  VARCHAR(50)		NOT NULL,
+  category	  VARCHAR(50)			NOT NULL,
   FOREIGN KEY (author_id) REFERENCES user(id)
+);
+
+-- Looks like it is one way, but it can be both ways of course, if
+-- you use the second column too
+CREATE TABLE related (
+  id		  INTEGER			NOT NULL,
+  related_to_id	  INTEGER			NOT NULL,
+  FOREIGN KEY(related_to_id) REFERENCES post(id),
+  FOREIGN KEY(id) REFERENCES post(id)
 );

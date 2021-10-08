@@ -1,4 +1,0 @@
-DEBUG=True
-FLASK_ENV=development
-FLASK_APP=gbpartners
-APP_SETTINGS=gbpartners.configuration.config.DevelopmentConfig
