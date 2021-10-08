@@ -192,14 +192,12 @@
 
 .contact_white{
 	color: #9e9e9e;
-	text-align: center;
-	font-size: 40px;
+	font-size: 25px;
 	line-height: 120%;
 }
 
 .glow {
-  font-size: 40px;
-  text-align: center;
+  font-size: 25px;
   color: #fff;
   -webkit-animation: glow 1s ease-in-out infinite alternate;
   -moz-animation: glow 1s ease-in-out infinite alternate;
