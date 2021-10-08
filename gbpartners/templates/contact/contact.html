@@ -1,0 +1,377 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Investing portfolio performance
+{% endblock %}
+
+{% block content %}
+<script>
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+/* Responsive Input */
+function amountChanged(event) {
+	amount = event.target.value;
+	startYear = parseInt($('#year_selector option:selected').text());
+	endYear = {{ last_year }};
+	amount_now = calculateMoneyNow(amount, startYear, endYear);
+	$('#amount_display').text("$" + numberWithCommas(Math.round(amount_now)));
+}
+
+function yearChanged(event) {
+	amount = parseFloat($('#amount_input').val());
+	console.log(amount);
+	startYear = event.target.value;
+	endYear = {{ last_year }};
+	amount_now = calculateMoneyNow(amount, startYear, endYear);
+	$('#amount_display').text("$" + numberWithCommas(Math.round(amount_now)));
+}
+
+function calculateMoneyNow(amount, startYear, endYear) {
+	performance = {{ annualized_returns|tojson }};
+	console.log(performance);
+	for (year = startYear; year <= endYear; year++) {
+		console.log(year);
+		console.log(amount);
+		amount *= (1 + performance[year][1][1]/100);
+		console.log(performance[year][1][1]/100)
+	}
+	console.log(amount);
+	return amount;
+}
+</script>
+
+<div class="container-fluid bg-light pt-6">
+	<div class="row d-flex justify-content-center align-items-end">
+		<div class="col-md-3 pt-2">
+			<div class="imageBox">
+				<a class="hover-shadow" href="{{ url_for('user.profile', username='janik') }}">
+					<div class="bg-light imageInn">
+						<img src="{{ url_for('static', filename='images/profile/janik/pb.png') }}" width="100%" height="auto" alt="Janik Grassberger">
+					</div>
+					<div class=" bg-light hoverImg">
+						<img src="{{url_for('static', filename='images/profile/janik/pb_ribbon.png')}}" width="100%" height="auto" alt="Janik Grassberger on hover">
+					</div>
+				</a>
+			</div>
+		</div>
+
+		<div class="col-md-3 pt-2">
+			<div class="row">
+				<div class="col-auto">
+					<div class="company_name text-center">Beri Partners</div>
+					<div class="catch_phrase text-center">
+						Investing in the market is hard.<br>Let us do the work for you.
+					</div>
+					<div class="d-flex justify-content-center pt-5 pb-5">
+						<img src="{{url_for('static', filename='images/beri.png')}}" width="10%" height="auto" alt="Beri">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-3 pt-2">
+			<div class="imageBox">
+				<a class="hover-shadow" href="{{ url_for('user.profile', username='chris') }}">
+					<div class="bg-light imageInn">
+						<img src="{{url_for('static', filename='images/profile/chris/pb.png')}}" width="100%" height="auto" alt="Christopher Stanek">
+					</div>
+					<div class="bg-light hoverImg">
+						<img src="{{url_for('static', filename='images/profile/chris/pb_ribbon.png')}}" width="100%" height="auto" alt="Christopher Stanek on hover">
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid bg-dark">
+	<div class="row d-flex justify-content-center pb-4">
+		<div class="col-md-3 catch_line_text pt-7">
+			<span style="color: gray;">Here are </span>
+			<span style="color: white;">our returns </span>
+			<span style="color: gray;">per year </span>
+			<span style="color: white;">compared </span>
+			<span style="color: gray;">to the S&P 500 as well as </span>
+			<span style="color: white;">our cumulative returns.</span>
+		</div>
+	</div>
+	<div class="row d-flex justify-content-center pb-8">
+		<div class="col-md-3">
+			<table class="table table-dark table-hover">
+				<thead>
+					<tr>
+						<th scope="col">Year</th>
+						<th scope="col">S&P 500</th>
+						<th scope="col">Beri</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for year in annualized_returns %}
+					<tr>
+						<th scope="row">{{ year }}</th>
+						{% for t in annualized_returns[year] %}
+						<td>{{ "{:.1f}".format(t[1]) }}%</td>
+						{% endfor %}
+					</tr>
+					{% endfor %}
+				 </tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid bg-dark pt-5">
+	<div class="performance_chart d-flex justify-content-center" id="chart">
+	</div>
+	<div id="tooltip" class="position-absolute border rounded" style="display:block;color:white;background-color:#212529;padding:5px;border-color:white;"></div>
+</div>
+
+<div class="container-fluid bg-light">
+	<div class="row d-flex justify-content-center pb-4">
+		<div class="col-md-3 catch_line_text pt-7">
+			<span style="color: black;">Pick a year</span>
+			<span style="color: grey;">and choose an amount</span>
+			<span style="color: black;">to invest.</span>
+			<span style="color: grey;">That's </span>
+			<span style="color: black;">how much</span>
+			<span style="color: grey;">money you could have </span>
+			<span style="color: black;">right now.</span>
+		</div>
+	</div>
+	<div class="row d-flex justify-content-center pb-4">
+		<div class="col-md-3">
+			<div class="input-group mb-3">
+				<span class="input-group-text">$</span><input type="text" id="amount_input" class="form-control" value="10000" onchange="amountChanged(event);" aria-label="Amount invested">
+			</div>
+			<div class="input-group mb-3">
+				<select id="year_selector" size="1" class="form-select" onchange="yearChanged(event);" aria-label="Select year">
+					{% for year in annualized_returns %}
+					<option value={{ year }} {% if loop.first %} selected {% endif %}>{{ year }}</option>
+					{% endfor %}
+				</select>
+			</div>
+		</div>
+	</div>
+	<div id="amount_display" class="row company_name text-black d-flex justify-content-center pb-8">
+		$?
+	</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://d3js.org/d3.v6.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="module">
+
+/* Amount */
+const mockYear = {target: {value: $('#year_selector option:selected').text()}}
+const mockAmount = {target: {value: $('#amount_input').val()}}
+yearChanged(mockYear);
+amountChanged(mockAmount);
+
+/* Chart */
+// set the dimensions and margins of the graph
+const margin = {top: 0.05*$(window).height()*0.5, right: 0.1*$('#chart').width(), bottom: 0.1*$(window).height()*0.5, left: 0.1*$('#chart').width()},
+    width = $('#chart').width() - margin.left - margin.right,
+    height = $(window).height()*0.5 - margin.top - margin.bottom;
+	
+	
+
+// append the svg object to the body of the page
+const svg = d3.select("#chart")
+  .style("cursor", "pointer")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+	.attr("id", "chart-g")
+    .attr("transform", `translate(${margin.left},${margin.top})`);
+
+const tooltip = d3.select('#tooltip');
+const tooltipLine = svg.append('line');
+
+function tweenDash() {
+  const l = this.getTotalLength(),
+      i = d3.interpolateString("0," + l, l + "," + l);
+  return function(t) { return i(t) };
+}
+function transition(path) {
+  path.transition()
+	  .ease(d3.easeExpInOut)
+      .duration(10000)
+      .attrTween("stroke-dasharray", tweenDash)
+      .on("end", () => { d3.select(this).call(transition); });
+}
+
+const parseDate = d3.timeParse("%Y-%m-%d");
+const formatPercent = d3.format(".0%");
+
+let x, y, performance;
+let color, tipBox;
+const data = d3.csv("{{ url_for('static', filename='data/performance_measurement.csv') }}",
+	
+	// When reading the csv, I must format variables:
+	  function(d){
+		return { date: parseDate(d.date), name: d.name, value: +d.cum_return}
+	  })
+  .then(
+	// Now I can use this dataset:
+
+	  function(data) {
+		performance = data;
+
+		const sumstat = d3.group(data, d => d.name);
+
+		// Add X axis --> it is a date format
+		x = d3.scaleTime()
+		  .domain(d3.extent(data, function(d) { return d.date; }))
+		  .range([ 0, width ]);
+		svg.append("g")
+		  .attr("transform", `translate(0, ${height})`)
+		  .call(d3.axisBottom(x).ticks(d3.timeMonth.every(2)).tickFormat(d3.timeFormat("%b %Y")));
+
+		// Add Y axis
+		y = d3.scaleLinear()
+		  .domain([0, d3.max(data, function(d) { return +d.value; })])
+		  .range([ height, 0 ]);
+		svg.append("g")
+		  .call(d3.axisLeft(y).tickFormat(d => d + "%"));
+		  
+		svg.selectAll('line')
+			.style("stroke", '#f8f9fa');
+		svg.selectAll('path')
+			.style("stroke", "#f8f9fa");
+		svg.selectAll("text")
+			.style("fill", "#a2a2a2");
+			
+		// legend
+	svg.append("circle")
+		.attr("cx","5%")
+		.attr("cy","50px")
+		.attr("r", 6)
+		.attr("class", "chart-legend")
+		.style("fill", "#69b3a2");
+	svg.append("circle")
+		.attr("cx","5%")
+		.attr("cy","70px")
+		.attr("r", 6)
+		.attr("class", "chart-legend")
+		.style("fill", "#ff7f00");
+	svg.append("text")
+		.attr("x", "7%")
+		.attr("y", "52px")
+		.attr("class", "chart-legend")
+		.text("Portfolio")
+		.style("font-size", "15px")
+		.style("font-weight", "500")
+		.style("fill","white")
+		.attr("alignment-baseline","middle");
+	svg.append("text")
+		.attr("x", "7%")
+		.attr("y", "72px")
+		.attr("class", "chart-legend")
+		.text("S&P 500")
+		.style("font-size", "15px")
+		.style("font-weight", "500")
+		.style("fill","white")
+		.attr("alignment-baseline","middle");
+
+		// color palette
+		color = d3.scaleOrdinal()
+			.range(['#ff7f00','#69b3a2','#4daf4a','#984ea3','#404080','#ffff33','#a65628','#f781bf','#999999'])
+		// Add the line
+		svg.selectAll(".line")
+		  .data(sumstat)
+		  .join("path")
+			.attr("fill", "none")
+			.attr("stroke", function(d){ return color(d[0]) })
+			.attr("stroke-width", 3.5)
+			.attr("d", function(d){
+			  return d3.line()
+				.x(function(d) { return x(d.date); })
+				.y(function(d) { return y(+d.value); })
+				(d[1])
+			})
+			.text((d) => `Return was ${d.value} on ${d.date}`)
+			.call(transition);
+
+		svg.selectAll()
+			.data(sumstat)
+			.enter()
+			.append("text")
+			.html(d => d.value)
+			.attr('fill', function(d){ return color(d.name) })
+			.attr('alignment-baseline', 'middle')
+			.attr('x', width)
+			.attr('dx', '.5em')
+			.attr('y', d => y(+d.value));
+		
+		tipBox = svg.append('rect')
+			.attr('width', width)
+			.attr('height', height)
+			.attr('opacity', 0)
+			.on('mousemove', drawTooltip)
+			.on('mouseout', removeTooltip);
+	});
+	
+
+function removeTooltip() {
+  if (tooltip) tooltip.style('display', 'none');
+  if (tooltipLine) tooltipLine.attr('stroke', 'none');
+}
+
+function drawTooltip(event) {
+  const mousePos = d3.pointer(event);
+  const date = new Date(x.invert(mousePos[0]));
+  
+  performance.sort( function(a, b) {
+	if (a.name < b.name) { return -1; }
+	if (a.name > b.name) { return 1; }
+	return 0;
+  });
+  performance.sort( function(a, b) {
+	const distA = Math.abs(date - a.date);
+	const distB = Math.abs(date - b.date);
+	
+	return distA - distB;
+  });
+  
+	
+  tooltipLine.attr('stroke', 'black')
+	.attr('x1', x(date))
+	.attr('x2', x(date))
+	.attr('y1', 0)
+	.attr('y2', height);
+  	
+  const day = date.getDate();
+  const monthNames =["Jan","Feb","Mar","Apr",
+                      "May","Jun","Jul","Aug",
+                      "Sep", "Oct","Nov","Dec"];
+  const monthName = monthNames[date.getMonth()];
+  const year = date.getFullYear();
+
+  
+  tooltip.html(`${day} ${monthName} ${year}`)
+	.style('display', 'block')
+	.style('left', ($('#chart').position().left + margin.left + mousePos[0] + 10) + "px")
+	.style('top', ($('#chart').position().top + margin.top +  mousePos[1] - 10) + "px")
+	.selectAll()
+	.data(performance.slice(0,2)).enter()
+	.append('div')
+	.style('color', d => color(d.name))
+	.html(d => d.name.replace("SPXTR", "S&P 500").replace("PORTFOLIO", "Portfolio") + ': ' + Math.round(d.value) + '%');
+	
+}
+
+function updateWindow(){
+    const width = $('#chart').width() - margin.left - margin.right;
+    const height = $(document).height()/2 - margin.top - margin.bottom;
+
+    svg.attr("width", width).attr("height", height);
+}
+
+d3.select(window).on('resize.updatesvg', updateWindow);
+
+</script>
+{% endblock %}
