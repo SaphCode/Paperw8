@@ -54,7 +54,27 @@ About Janik
 							<span style="color: gray;">at that time I didn't understand a </span>
 							<span style="color: white;">single word...</span>
 						{% elif user['username'] == 'chris' %}
-							<span style="color: black;">Example, </span>
+							<span style="color: gray;">I was always interest in a lot of </span>
+							<span style="color: white;">different</span>
+							<span style="color: gray;">things. I</span>
+							<span style="color: white;">programmed</span>
+							<span style="color: gray;">a game,</span>
+							<span style="color: white;">sang</span>
+							<span style="color: gray;">songs, </span>
+							<span style="color: white;">drew</span> 
+							<span style="color: gray;">pictures, and </span>
+							<span style="color: white;">studied</span>
+							<span style="color: gray;">physics.</span>
+							<span style="color: gray;">There was never a</span>
+							<span style="color: white;">single thing</span>
+							<span style="color: gray;">that I could</span>
+							<span style="color: white;">focus </span>
+							<span style="color: gray;">on for a long time.</span>
+							<span style="color: gray;">How could I find a place in the </span>
+							<span style="color: white;">specialized </span>
+							<span style="color: gray;">world of today?</span>
+							<span style="color: gray;">Now I know that in investing,</span>
+							<span class="text-decoration-underline" style="color: white;">no knowledge is without use.</span>
 						{% endif %}
 							
 						</div>
@@ -114,7 +134,7 @@ About Janik
 							alt=""
 							/>
 					{% elif user['username'] == 'chris' %}
-					
+						
 					{% endif %}
 					
 					</div>
@@ -124,25 +144,75 @@ About Janik
 	<!--- black bg --->
 	
 	<!--- quote --->
+	{% if user['username'] == 'janik' %}
 	<div class="lights-bg-image" style="height: 1600px; background-image: url('{{ url_for ("static", filename="images/bg/lights_black.jpg") }}');">
 		<div class="row d-flex justify-content-center">
 			<div class="col-md-6 mt-8">
 				<p class="heading_2">
+				
 					<span style="color: gray;">My favourite quote.</span><br>
-				{% if user['username'] == 'janik' %}
 					<span style="color: gray;">It's only when </span>
 					<span style="color: white;">the tide </span>
 					<span style="color: gray;">goes out that </span>
 					<span style="color: white;">you discover </span>
 					<span style="color: gray;">who's been </span>
 					<span style="color: white;">swimming naked.</span>
-				{% elif user['username'] == 'chris' %}
-					<span>Eyo</span>
-				{% endif %}
+					
+				
+				</p>
+			</div>
+			
+		</div>
+	</div>
+	{% elif user['username'] == 'chris' %}
+	<div class="lights-bg-image" style="height: 1600px; background-image: url('{{ url_for ("static", filename="images/bg/lights_black.jpg") }}');">
+	
+		<div class="row d-flex justify-content-center">
+			<div class="col-md-6 mt-8">
+				<p class="heading_2">
+					<div style="color: gray;">What I'm studying</div>
+					<div style="color: white;">Biology, Business, Physics, Math</div>
 				</p>
 			</div>
 		</div>
+	
+		<div class="row d-flex justify-content-center">
+			<div class="col-md-6 mt-8">
+				<p class="heading_2">
+					<div style="color: gray;">The most inspiring person</div>
+					<div style="color: white;">Richard Feynman</div>
+				</p>
+			</div>
+			<div class="col-md-6 mt-8">
+				<img src="{{ url_for('static', filename='images/profile/chris/feynman.jpg') }}">
+			</div>
+		</div>
+		
+
+		
+
+		<div class="row d-flex justify-content-center">
+			<div class="col-md-6 mt-8">
+				<p class="heading_2">
+					<div style="color: gray;">My latest hobby</div>
+					<div style="color: white;">Gardening</div>
+				</p>
+			</div>
+		</div>
+		
+		<div class="row d-flex justify-content-center">
+			<div class="col-md-6 mt-8">
+				<p class="heading_2">
+					<div style="color: gray;">My favourite book</div>
+					<div style="color: white;">The Feynman Lectures on Physics I</div>
+				</p>
+			</div>
+			<div class="col-md-6 mt-8">
+				<img src="{{ url_for('static', filename='images/profile/chris/feynman_lectures.jpg') }}">
+			</div>
+		</div>
 	</div>
+	{% endif %}
 	<!--- quote --->
 </div>
 <!--- about, gallery and quote --->
