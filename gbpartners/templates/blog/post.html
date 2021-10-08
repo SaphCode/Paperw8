@@ -15,12 +15,14 @@
 </div>
 
 <div class="container-fluid post bg-light">
+
+	<a type="button" class="btn btn-outline-dark ms-7 mt-5" href="{{ url_for('blog.blog', group_by='all', sort_by='date_desc', page=1) }}">&#8592 Back</a>
 	
-	<div class="row d-flex justify-content-center pt-5">
-		<div class="border rounded shadow col-md-7 m-5">
+	<div class="row d-flex justify-content-center">
+		<div class="border rounded shadow bg-white col-md-7 m-5">
 			<div class="row post_title d-flex justify-content-center pt-5">
 				<div class="col-md-auto">
-				{{ post['title'] }}
+				{{ post['title'] }}	
 				</div>
 			</div>
 			
@@ -37,9 +39,16 @@
 				</div>
 			</div>
 				
-			<div class="row post_pic d-flex align-items-center justify-content-center">
+			<div class="row post_pic d-flex align-items-center justify-content-center m-3">
 				<div class="col-md-8">
 					<img src="{{url_for('static', filename='images/' + post['title_img_parent_dir'] + '/' + post['title_img'])}}" style="width:100%;"></img>
+				</div>
+			</div>
+			
+			<div class="row d-flex justify-content-center pt-5">
+				<div class="btn-group d-flex justify-content-center" role="group" style="width: 20%;">
+					<a type="button" class="btn btn-outline-dark">Download</a>
+					<a type="button" class="btn btn-outline-dark">Share</a>
 				</div>
 			</div>
 			
@@ -58,22 +67,25 @@
 					Related posts
 				</div>
 			</div>
-			<div class="border rounded row d-flex align-items-center justify-content-center">
-				{% for related_post in related_posts %}
-				<div class="col-md-6 p-3">
-					<div class=" small-text">{{ related_post['title'] }}</div>
-					<div class=" small-text-gray">
-						<div>Written by <a href="{{ url_for('user.profile', username=post['username']) }}">{{ related_post['display_name'] }}</a> on {{ related_post['created'].strftime('%Y-%m-%d') }}.</div>
+			
+			{% for related_post in related_posts %}
+			<a class="btn" href="{{ url_for('blog.post', title=related_post['title']) }}">
+				<div class="border bg-white rounded shadow-sm row d-flex align-items-center justify-content-center">
+					<div class="col-md-6 p-3">
+						<div class="small-text">{{ related_post['title'] }}</div>
+						<div class="small-text-gray">
+							<div>Written by {{ related_post['display_name'] }} on {{ related_post['created'].strftime('%Y-%m-%d') }}</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<img src="{{url_for('static', filename='images/' + related_post['title_img_parent_dir'] + '/' + related_post['title_img'])}}" style="width:100%;"></img>
 					</div>
 				</div>
-				<div class="col-md-6">
-					<img src="{{url_for('static', filename='images/' + related_post['title_img_parent_dir'] + '/' + related_post['title_img'])}}" style="width:100%;"></img>
-				</div>
-				<a href="{{ url_for('blog.post', title=related_post['title']) }}">Read</a>
-				{% endfor %}
-			</div>
+			</a>
+			{% endfor %}
 		</div>
 		{% endif %}
 	
+	</div>
 </div>
 {% endblock %}
