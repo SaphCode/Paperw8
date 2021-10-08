@@ -52,16 +52,17 @@
 				</div>
 			</div>
 			<div class="border rounded row d-flex align-items-center justify-content-center">
+				{% for related_post in related_posts %}
 				<div class="col-md-6 p-3">
-					<div class=" small-text">{{ post['title'] }}</div>
+					<div class=" small-text">{{ related_post['title'] }}</div>
 					<div class=" small-text-gray">
-						<div>Written by <a href="{{ url_for('user.profile', username=post['username']) }}">{{ post['display_name'] }}</a> on {{ post['created'] }}.</div>
-						{% if post['created'].strftime('%Y-%m-%d') != post['last_edit'].strftime('%Y-%m-%d') %}<div>Last edit on {{ post['last_edit'] }}.</div>{% endif %}
+						<div>Written by <a href="{{ url_for('user.profile', username=post['username']) }}">{{ related_post['display_name'] }}</a> on {{ related_post['created'].strftime('%Y-%m-%d') }}.</div>
 					</div>
 				</div>
 				<div class="col-md-6">
-					<img src="{{url_for('static', filename='images/Tandy_tn.jpeg')}}" style="width:100%;"></img>
+					
 				</div>
+				{% endfor %}
 			</div>
 		</div>
 	
