@@ -7,14 +7,14 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container mt-7">
 
 
   <form method="POST" action="{{ url_for('blog.create') }}" enctype="multipart/form-data">
 	{{ form.csrf_token }}
 	{{ form.hidden_tag() }}
 	
-	<fieldset class="form-field">
+	<fieldset class="form-field pt-5">
 	{{ form.title.label }} {{ form.title(size=20) }}
 	{% if form.title.errors %}
 		<ul class="errors">

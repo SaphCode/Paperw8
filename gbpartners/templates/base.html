@@ -17,7 +17,7 @@
 
 <header>
 <!-- NAVIGATION -->
-<nav class="navbar navbar-dark navbar-expand-lg navbar-light bg-dark"><!--fixed-top -->
+<nav class="navbar fixed-top navbar-dark navbar-expand-lg navbar-light bg-dark"><!--fixed-top -->
 	<div class="container-fluid d-flex justify-content-center">
 		<div class="row">
 			<div class="col d-flex align-items-end">
@@ -40,7 +40,7 @@
 <!-- NAVIGATION END -->
 </header>
 
-<section class="content">
+<section class="content pt-5">
 
   {% for message in get_flashed_messages() %}
     <div class="flash">{{ message }}</div>

@@ -15,6 +15,44 @@
 	line-height:100%
 }
 
+@media only screen and (min-width:768px) and (max-width: 1560px) {
+	.company_name{
+	font-size:45px;
+	line-height:100%;
+	font-weight: bold;
+	}
+}
+
+@media only screen and (max-width:768px) {
+	.company_name{
+	font-size:70px;
+	line-height:100%;
+	font-weight: bold;
+	}
+}
+
+.catch_phrase_1{
+	font-size:30px;
+	line-height:120%;
+}
+
+@media only screen and (min-width:768px) and (max-width: 1560px) {
+	.catch_phrase_1{
+	font-size:20px;
+	line-height:120%;
+	}
+}
+
+.beri_sign_main{
+	display:none;
+	}
+
+@media only screen and (min-width:768px) and (max-width: 1560px) {
+	.beri_sign_main{
+	display:none;
+	}
+}
+
 .post_title{
 	font-size: 60px;
 	line-height:120%;
@@ -28,6 +66,8 @@
 	font-weight:600;
 	line-height: 120%;
 }
+
+
 
 .catch_phrase{
 	font-size:30px;
