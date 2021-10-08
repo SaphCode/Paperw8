@@ -7,11 +7,23 @@
 {% block content %}
   <form method="POST" action="{{ url_for('blog.update', id=post['id']) }}">
 	{{ form.hidden_tag() }}
+	
 	<fieldset class="form-field">
 	{{ form.title.label }} {{ form.title(size=20) }}
 	{% if form.title.errors %}
 		<ul class="errors">
 		{% for error in form.title %}
+			<li>{{ error }}</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+	</fieldset>
+	
+	<fieldset class="form-field">
+	{{ form.title_img.label }} {{ form.title_img(size=20) }}
+	{% if form.title_img.errors %}
+		<ul class="errors">
+		{% for error in form.title_img %}
 			<li>{{ error }}</li>
 		{% endfor %}
 		</ul>

@@ -2,11 +2,13 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for, current_app
 )
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileRequired, FileAllowed
 
 from flask_pagedown.fields import PageDownField
 from wtforms import StringField, SelectField, SelectMultipleField
 from wtforms.validators import InputRequired, Length
 from werkzeug.exceptions import abort
+from werkzeug.utils import secure_filename
 
 from datetime import datetime
 import markdown 
@@ -20,6 +22,9 @@ bp = Blueprint('blog', __name__)
 
 class BlogForm(FlaskForm):
     title = StringField('Title', validators=[InputRequired()])
+    new_folder = StringField('New Folder')
+    title_img_path = StringField('Title Image Path', validators=[InputRequired()])
+    title_img = FileField('Image', validators=[FileRequired(), FileAllowed(['jpg', 'png', 'JPG', 'jpeg', 'gif'], message="File must end in one of the following: .jpg, .JPG, .jpeg, .gif, .png")])
     content = PageDownField('Markdown', validators=[InputRequired()])
     category = SelectField('Category', choices=[('business', 'Business'), ('annual', 'Annual Report'), ('education', 'Education')], validators=[InputRequired()])
     related_to = SelectMultipleField('Related to', coerce=int)
@@ -112,10 +117,22 @@ def create():
     
     # validate form
     if form.validate_on_submit():
+        # get title image path
+        
+        # if the folder does not exists, create the one the user specified
+        new_folder = secure_filename(form.new_folder.data)
+        root_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'images')
+        if not os.path.exists(os.path.join(root_dir, new_folder)):
+            os.path.mkdir(os.path.join(root_dir, new_folder))
+        
+        filename = secure_filename(form.title_img_path.data)
+        
+        destination = os.path.join(root_dir, filename)
+    
         # insert new post
         db.execute(
-            'INSERT INTO post (author_id, title, content, category, last_edit)'
-            ' VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)',
+            'INSERT INTO post (author_id, title, title_img, content, category, last_edit)'
+            ' VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)',
             (g.user['id'], form.title.data, form.content.data, form.category.data)
         )
         # get last inserted id
@@ -169,9 +186,9 @@ def update(id):
     if form.validate_on_submit():
         db = get_db()
         db.execute(
-            'UPDATE post SET title = ?, content = ?, category = ?, last_edit = CURRENT_TIMESTAMP'
+            'UPDATE post SET title = ?, title_img = ?, content = ?, category = ?, last_edit = CURRENT_TIMESTAMP'
             ' WHERE id = ?',
-            (form.title.data, form.content.data, form.category.data, id)
+            (form.title.data, form.title_img.data, form.content.data, form.category.data, id)
         )
         db.commit()
         return redirect(url_for('blog.blog', group_by='all', sort_by='date_desc', page=1))

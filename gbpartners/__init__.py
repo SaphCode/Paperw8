@@ -53,5 +53,8 @@ def create_app(test_config=None):
     
     from . import user
     app.register_blueprint(user.bp)
+    
+    from . import contact
+    app.register_blueprint(contact.bp)
 
     return app

@@ -83,6 +83,9 @@ def upload_performance_file():
         filename = secure_filename(form.file_field.data.filename)
         root_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'data')
         destination = os.path.join(root_dir, filename)
+        if not os.path.exists(os.path.abspath(os.path.join(destination, os.pardir))):
+            flash("Path does not exist")
+            return render_template('admin/upload_performance.html', form=form)
         form.file_field.data.save(destination)
         process_performance_file(root_dir, filename, get_db())
         
