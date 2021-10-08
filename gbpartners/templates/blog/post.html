@@ -17,15 +17,15 @@
 <div class="container-fluid post bg-light">
 	
 	<div class="row d-flex justify-content-center pt-5">
-		<div class="col-md-7">
-			<div class="row post_title d-flex justify-content-center">
+		<div class="border rounded shadow col-md-7 m-5">
+			<div class="row post_title d-flex justify-content-center pt-5">
 				<div class="col-md-auto">
 				{{ post['title'] }}
 				</div>
 			</div>
 			
 			<div class="row post_info d-flex align-items-center justify-content-center">
-				<div class="col-md-auto pb-5">
+				<div class="col-md-auto pt-2 pb-5">
 					<div>Written by <a href="{{ url_for('user.profile', username=post['username']) }}">{{ post['display_name'] }}</a> on {{ post['created'] }}.</div>
 					{% if post['created'].strftime('%Y-%m-%d') != post['last_edit'].strftime('%Y-%m-%d') %}<div>Last edit on {{ post['last_edit'] }}.</div>{% endif %}
 				</div>
@@ -38,7 +38,7 @@
 			</div>
 			
 			<div class="row post_pic d-flex align-items-center justify-content-center pt-5">
-				<div class="col-md-8">
+				<div class="col-md-8 lato-font-flow">
 					{{ post['content']|safe }}
 				</div>
 			</div>
@@ -51,7 +51,7 @@
 					Related posts
 				</div>
 			</div>
-			<div class="border row d-flex align-items-center justify-content-center">
+			<div class="border rounded row d-flex align-items-center justify-content-center">
 				<div class="col-md-6 p-3">
 					<div class=" small-text">{{ post['title'] }}</div>
 					<div class=" small-text-gray">
