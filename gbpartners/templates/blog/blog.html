@@ -12,25 +12,24 @@
 
 	<div class="container d-flex justify-content-center mt-5 mb-5">
 		<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-			<a type="button" href="{{ url_for('blog.blog', group_by='all', sort_by=sort_by, page=1) }}" class="btn btn-outline-danger btn-lg">All</a>
-			<a type="button" href="{{ url_for('blog.blog', group_by='business', sort_by=sort_by, page=1) }}" class="btn btn-outline-danger btn-lg" class="btn btn-outline-danger btn-lg">Businesses</a>
-			<a type="button" href="{{ url_for('blog.blog', group_by='book', sort_by=sort_by, page=1) }}" class="btn btn-outline-danger btn-lg" class="btn btn-outline-danger btn-lg">Book reviews</a>
-			<a type="button" href="{{ url_for('blog.blog', group_by='annual', sort_by=sort_by, page=1) }}" class="btn btn-outline-danger btn-lg" class="btn btn-outline-danger btn-lg">Annul letters</a>
+			<a type="button" href="{{ url_for('blog.blog', group_by='all', sort_by=sort_by, page=1) }}" class="btn btn-outline-danger btn-lg {% if group_by == 'all' %} active {% endif %}">All</a>
+			<a type="button" href="{{ url_for('blog.blog', group_by='business', sort_by=sort_by, page=1) }}" class="btn btn-outline-danger btn-lg {% if group_by == 'business' %} active {% endif %}" class="btn btn-outline-danger btn-lg">Businesses</a>
+			<a type="button" href="{{ url_for('blog.blog', group_by='book', sort_by=sort_by, page=1) }}" class="btn btn-outline-danger btn-lg {% if group_by == 'book' %} active {% endif %}" class="btn btn-outline-danger btn-lg">Book reviews</a>
+			<a type="button" href="{{ url_for('blog.blog', group_by='annual', sort_by=sort_by, page=1) }}" class="btn btn-outline-danger btn-lg {% if group_by == 'annual' %} active {% endif %}" class="btn btn-outline-danger btn-lg">Annul letters</a>
 
 			<div class="btn-group" role="group">
 				<button id="btnGroupDrop1" type="button" class="btn btn-outline-danger btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 				Sort
 				</button>
 				<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-					<li><a class="dropdown-item" href="{{ url_for('blog.blog', group_by=group_by, sort_by='date_desc', page=page) }}">New to old</a></li>
-					<li><a class="dropdown-item" href="{{ url_for('blog.blog', group_by=group_by, sort_by='date_asc', page=page) }}">Old to new</a></li>
-					<li><a class="dropdown-item" href="{{ url_for('blog.blog', group_by=group_by, sort_by='title_desc', page=page) }}">A to Z</a></li>
-					<li><a class="dropdown-item" href="{{ url_for('blog.blog', group_by=group_by, sort_by='title_asc', page=page) }}">Z to A</a></li>
+					<li><a class="dropdown-item {% if sort_by == 'date_desc' %} active {% endif %}" href="{{ url_for('blog.blog', group_by=group_by, sort_by='date_desc', page=page) }}">New to old</a></li>
+					<li><a class="dropdown-item {% if sort_by == 'date_asc' %} active {% endif %}" href="{{ url_for('blog.blog', group_by=group_by, sort_by='date_asc', page=page) }}">Old to new</a></li>
+					<li><a class="dropdown-item {% if sort_by == 'title_desc' %} active {% endif %}" href="{{ url_for('blog.blog', group_by=group_by, sort_by='title_desc', page=page) }}">A to Z</a></li>
+					<li><a class="dropdown-item {% if sort_by == 'title_asc' %} active {% endif %}" href="{{ url_for('blog.blog', group_by=group_by, sort_by='title_asc', page=page) }}">Z to A</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-	
 
     {% if g.user %}
 	<div class="d-flex align-items-center justify-content-center mt-4 mb-5">
@@ -45,7 +44,7 @@
 		<article class="col-md-12 all {{ post['category'] }}">
 			<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 				<div class="col p-4 d-flex flex-column position-static">
-					<strong class="d-inline-block mb-2 text-success">{{ post['category'] }}</strong>
+					<strong class="d-inline-block mb-2 text-success">{{ post['category'].capitalize() }}</strong>
 					<h1>{{ post['title'] }}</h1>
 					<div class="mb-1 text-muted">by {{ post['display_name'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
 					{% if post['created'].strftime('%Y-%m-%d') != post['last_edit'].strftime('%Y-%m-%d') %}

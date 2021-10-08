@@ -24,6 +24,12 @@
 				</div>
 			</div>
 			
+			{% if post['category'] == 'business' or post['category'] == 'valuation' %}
+			<div class="disclaimer">
+				None of this is investment advice, decide yourself. We are not liable for any losses you may make.
+			</div>
+			{% endif %}
+			
 			<div class="row post_info d-flex align-items-center justify-content-center">
 				<div class="col-md-auto pt-2 pb-5">
 					<div>Written by <a href="{{ url_for('user.profile', username=post['username']) }}">{{ post['display_name'] }}</a> on {{ post['created'] }}.</div>
