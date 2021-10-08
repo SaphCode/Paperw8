@@ -93,13 +93,37 @@ def post(title):
     ).fetchone()
     
     # get related posts by joining on both columns of the related table (see schema.sql)
-    related_posts = db.execute(
-        'SELECT DISTINCT p.id AS id, title, title_img_parent_dir, title_img, created, display_name, username'
+    # left -> right
+    related_posts_id = db.execute(
+        'SELECT DISTINCT r.related_to_id AS related_id' # , title, title_img_parent_dir, title_img, created, display_name, username
         ' FROM post p'
-        ' JOIN user u ON u.id = author_id'
-        ' JOIN related r ON r.id = p.id OR r.related_to_id = p.id'
+        ' JOIN related r ON r.id = p.id'
+        f' WHERE r.id = {post["id"]}'
     ).fetchall()
     
+    # left <- right
+    related_posts_id_2 = db.execute(
+        'SELECT DISTINCT r.id AS related_id'
+        ' FROM post p'
+        ' JOIN related r ON r.related_to_id = p.id'
+        f' WHERE p.id = {post["id"]}'
+    ).fetchall()
+    
+    # left <-> right
+    related_posts_id.extend(related_posts_id_2)
+    related_posts_id = [related_post['related_id'] for related_post in related_posts_id]
+    
+    # find the ids in the post table and get the relevant columns
+    related_posts = []
+    for id in related_posts_id:
+        related_posts.append(db.execute(
+            'SELECT p.id, title, title_img_parent_dir, title_img, content, created, display_name, username'
+            ' FROM post p'
+            ' JOIN user u ON u.id=p.author_id'
+            f' WHERE p.id={id}'
+        ).fetchone())
+    
+    # don't include the post that's being viewed in related
     filtered_related_posts = []
     for related_post in related_posts:
         if related_post['title'] == post['title']:
@@ -109,7 +133,6 @@ def post(title):
     post = dict(post)
     post['content'] = markdown.markdown(post['content'])
 
-    print(*[p['title'] for p in filtered_related_posts], sep='\n')
     return render_template('blog/post.html', post=post, related_posts=filtered_related_posts)
     
     

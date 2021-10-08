@@ -40,5 +40,6 @@ CREATE TABLE related (
   id		  INTEGER			NOT NULL,
   related_to_id	  INTEGER			NOT NULL,
   FOREIGN KEY(related_to_id) REFERENCES post(id),
-  FOREIGN KEY(id) REFERENCES post(id)
+  FOREIGN KEY(id) REFERENCES post(id),
+  CONSTRAINT related_pair_unique UNIQUE (id, related_to_id)
 );

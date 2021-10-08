@@ -62,6 +62,20 @@ def post_list():
         return render_template('admin/database/database.html', columns = columns, rows = posts, table_name = 'post')
     return render_template('admin/database/database.html')
 
+@bp.route('/admin/related')
+@admin_login_required
+def related_list():
+    db = get_db()
+    related = db.execute(
+        'SELECT r.id, related_to_id, category, created, last_edit'
+        ' FROM related r'
+        ' JOIN post p ON p.id = r.id OR p.id = related_to_id'
+    ).fetchall()
+    if len(related) > 0:
+        columns = related[0].keys()
+        return render_template('admin/database/database.html', columns = columns, rows = related, table_name = 'post')
+    return render_template('admin/database/database.html')
+
 
 class NewFolderForm(FlaskForm):
     parent_dir = SelectField('Parent Directory', validators=[InputRequired()])
