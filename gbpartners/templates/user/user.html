@@ -165,58 +165,51 @@ About Janik
 		</div>
 	</div>
 	{% elif user['username'] == 'chris' %}
-	<div class="lights-bg-image" style="height: 1600px; background-image: url('{{ url_for ("static", filename="images/bg/lights_black.jpg") }}');">
+	<div class="lights-bg-image" style="height: 1600px;background-color:black;">
+	<div class="container">
 	
-		<div class="row d-flex justify-content-center">
-			<div class="col-md-6 mt-8">
-				<p class="heading_2">
-					<div style="color: gray;">What I'm studying</div>
-					<div style="color: white;">Biology, Business, Physics, Math</div>
-				</p>
-			</div>
+		<div class="text-center">
+			<div class="display-5" style="color: gray;">What I'm studying</div>
+			<div class="display-6" style="color: white;">Biology, Business, Physics, Math</div>
 		</div>
 	
-		<div class="row d-flex justify-content-center">
+		<div class="row">
 			<div class="col-md-6 mt-8">
 				<p class="heading_2">
-					<div style="color: gray;">The most inspiring person</div>
-					<div style="color: white;">Richard Feynman</div>
+					<div class="display-5" style="color: gray;">The most inspiring person</div>
+					<div class="display-6" style="color: white;">Richard Feynman</div>
 				</p>
 			</div>
-			<div class="col-md-6 mt-8">
+			<div class="col-md-4 mt-8">
 				<img src="{{ url_for('static', filename='images/profile/chris/feynman.jpg') }}">
 			</div>
 		</div>
 		
 
+		<div class="text-center mt-8">
+			<div class="display-5" style="color: gray;">What I like doing</div>
+			<div class="display-6" style="color: white;">Cooking, Gardening</div>
+		</div>
+	
 		
-
-		<div class="row d-flex justify-content-center">
-			<div class="col-md-6 mt-8">
+		<div class="row mt-8">
+			<div class="col-md-4">
+				<img src="{{ url_for('static', filename='images/profile/chris/feynman_lectures.jpg') }}" style="width:80%;">
+			</div>
+			<div class="col-md-6">
 				<p class="heading_2">
-					<div style="color: gray;">My latest hobby</div>
-					<div style="color: white;">Gardening</div>
+					<div class="display-5" style="color: gray;">My favourite book</div>
+					<div class="display-6" style="color: white;">The Feynman Lectures on Physics I</div>
 				</p>
 			</div>
 		</div>
-		
-		<div class="row d-flex justify-content-center">
-			<div class="col-md-6 mt-8">
-				<p class="heading_2">
-					<div style="color: gray;">My favourite book</div>
-					<div style="color: white;">The Feynman Lectures on Physics I</div>
-				</p>
-			</div>
-			<div class="col-md-6 mt-8">
-				<img src="{{ url_for('static', filename='images/profile/chris/feynman_lectures.jpg') }}">
-			</div>
-		</div>
+	</div>
 	</div>
 	{% endif %}
 	<!--- quote --->
 </div>
 <!--- about, gallery and quote --->
-
+{% if user['username'] == 'janik' %}
 <div class="bg-light">
 	<!--- end of story 1 --->
 	<div class="row d-flex justify-content-center">
@@ -225,8 +218,7 @@ About Janik
 			</p>
 			<div class="row">
 				<p class="bold_gray_text">
-					In July of 2018, Chris and I each invested $1000 in Regi at an average price of roughly $16.50 per share. By September of the same year the stock had surged to $27.
-					We sold our position. Our initial $1000 had turned into $1600 over the course of just three months. Making money is that easy...?
+					
 				</p>
 			</div>
 		</div>
@@ -269,5 +261,7 @@ About Janik
 	</div>
 	<!--- end of story 2 --->
 </div>
+{% endif %}
+
 
 {% endblock %}
