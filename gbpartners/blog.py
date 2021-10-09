@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for, current_app
+    Blueprint, flash, g, redirect, render_template, request, url_for, current_app, send_from_directory
 )
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired, FileAllowed
@@ -8,7 +8,7 @@ from flask_pagedown.fields import PageDownField
 from wtforms import StringField, SelectField, SelectMultipleField
 from wtforms.validators import InputRequired, Length
 from werkzeug.exceptions import abort
-from werkzeug.utils import secure_filename
+from werkzeug.utils import secure_filename, safe_join
 
 from datetime import datetime
 import markdown 
@@ -77,6 +77,46 @@ def blog(group_by, sort_by, page):
     
     return render_template('blog/blog.html', active='blog', posts=posts, page=page, sort_by=sort_by, group_by=group_by, max_posts=max_posts)
 
+@bp.route('/post/<title>/download')
+def download_post(title):
+    print('downloading')
+    # get db connection
+    db = get_db()
+    # get post from db
+    post = db.execute(
+        'SELECT p.id AS id, author_id, title, title_img_parent_dir, title_img, content, created, last_edit, display_name, username'
+        ' FROM post p'
+        ' JOIN user u ON p.author_id = u.id'
+        ' WHERE title = ?',
+        (title,)
+    ).fetchone()
+    
+    # get directories
+    root_dir = current_app.config['UPLOAD_FOLDER']
+    data_dir = 'data'
+    parent_dir = post['title_img_parent_dir']
+    
+    # see if parent dir exists in data
+    if not os.path.isdir(safe_join(root_dir, data_dir, parent_dir)):
+        os.mkdir(safe_join(root_dir, data_dir, parent_dir))
+    
+    filename = secure_filename(post['title']) + '.pdf'
+    
+    # see if file exists
+    if not os.path.exists(safe_join(root_dir, data_dir, parent_dir, filename)):
+        # if file does not exists, generate one
+        html = markdown.markdown(post['content'])
+
+        import pdfkit
+        pdfkit.from_string(html, output_path = safe_join(root_dir, data_dir, parent_dir, filename))
+        #with open(file, 'w') as f:
+        #    f.write(pdf)
+    
+
+    # finally serve the file
+    return send_from_directory(os.path.join(os.getcwd(), root_dir, data_dir, parent_dir), filename=filename, as_attachment=True)
+
+    
 
 @bp.route('/post/<title>')    
 def post(title):
