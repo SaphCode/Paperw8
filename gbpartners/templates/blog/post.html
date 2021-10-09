@@ -6,20 +6,30 @@
 
 {% block content %}
 
-<div class="container-fluid bg-light"
-	<div class="d-flex justify-content-center">
-		<div class="row g-0">
-			<img src="{{url_for('static', filename='images/bp_banner_hq.png')}}" width='auto' height='100%'></img>
-		</div>
-	</div>
+<div class="container-fluid p-0 bg-light">
+		<a href="{{ url_for('blog.blog', group_by='all', sort_by='date_desc', page=1) }}">
+			<img src="{{url_for('static', filename='images/bp_banner_hq.png')}}" class="img-fluid"></img>
+		</a>
 </div>
 
 <div class="container-fluid post bg-light">
-
-	<a type="button" class="btn btn-outline-dark ms-7 mt-5" href="{{ url_for('blog.blog', group_by='all', sort_by='date_desc', page=1) }}">&#8592 Back</a>
+	
+	<div class="row d-flex justify-content-center pt-3 pb-3">
+		<div class="p-0 col-md-7">
+			<a type="button" class="btn btn-outline-dark" href="{{ url_for('blog.blog', group_by='all', sort_by='date_desc', page=1) }}">&#8592 Blog</a>
+		</div>
+		{% if related_posts %}
+		<div class="col-md-3">
+			<div class="row d-flex align-items-center justify-content-center">
+				<div class="col-md-6 normal_text d-flex align-items-center justify-content-center">
+				</div>
+			</div>
+		</div>
+		{% endif %}
+	</div>
 	
 	<div class="row d-flex justify-content-center">
-		<div class="border rounded shadow bg-white col-md-7 m-5">
+		<div class="border rounded shadow bg-white col-md-7 ms-5 mb-5 me-5">
 			<div class="row post_title d-flex justify-content-center pt-5">
 				<div class="col-md-auto">
 				{{ post['title'] }}	
