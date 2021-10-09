@@ -24,7 +24,7 @@ def format_date(unformatted):
     dt = datetime.strptime(unformatted, '%m/%d/%y')
     return dt.strftime('%Y-%m-%d')
 
-def upload_image(parent_dir, filename, file):
+def upload_file(parent_dir, filename, file):
     if not os.path.exists(os.path.join(parent_dir, secure_filename(filename))):
         file.save(os.path.join(parent_dir, secure_filename(filename)))
     else:

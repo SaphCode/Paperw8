@@ -15,7 +15,7 @@ import markdown
 
 from gbpartners.auth import login_required, admin_login_required
 from gbpartners.db import get_db
-from gbpartners.utils import upload_image
+from gbpartners.utils import upload_file
 
 from sqlite3 import OperationalError
 import os
@@ -166,7 +166,7 @@ def create():
         
         # upload image (dir, filename, file (form.field.data))
         try:
-            upload_image(os.path.join(root_dir, parent_dir), filename, form.title_img.data)
+            upload_file(os.path.join(root_dir, parent_dir), filename, form.title_img.data)
         except FileExistsError as e:
             return render_template('blog/create.html', form=form, error=e)
         
