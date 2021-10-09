@@ -39,6 +39,7 @@ def admin_login_required(view):
     return wrapped_view
 
 @bp.route('/register', methods=('GET', 'POST'))
+@admin_login_required
 def register():
     form = RegisterForm()
     
