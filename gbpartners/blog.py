@@ -116,8 +116,6 @@ def download_post(title):
     # finally serve the file
     return send_from_directory(os.path.join(os.getcwd(), root_dir, data_dir, parent_dir), filename=filename, as_attachment=True)
 
-    
-
 @bp.route('/post/<title>')    
 def post(title):
     # get db

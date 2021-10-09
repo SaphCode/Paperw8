@@ -87,7 +87,7 @@ def login():
             g.user = user
             if user['username'] == 'admin':
                 return redirect(url_for('admin.home'))
-            return redirect(url_for('blog.blog'))
+            return redirect(url_for('blog.blog', group_by='all', sort_by='date_desc', page=1))
 
     if error:
         flash(error)
