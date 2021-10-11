@@ -1,12 +1,11 @@
 <div class="sbuttons">
  
-  <a href="#" target="_blank" class="sbutton whatsapp" tooltip="WhatsApp"><i class="fab fa-whatsapp"></i></a>  
+  <a href="whatsapp://send?text={{ message }}" data-action="share/whatsapp/share"  target="_blank" class="sbutton whatsapp" tooltip="WhatsApp"><i class="fab fa-whatsapp"></i></a>  
    
-  <a href="#" target="_blank" class="sbutton fb" tooltip="Facebook"><i class="fab fa-facebook-f"></i></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank" class="sbutton fb" tooltip="Facebook"><i class="fab fa-facebook-f"></i></a>
  
-  <a href="#" target="_blank" class="sbutton twitt" tooltip="Twitter"><i class="fab fa-twitter"></i></a>
- 
-  <a href="#" target="_blank" class="sbutton pinteres" tooltip="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="sbutton twitt" tooltip="Twitter" data-text="{{ message }}" data-via="BeriPartners" data-show-count="false"><i class="fab fa-twitter"></i></a>
+  <!--<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" target="_blank" class="sbutton twitt" tooltip="Twitter"><i class="fab fa-twitter"></i></a>-->
  
   <a target="_blank" class="sbutton mainsbutton" tooltip="Share"><i class="fas fa-share-alt"></i></a>
    

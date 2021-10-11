@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
-{% include 'share_buttons.html' %}
+
+{% with message='Check out this post by Beri Partners: ' + post['title'] %}
+	{% include 'share_buttons.html' %}
+{% endwith %}
 
 {% block title %}
 {{ post['title'] }}
