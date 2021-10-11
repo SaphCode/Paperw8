@@ -4,6 +4,7 @@ import click
 from flask import current_app, g
 from flask.cli import with_appcontext
 
+from werkzeug.security import generate_password_hash
 
 def get_db():
     if 'db' not in g:
@@ -30,6 +31,25 @@ def init_db():
         db.executescript(f.read().decode('utf8'))
 
 
+def create_user(username, password):
+    db = get_db()
+    
+    db.execute(
+        'INSERT into user(display_name, username, password) VALUES(?, ?, ?)',
+        (username.capitalize(), username, generate_password_hash(password))
+    )
+    db.commit()
+
+@click.command('create-user')
+@click.argument('username')
+@click.argument('password')
+@with_appcontext
+def create_user_command(username, password):
+    """Inserts a user with the given username and password into the db."""
+    create_user(username, password)
+    click.echo(f'Created user {username}')
+    
+
 def delete(table_name, identifier):
     if identifier:
         return
@@ -51,3 +71,4 @@ def insert_sample_db_command():
 def init_app(app):
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
+    app.cli.add_command(create_user_command)

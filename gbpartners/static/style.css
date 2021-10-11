@@ -4,6 +4,8 @@
   position: fixed;
   margin: 1em;
   left: 0;
+  margin-left: auto; 
+  margin-right: 0;
 }
 .sbutton {
   display: block;
