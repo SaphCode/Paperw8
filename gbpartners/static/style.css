@@ -245,6 +245,11 @@
 	line-height: 100%;
 }
 
+.heading_3{
+	font-size: 50px;
+	line-height: 120%;
+}
+
 .normal_text{
 	font-size: 35px;
 }
@@ -254,9 +259,17 @@
 	font-weight: 500;
 	line-height: 120%;
 }
+
 .small-text-gray{
 	color:gray;
 	font-size: 15px;
+	font-weight: 500;
+	line-height: 120%;
+}
+
+.small-text-gray-2{
+	color:gray;
+	font-size: 25px;
 	font-weight: 500;
 	line-height: 120%;
 }
