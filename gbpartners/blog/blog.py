@@ -13,9 +13,9 @@ from werkzeug.utils import secure_filename, safe_join
 from datetime import datetime
 import markdown 
 
-from gbpartners.auth import login_required, admin_login_required
-from gbpartners.db import get_db
-from gbpartners.utils import upload_file
+from gbpartners.user.auth import login_required, admin_login_required
+from gbpartners.database.db import get_db
+from gbpartners.data_processing.utils import upload_file
 
 from sqlite3 import OperationalError
 import os

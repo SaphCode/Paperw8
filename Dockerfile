@@ -6,9 +6,15 @@ FROM python:3.9-slim
 ENV PYTHONUNBUFFERED True
 
 # Copy local code to the container image.
-ENV APP_HOME /app
+ENV APP_HOME /gbpartners
 WORKDIR $APP_HOME
 COPY . ./
+
+#ENV FLASK_APP gbpartners
+ENV FLASK_ENV production # production is enabled by default
+
+ADD instance /instance
+ENV GBPARTNERS_SETTINGS /instance/settings.cfg
 
 # Install production dependencies.
 RUN pip install --no-cache-dir -r requirements.txt
@@ -18,4 +24,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 # For environments with multiple CPU cores, increase the number of workers
 # to be equal to the cores available.
 # Timeout is set to 0 to disable the timeouts of the workers to allow Cloud Run to handle instance scaling.
-CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 main:app
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 gbpartners.wsgi:app

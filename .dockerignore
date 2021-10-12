@@ -5,7 +5,11 @@ README.md
 *.pyd
 .flaskenv
 .git
+.gitattributes
+.gitignore
 __pycache__
 .pytest_cache
 BeriPartners.egg-info
 tests
+setup.cfg
+setup.py

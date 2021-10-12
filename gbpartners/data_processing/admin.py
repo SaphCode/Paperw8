@@ -8,9 +8,9 @@ from wtforms import StringField, SelectField
 from wtforms.validators import InputRequired, Length
 from werkzeug.utils import secure_filename
 
-from gbpartners.auth import admin_login_required
-from gbpartners.db import get_db
-from gbpartners.utils import process_performance_file, upload_file
+from gbpartners.user.auth import admin_login_required
+from gbpartners.database.db import get_db
+from gbpartners.data_processing.utils import process_performance_file, upload_file
 
 import os
 import csv

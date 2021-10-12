@@ -4,7 +4,7 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, current_app
 )
 
-from gbpartners.db import get_db
+from gbpartners.database.db import get_db
 
 import os
 
@@ -14,6 +14,7 @@ bp = Blueprint('user', __name__, url_prefix='/user')
 def profile(username):
     db = get_db()
     
+    # get user with given username from db
     user = db.execute(
         "SELECT *"
         " FROM user"
@@ -21,7 +22,8 @@ def profile(username):
         (username,)
     ).fetchone()
     
-    
+    # load the images in that users directory
     images = os.listdir(os.path.join(current_app.static_folder, f'images/profile/{username}/side'))
     
+    # render the html with the given user and the images found
     return render_template('user/user.html', user=user, images=images)
