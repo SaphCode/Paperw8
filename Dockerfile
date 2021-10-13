@@ -6,15 +6,14 @@ FROM python:3.9-slim
 ENV PYTHONUNBUFFERED True
 
 # Copy local code to the container image.
-ENV APP_HOME /gbpartners
+ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
 
-#ENV FLASK_APP gbpartners
+ENV FLASK_APP gbpartners
 ENV FLASK_ENV production # production is enabled by default
 
-ADD instance /instance
-ENV GBPARTNERS_SETTINGS /instance/settings.cfg
+ENV GBPARTNERS_SETTINGS settings.cfg
 
 # Install production dependencies.
 RUN pip install --no-cache-dir -r requirements.txt
