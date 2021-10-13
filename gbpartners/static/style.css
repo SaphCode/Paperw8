@@ -4,7 +4,7 @@
   position: fixed;
   margin: 1em;
   left: 0;
-  margin-left: auto; 
+  margin-left: auto;
   margin-right: 0;
 }
 .sbutton {
@@ -73,7 +73,7 @@
   -webkit-transition-delay: 100ms;
   transition-delay: 100ms;
 }
- 
+
 [tooltip]:before {
   font-family: 'Roboto';
   font-weight: 600;
@@ -91,7 +91,7 @@
   bottom: 20%;
   white-space: nowrap;
 }
- 
+
 [tooltip]:hover:before,
 [tooltip]:hover:after {
   visibility: visible;
@@ -278,17 +278,9 @@
 	font-weight: 500;
 	line-height: 120%;
 }
-
 .small-text-gray{
 	color:gray;
 	font-size: 15px;
-	font-weight: 500;
-	line-height: 120%;
-}
-
-.small-text-gray-2{
-	color:gray;
-	font-size: 25px;
 	font-weight: 500;
 	line-height: 120%;
 }
@@ -330,10 +322,10 @@
 
 .lights-bg-image{
 	/* set image in html & jinja with style= */
-	
+
 	background-repeat: no-repeat;
 	background-size: cover;
-	
+
 }
 
 /* Chart stuff */

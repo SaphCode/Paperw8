@@ -12,11 +12,8 @@
 
 {% block content %}
 <!--- profile section --->
-<div class="pt-3 bg-light">
-	{% if user['username'] == 'janik' %}
-	<div class="row d-flex flex-row justify-content-center">
-		<div class="col-md-2">
-		</div>
+<div class="w-100 pt-3 bg-light">
+	<div class="row d-flex justify-content-center">
 		<!--- profile picture --->
 		<div class="col-md-5 pt-2">
 			<div class="imageInn align-items-end">
@@ -26,44 +23,18 @@
 		<!--- profile picture --->
 		
 		<!--- profile text --->
-		<div class="order-first order-md-0 col-md-5 pt-2 text-monospace text-decoration-none d-flex align-items-center">
-			<div class="black_heading_2">
-				<span style="color: grey;">Hi, I'm </span>
-				<span style="color: black;">{{ user['username'].capitalize() }}, </span><br>
-				<span style="color: grey;">founder of </span><br>
-				<span style="color: black;">Beri Partners.</span>
+		<div class="col-md-6 pt-2 text-monospace text-decoration-none d-flex justify-content-center align-items-center">
+			<div class="d-flex justify-content-center me-7">
+				<p class="black_heading_2">
+					<span style="color: grey;">Hi, I'm </span>
+					<span style="color: black;">{{ user['username'].capitalize() }}, </span><br>
+					<span style="color: grey;">founder of </span><br>
+					<span style="color: black;">Beri Partners.</span>
+				</p>
 			</div>
 		</div>
 		<!--- profile text --->
 	</div>
-	
-	{% elif user['username'] == 'chris' %}
-	<div class="row">
-	
-		<!--- profile text --->
-		<div class="order-first order-md-0 col-md-5 pt-2 text-monospace text-decoration-none d-flex align-items-center justify-content-end">
-			<div class="black_heading_2">
-				<span style="color: grey;">Hi, I'm </span>
-				<span style="color: black;">{{ user['username'].capitalize() }}, </span><br>
-				<span style="color: grey;">founder of </span><br>
-				<span style="color: black;">Beri Partners.</span>
-			</div>
-		</div>
-		<!--- profile text --->
-	
-		<!--- profile picture --->
-		<div class="col-md-5 pt-2">
-			<div class="imageInn align-items-end">
-				<img src="{{ url_for('static', filename='images/profile/' + user['username'] + '/pb.png') }}" width="100%" height="auto" alt="Founder of Beri Partners">
-			</div>
-		</div>
-		<!--- profile picture --->
-		
-		<div class="col-md-2">
-		</div>
-		
-	</div>
-	{% endif %}
 </div>
 <!--- profile section --->
 
@@ -72,57 +43,55 @@
 	<!--- black bg --->	
 	<div style="background-color: black;">
 		<!--- About me --->	
-		<div class="row d-flex justify-content-center">
-			<div class="col-md-6">
-				<div class="heading_2 pt-8">
-					<span style="color: gray;">About me</span>
-				</div>
-				<div class="about_text mb-7">
-				{% if user['username'] == 'janik' %}
-					<span style="color: gray;">I started investing when I was </span>
-					<span style="color: white;">19 years </span>
-					<span style="color: gray;">old. It was actually </span>
-					<span style="color: white;">Chris, co-founder of Beri Partners, </span>
-					<span style="color: gray;">who got me interested in the topic by making me read an </span>
-					<span style="color: white;">annual report </span>
-					<span style="color: gray;">of a company called Regi Inc. However, if I'm being </span>
-					<span style="color: white;">completely honest, </span>
-					<span style="color: gray;">at that time I didn't understand a </span>
-					<span style="color: white;">single word...</span>
-				{% elif user['username'] == 'chris' %}
-					<span style="color: gray;">I was always interest in a lot of </span>
-					<span style="color: white;">different</span>
-					<span style="color: gray;">things. I</span>
-					<span style="color: white;">programmed</span>
-					<span style="color: gray;">a game,</span>
-					<span style="color: white;">sang</span>
-					<span style="color: gray;">songs, </span>
-					<span style="color: white;">drew</span> 
-					<span style="color: gray;">pictures, and </span>
-					<span style="color: white;">studied</span>
-					<span style="color: gray;">physics.</span>
-					<span style="color: gray;">There was never a</span>
-					<span style="color: white;">single thing</span>
-					<span style="color: gray;">that I could</span>
-					<span style="color: white;">focus </span>
-					<span style="color: gray;">on for a long time.</span>
-					<span style="color: gray;">How could I find a place in the </span>
-					<span style="color: white;">specialized </span>
-					<span style="color: gray;">world of today?</span>
-					<span style="color: gray;">Now I know that in investing,</span>
-					<span class="text-decoration-underline" style="color: white;">no knowledge is without use.</span>
-				{% endif %}
-					
-				</div>
-			</div>
+		<div class="container-sm">
+						<div class="heading_2 pt-8">
+							<span style="color: gray;">About me</span>
+						</div>
+						<div class="about_text mb-7">
+						{% if user['username'] == 'janik' %}
+							<span style="color: gray;">I started investing when I was </span>
+							<span style="color: white;">19 years </span>
+							<span style="color: gray;">old. It was actually </span>
+							<span style="color: white;">Chris, co-founder of Beri Partners, </span>
+							<span style="color: gray;">who got me interested in the topic by making me read an </span>
+							<span style="color: white;">annual report </span>
+							<span style="color: gray;">of a company called Regi Inc. However, if I'm being </span>
+							<span style="color: white;">completely honest, </span>
+							<span style="color: gray;">at that time I didn't understand a </span>
+							<span style="color: white;">single word...</span>
+						{% elif user['username'] == 'chris' %}
+							<span style="color: gray;">I was always interest in a lot of </span>
+							<span style="color: white;">different</span>
+							<span style="color: gray;">things. I</span>
+							<span style="color: white;">programmed</span>
+							<span style="color: gray;">a game,</span>
+							<span style="color: white;">sang</span>
+							<span style="color: gray;">songs, </span>
+							<span style="color: white;">drew</span> 
+							<span style="color: gray;">pictures, and </span>
+							<span style="color: white;">studied</span>
+							<span style="color: gray;">physics.</span>
+							<span style="color: gray;">There was never a</span>
+							<span style="color: white;">single thing</span>
+							<span style="color: gray;">that I could</span>
+							<span style="color: white;">focus </span>
+							<span style="color: gray;">on for a long time.</span>
+							<span style="color: gray;">How could I find a place in the </span>
+							<span style="color: white;">specialized </span>
+							<span style="color: gray;">world of today?</span>
+							<span style="color: gray;">Now I know that in investing,</span>
+							<span class="text-decoration-underline" style="color: white;">no knowledge is without use.</span>
+						{% endif %}
+							
+						</div>
 		</div>
 		<!--- About me --->	
 		
 		<!--- gallery --->
 				<div class="row d-flex justify-content-center">
 					<!-- Gallery -->
-					{% if user['username'] == 'janik' %}
 					<div class="row mt-7 mb-8" style="width:70%">
+					{% if user['username'] == 'janik' %}
 						<div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
 							<img
 							src="{{ url_for('static', filename='images/profile/janik/side/cards.jpg') }}"
@@ -182,7 +151,7 @@
 	
 	<!--- quote --->
 	{% if user['username'] == 'janik' %}
-	<div class="lights-bg-image" style="height: 1600px; background-image: url('{{ url_for ('static', filename='images/bg/lights_black.jpg') }}');">
+	<div class="lights-bg-image" style="height: 1600px; background-image: url('{{ url_for ("static", filename="images/bg/lights_black.jpg") }}');">
 		<div class="row d-flex justify-content-center">
 			<div class="col-md-6 mt-8">
 				<p class="heading_2">
@@ -202,74 +171,45 @@
 		</div>
 	</div>
 	{% elif user['username'] == 'chris' %}
-	<div class="lights-bg-image" style="height: 1900px;background-color:black;">
-		<div class="container pt-7">
-		
-			<div class="text-center">
-				<div class="small-text-gray-2" style="color: gray;">What I'm studying</div>
-				<div class="heading_3" style="color: white;">Biology, Business, Physics, Math</div>
-			</div>
-			
-			<div class="row d-flex justify-content-center mt-8">
-				<div class="col-md-3">
-					<img
-					src="{{ url_for('static', filename='images/profile/chris/feynman.jpg') }}"
-					class="w-100"
-					alt=""
-					/>
-				</div>
-				<div class="col-md-4 mt-5">
-					<div class="row">
-						<div class="small-text-gray-2" style="color: gray;">The most inspiring person</div>
-						<div class="heading_3" style="color: white;">Richard Feynman</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="row d-flex justify-content-center mt-7">
-				<div class="col-md-2">
-					<img
-					src="{{ url_for('static', filename='images/profile/chris/gardening.jpg') }}"
-					class="w-100"
-					alt=""
-					/>
-				</div>
-				<div class="order-first order-md-0 col-md-5 mt-5">
-					<div class="row pb-4">
-						<div class="small-text-gray-2" style="color: gray;">What I like doing</div>
-						<div class="heading_3" style="color: white;">Gardening, Cooking</div>
-					</div>
-				</div>
-				<div class="col-md-5">
-					<img
-					src="{{ url_for('static', filename='images/profile/chris/cooking.jpg') }}"
-					class="w-100"
-					alt=""
-					/>
-				</div>
-			</div>
-			
-			<div class="row d-flex justify-content-center align-items-center mt-8">
-				<div class="col-md-4 pb-5">
-					<img
-					src="{{ url_for('static', filename='images/profile/chris/feynman_lectures.jpg') }}"
-					class="w-100"
-					alt=""
-					/>
-				</div>
-				<div class="col-md-3">
-				</div>
-				<div class="col-md-5">
-					<div class="row pb-5">
-						<div class="small-text-gray-2 align-middle" style="color: gray;">My favourite book</div>
-						<div class="heading_3 align-middle" style="color: black;">The Feynman Lectures on Physics I</div>
-					</div>
-				</div>
-			</div>
-			
-		
-			
+	<div class="lights-bg-image" style="height: 1600px;background-color:black;">
+	<div class="container">
+	
+		<div class="text-center">
+			<div class="display-5" style="color: gray;">What I'm studying</div>
+			<div class="display-6" style="color: white;">Biology, Business, Physics, Math</div>
 		</div>
+	
+		<div class="row">
+			<div class="col-md-6 mt-8">
+				<p class="heading_2">
+					<div class="display-5" style="color: gray;">The most inspiring person</div>
+					<div class="display-6" style="color: white;">Richard Feynman</div>
+				</p>
+			</div>
+			<div class="col-md-4 mt-8">
+				<img src="{{ url_for('static', filename='images/profile/chris/feynman.jpg') }}">
+			</div>
+		</div>
+		
+
+		<div class="text-center mt-8">
+			<div class="display-5" style="color: gray;">What I like doing</div>
+			<div class="display-6" style="color: white;">Cooking, Gardening</div>
+		</div>
+	
+		
+		<div class="row mt-8">
+			<div class="col-md-4">
+				<img src="{{ url_for('static', filename='images/profile/chris/feynman_lectures.jpg') }}" style="width:80%;">
+			</div>
+			<div class="col-md-6">
+				<p class="heading_2">
+					<div class="display-5" style="color: gray;">My favourite book</div>
+					<div class="display-6" style="color: white;">The Feynman Lectures on Physics I</div>
+				</p>
+			</div>
+		</div>
+	</div>
 	</div>
 	{% endif %}
 	<!--- quote --->
@@ -278,18 +218,18 @@
 {% if user['username'] == 'janik' %}
 <div class="bg-light">
 	<!--- end of story 1 --->
-	<div class="row d-flex justify-content-center pt-8">
-		<div class="col-md-2">
-			<p class="black_heading_2 mt-6">Story <br>continued
+	<div class="row d-flex justify-content-center">
+		<div class="col-md-2 mt-8 me-6 p-5">
+			<p class="black_heading_2 mt-5">Story <br>continued
 			</p>
-			<div class="row mb-5">
+			<div class="row">
 				<p class="bold_gray_text">
 					In July of 2018, Chris and I each invested $1000 in Regi at an average price of roughly $16.50 per share. By September of the same year the stock had surged to $27.
 					We sold our position. Our initial $1000 had turned into $1600 over the course of just three months. Making money is that easy...?
 				</p>
 			</div>
 		</div>
-		<div class="col-md-2">
+		<div class="col-md-2 mt-8 me-6">
 			<img
 			src="{{ url_for('static', filename='images/profile/' + user['username'] + '/story/1.jpg') }}"
 			class="w-100"
@@ -300,18 +240,18 @@
 	<!--- end of story 1 --->
 	
 	<!--- end of story 2 --->
-	<div class="row d-flex justify-content-center mt-6 pb-7">
-		<div class="col-md-2">
+	<div class="row d-flex justify-content-center mt-6">
+		<div class="col-md-2 ms-6 mb-7">
 			<img
 			src="{{ url_for('static', filename='images/profile/' + user['username'] + '/story/2.jpg') }}"
 			class="w-100"
 			alt=""
 			/>
 		</div>
-		<div class="col-md-2 mt-6 mb-5">
+		<div class="col-md-2 p-5 mb-7">
 			<p class="black_heading_2">In retrospect
 			</p>
-			<div class="row">
+			<div class="row pb-5">
 				<p class="bold_gray_text">
 					Now, four years and a dozen investing books later, I don't think we would have made the same decision again.
 					Nevertheless, I don't now if I would have ever gotten interested in the stock market if it wasn't for this lucky pick.
