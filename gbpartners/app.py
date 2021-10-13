@@ -103,7 +103,7 @@ def create_app():
 
     
     # override config with env_variable_config
-    app.config.from_envvar('GBPARTNERS_SETTINGS')
+    #app.config.from_envvar('GBPARTNERS_SETTINGS')
 
     # import db commands & functionality
     from gbpartners.database import db
