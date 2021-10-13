@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+									background-image:url(' {{url_for("static", filename="images/contact/forest2.jpg")}} ');
 {% block title %}
 {{ post['title'] }}
 {% endblock %}
@@ -34,17 +34,28 @@
 	
 	<div class="row d-flex justify-content-center">
 		<div class="border rounded shadow bg-white col-md-7 ms-5 mb-5 me-5">
-			<div class="row post_title d-flex justify-content-center pt-5">
+		
+			{% if post['category'] == 'business' or post['category'] == 'valuation' %}
+			<div class="disclaimer row d-flex justify-content-center">
+				<div class="border rounded-2 border-danger border-4 shadow-sm col-md-8 mt-5">
+					<div class="disclaimer_heading d-flex justify-content-center p-3">
+						Important notice
+					</div>
+					<div class="disclaimer_text p-3">
+						The Content is for informational purposes only, you should not construe any such information or other material as legal, tax, investment, financial, 
+						or other advice. Nothing contained on our Site constitutes a solicitation, recommendation, endorsement, or offer by HII or any third party service 
+						provider to buy or sell any securities or other financial instruments in this or in in any other jurisdiction in which such solicitation or offer 
+						would be unlawful under the securities laws of such jurisdiction.
+					</div>
+				</div>
+			</div>
+			{% endif %}
+		
+			<div class="row post_title d-flex justify-content-center pt-6">
 				<div class="col-md-auto">
 				{{ post['title'] }}	
 				</div>
 			</div>
-			
-			{% if post['category'] == 'business' or post['category'] == 'valuation' %}
-			<div class="disclaimer mt-5">
-				None of this is investment advice, decide yourself. We are not liable for any losses you may make.
-			</div>
-			{% endif %}
 			
 			<div class="row post_info d-flex align-items-center justify-content-center">
 				<div class="col-md-auto pt-2 pb-5">

@@ -250,6 +250,25 @@
 	line-height: 120%;
 }
 
+.heading_4{
+	font-size: 30px;
+	line-height: 120%;
+}
+
+.disclaimer_heading{
+	font-size: 40px;
+	font-weight:bold;
+	line-height: 100%;
+}
+
+.disclaimer_text{
+	color:gray;
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 120%;
+	text-align: justify;
+}
+
 .normal_text{
 	font-size: 35px;
 }
@@ -384,6 +403,11 @@
   to {
     text-shadow: 0 0 20px #fff;
   }
+}
+
+.contact-bg-color{
+	background-color: #9e9e9e;
+	opacity:.5;
 }
 
 .mt-6{
