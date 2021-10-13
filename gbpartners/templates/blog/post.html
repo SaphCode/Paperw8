@@ -17,7 +17,7 @@
 </div>
 
 <div class="container-fluid post bg-light">
-	
+
 	<div class="row d-flex justify-content-center pt-3 pb-3">
 		<div class="p-0 col-md-7">
 			<a type="button" class="btn btn-outline-dark" href="{{ url_for('blog.blog', group_by='all', sort_by='date_desc', page=1) }}">&#8592 Blog</a>
@@ -31,10 +31,10 @@
 		</div>
 		{% endif %}
 	</div>
-	
+
 	<div class="row d-flex justify-content-center">
 		<div class="border rounded shadow bg-white col-md-7 ms-5 mb-5 me-5">
-		
+
 			{% if post['category'] == 'business' or post['category'] == 'valuation' %}
 			<div class="disclaimer row d-flex justify-content-center">
 				<div class="border rounded-2 border-danger border-4 shadow-sm col-md-8 mt-5">
@@ -42,48 +42,64 @@
 						Important notice
 					</div>
 					<div class="disclaimer_text p-3">
-						The Content is for informational purposes only, you should not construe any such information or other material as legal, tax, investment, financial, 
-						or other advice. Nothing contained on our Site constitutes a solicitation, recommendation, endorsement, or offer by HII or any third party service 
-						provider to buy or sell any securities or other financial instruments in this or in in any other jurisdiction in which such solicitation or offer 
+						The Content is for informational purposes only, you should not construe any such information or other material as legal, tax, investment, financial,
+						or other advice. Nothing contained on our Site constitutes a solicitation, recommendation, endorsement, or offer by HII or any third party service
+						provider to buy or sell any securities or other financial instruments in this or in in any other jurisdiction in which such solicitation or offer
 						would be unlawful under the securities laws of such jurisdiction.
 					</div>
 				</div>
 			</div>
 			{% endif %}
-		
+
 			<div class="row post_title d-flex justify-content-center pt-6">
 				<div class="col-md-auto">
-				{{ post['title'] }}	
+				{{ post['title'] }}
 				</div>
 			</div>
-			
+
+			{% if post['category'] == 'business' or post['category'] == 'valuation' %}
+			<div class="disclaimer row d-flex justify-content-center">
+				<div class="border rounded-2 border-danger border-4 shadow-sm col-md-8 mt-5">
+					<div class="disclaimer_heading d-flex justify-content-center p-3">
+						Important notice
+					</div>
+					<div class="disclaimer_text p-3">
+						The Content is for informational purposes only, you should not construe any such information or other material as legal, tax, investment, financial,
+						or other advice. Nothing contained on our Site constitutes a solicitation, recommendation, endorsement, or offer by HII or any third party service
+						provider to buy or sell any securities or other financial instruments in this or in in any other jurisdiction in which such solicitation or offer
+						would be unlawful under the securities laws of such jurisdiction.
+					</div>
+				</div>
+			</div>
+			{% endif %}
+
 			<div class="row post_info d-flex align-items-center justify-content-center">
 				<div class="col-md-auto pt-2 pb-5">
 					<div>Written by <a href="{{ url_for('user.profile', username=post['username']) }}">{{ post['display_name'] }}</a> on {{ post['created'] }}.</div>
 					{% if post['created'].strftime('%Y-%m-%d') != post['last_edit'].strftime('%Y-%m-%d') %}<div>Last edit on {{ post['last_edit'] }}.</div>{% endif %}
 				</div>
 			</div>
-				
+
 			<div class="row post_pic d-flex align-items-center justify-content-center m-3">
 				<div class="col-md-8">
 					<img src="{{url_for('static', filename='images/' + post['title_img_parent_dir'] + '/' + post['title_img'])}}" style="width:100%;"></img>
 				</div>
 			</div>
-			
+
 			<div class="row d-flex justify-content-center pt-5">
 				<div class="btn-group d-flex justify-content-center" role="group" style="width: 20%;">
 					<a href="{{ url_for('blog.download_post', title=post['title']) }}" type="button" class="btn btn-outline-dark">Download</a>
 				</div>
 			</div>
-			
+
 			<div class="row post_pic d-flex align-items-center justify-content-center pt-5">
 				<div class="col-md-8 merri-font-flow pb-5">
 					{{ post['content']|safe }}
 				</div>
 			</div>
-			
+
 		</div>
-		
+
 		{% if related_posts %}
 		<div class="col-md-3 pt-4">
 			<div class="row d-flex align-items-center justify-content-center pb-3">
@@ -91,7 +107,7 @@
 					Related posts
 				</div>
 			</div>
-			
+
 			{% for related_post in related_posts %}
 			<a class="btn" href="{{ url_for('blog.post', title=related_post['title']) }}">
 				<div class="border bg-white rounded shadow-sm row d-flex align-items-center justify-content-center">
@@ -109,7 +125,7 @@
 			{% endfor %}
 		</div>
 		{% endif %}
-	
+
 	</div>
 </div>
 {% endblock %}

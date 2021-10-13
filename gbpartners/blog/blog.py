@@ -123,7 +123,7 @@ def post(title):
     
     # get post by title
     post = db.execute(
-        'SELECT p.id AS id, author_id, title, title_img_parent_dir, title_img, content, category, created, last_edit, display_name, username'
+        'SELECT p.id AS id, author_id, title, title_img_parent_dir, title_img, content, created, last_edit, display_name, username'
         ' FROM post p'
         ' JOIN user u ON p.author_id = u.id'
         ' WHERE title = ?',
