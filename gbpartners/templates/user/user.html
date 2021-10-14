@@ -14,7 +14,7 @@
 <!--- profile section --->
 <div class="pt-3 bg-light">
 	{% if user['username'] == 'janik' %}
-	<div class="row d-flex flex-row justify-content-center">
+	<div class="d-flex justify-content-center">
 		<div class="col-md-2">
 		</div>
 		<!--- profile picture --->
@@ -38,7 +38,7 @@
 	</div>
 	
 	{% elif user['username'] == 'chris' %}
-	<div class="row">
+	<div class="row p-0 m-0">
 	
 		<!--- profile text --->
 		<div class="order-first order-md-0 col-md-5 pt-2 text-monospace text-decoration-none d-flex align-items-center justify-content-end">
@@ -72,7 +72,7 @@
 	<!--- black bg --->	
 	<div style="background-color: black;">
 		<!--- About me --->	
-		<div class="row d-flex justify-content-center">
+		<div class="d-flex justify-content-center">
 			<div class="col-md-6">
 				<div class="heading_2 pt-8">
 					<span style="color: gray;">About me</span>
@@ -119,7 +119,7 @@
 		<!--- About me --->	
 		
 		<!--- gallery --->
-				<div class="row d-flex justify-content-center">
+				<div class="d-flex justify-content-center">
 					<!-- Gallery -->
 					{% if user['username'] == 'janik' %}
 					<div class="row mt-7 mb-8" style="width:70%">
@@ -221,7 +221,7 @@
 	<!--- quote --->
 	{% if user['username'] == 'janik' %}
 	<div class="lights-bg-image" style="height: 1600px; background-image: url('{{ url_for ('static', filename='images/bg/lights_black.jpg') }}');">
-		<div class="row d-flex justify-content-center">
+		<div class="d-flex justify-content-center">
 			<div class="col-md-6 mt-8">
 				<p class="heading_2">
 				
@@ -316,21 +316,21 @@
 {% if user['username'] == 'janik' %}
 <div class="bg-light">
 	<!--- end of story 1 --->
-	<div class="row d-flex justify-content-center pt-8">
-		<div class="col-md-2">
+	<div class="border d-flex justify-content-center pt-8">
+		<div class="border col-lg-4 pe-5">
 			<p class="black_heading_2 mt-6">Story <br>continued
 			</p>
-			<div class="row mb-5">
+			<div class="border mb-5">
 				<p class="bold_gray_text">
 					In July of 2018, Chris and I each invested $1000 in Regi at an average price of roughly $16.50 per share. By September of the same year the stock had surged to $27.
 					We sold our position. Our initial $1000 had turned into $1600 over the course of just three months. Making money is that easy...?
 				</p>
 			</div>
 		</div>
-		<div class="col-md-2">
+		<div class="border col-lg-2">
 			<img
 			src="{{ url_for('static', filename='images/profile/' + user['username'] + '/story/1.jpg') }}"
-			class="w-100"
+			style="width:100%;"
 			alt=""
 			/>
 		</div>
@@ -338,18 +338,18 @@
 	<!--- end of story 1 --->
 	
 	<!--- end of story 2 --->
-	<div class="row d-flex justify-content-center mt-6 pb-7">
-		<div class="col-md-2">
+	<div class="border d-flex justify-content-center mt-6 pb-7">
+		<div class="border col-lg-2">
 			<img
 			src="{{ url_for('static', filename='images/profile/' + user['username'] + '/story/2.jpg') }}"
-			class="w-100"
+			style="width:100%;"
 			alt=""
 			/>
 		</div>
-		<div class="col-md-2 mt-6 mb-5">
+		<div class="border col-lg-4 mb-5 ps-5">
 			<p class="black_heading_2">In retrospect
 			</p>
-			<div class="row">
+			<div class="border mb-5">
 				<p class="bold_gray_text">
 					Now, four years and a dozen investing books later, I don't think we would have made the same decision again.
 					Nevertheless, I don't now if I would have ever gotten interested in the stock market if it wasn't for this lucky pick.
