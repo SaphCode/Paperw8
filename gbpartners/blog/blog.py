@@ -25,6 +25,7 @@ import os
 bp = Blueprint('blog', __name__)
 
 class BlogForm(FlaskForm):
+    ticker = StringField('Ticker')
     title = StringField('Title', validators=[InputRequired()])
     parent_dir = SelectField('Parent Directory', validators=[InputRequired()])
     title_img = FileField('Image', validators=[FileRequired(), FileAllowed(['jpg', 'png', 'JPG', 'jpeg', 'gif'], message="File must end in one of the following: .jpg, .JPG, .jpeg, .gif, .png")])
@@ -52,7 +53,7 @@ def blog(group_by, sort_by, page):
         sql_sort = 'title ASC, last_edit DESC'
    
     # build sql one by one
-    sql = 'SELECT p.id, title, title_img_parent_dir, title_img, p.content, p.created, p.author_id, p.last_edit, p.category, u.display_name'\
+    sql = 'SELECT p.id, ticker, title, title_img_parent_dir, title_img, p.content, p.created, p.author_id, p.last_edit, p.category, u.display_name'\
             ' FROM post p'\
             ' JOIN user u ON p.author_id = u.id'
     # also build max posts sql
@@ -126,7 +127,7 @@ def post(title):
     
     # get post by title
     post = db.execute(
-        'SELECT p.id AS id, author_id, title, category, title_img_parent_dir, title_img, content, created, last_edit, display_name, username'
+        'SELECT p.id AS id, ticker, author_id, title, category, title_img_parent_dir, title_img, content, created, last_edit, display_name, username'
         ' FROM post p'
         ' JOIN user u ON p.author_id = u.id'
         ' WHERE title = ?',
@@ -158,7 +159,7 @@ def post(title):
     related_posts = []
     for id in related_posts_id:
         related_posts.append(db.execute(
-            'SELECT p.id, title, title_img_parent_dir, title_img, content, created, display_name, username'
+            'SELECT p.id, title, title_img_parent_dir, title_img, created, display_name, username'
             ' FROM post p'
             ' JOIN user u ON u.id=p.author_id'
             f' WHERE p.id={id}'
@@ -189,8 +190,6 @@ def create():
     
     # load all dirs into Parent dir field
     root_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'images')
-    print(current_app.config['UPLOAD_FOLDER'])
-    print(root_dir)
     
     choices_parent = [(name.lower(), name) for name in os.listdir(root_dir) if os.path.isdir(os.path.join(root_dir, name))]
     form.parent_dir.choices = choices_parent
@@ -214,17 +213,15 @@ def create():
         except FileExistsError as e:
             return render_template('blog/create.html', form=form, error=e)
         
-        import sys
-        sys.stdout.flush()
         # save the path in db so we can load it from html later
         title_img_parent = parent_dir
         title_img_path = filename
     
         # insert new post
         db.execute(
-            'INSERT INTO post (author_id, title, title_img_parent_dir, title_img, content, category, last_edit)'
-            ' VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)',
-            (g.user['id'], form.title.data, title_img_parent, title_img_path, form.content.data, form.category.data)
+            'INSERT INTO post (author_id, title, ticker, title_img_parent_dir, title_img, content, category, last_edit)'
+            ' VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)',
+            (g.user['id'], form.title.data, form.ticker.data, title_img_parent, title_img_path, form.content.data, form.category.data)
         )
         # get last inserted id
         query = db.execute(
@@ -250,7 +247,7 @@ def create():
 
 def get_post(id, check_author=True):
     post = get_db().execute(
-        'SELECT p.id, title, content, created, author_id, category'
+        'SELECT p.id, title, ticker, content, created, author_id, category'
         ' FROM post p'
         ' WHERE p.id = ?',
         (id,)
@@ -273,7 +270,7 @@ def update(id):
     post = get_post(id)
     
     # create form
-    form = BlogForm(title=post['title'], content=post['content'], category=post['category'])
+    form = BlogForm(ticker=post['ticker'], title=post['title'], content=post['content'], category=post['category'])
     
     # load all dirs into Parent dir field
     root_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'images')
@@ -310,9 +307,9 @@ def update(id):
         db = get_db()
         # update post
         db.execute(
-            'UPDATE post SET title = ?, title_img_parent_dir = ?, title_img = ?, content = ?, category = ?, last_edit = CURRENT_TIMESTAMP'
+            'UPDATE post SET title = ?, ticker = ?, title_img_parent_dir = ?, title_img = ?, content = ?, category = ?, last_edit = CURRENT_TIMESTAMP'
             ' WHERE id = ?',
-            (form.title.data, title_img_parent, title_img_path, form.content.data, form.category.data, id)
+            (form.title.data, form.ticker.data, title_img_parent, title_img_path, form.content.data, form.category.data, id)
         )
         db.commit()
         return redirect(url_for('blog.blog', group_by='all', sort_by='date_desc', page=1))

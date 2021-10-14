@@ -31,6 +31,7 @@ CREATE TABLE post (
   content	  TEXT				NOT NULL,
   last_edit	  TIMESTAMP			NOT NULL,
   category	  VARCHAR(50)			NOT NULL,
+  ticker	  VARCHAR(20)		NULL,
   FOREIGN KEY (author_id) REFERENCES user(id)
 );
 

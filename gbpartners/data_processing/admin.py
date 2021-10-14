@@ -175,16 +175,16 @@ def upload_image_file():
             # upload image (dir, filename, file (form.field.data))
             upload_file(directory, secure_filename(form.file_field.data.filename), form.file_field.data)
             message = 'Success!'
-            return render_template('admin/upload_file.html', form=form, message=message)
+            return render_template('admin/upload_image.html', form=form, message=message)
         except FileExistsError as e:
             # print error
             error = e
-            return render_template('admin/upload_file.html', form=form, error=error)
+            return render_template('admin/upload_image.html', form=form, error=error)
         
         # woops, shouldn't happen
-        return render_template('admin/upload_file.html', form=form, error='Something else went wrong')
+        return render_template('admin/upload_image.html', form=form, error='Something else went wrong')
         
-    return render_template('admin/upload_file.html', form=form)
+    return render_template('admin/upload_image.html', form=form)
     
 
 class UploadReportForm(FlaskForm):
@@ -210,14 +210,14 @@ def upload_report():
             # upload image (dir, filename, file (form.field.data))
             upload_file(directory, secure_filename(form.file_field.data.filename), form.file_field.data)
             message = 'Success!'
-            return render_template('admin/upload_file.html', form=form, message=message)
+            return render_template('admin/upload_report.html', form=form, message=message)
         except FileExistsError as e:
             # print error
             error = e
-            return render_template('admin/upload_file.html', form=form, error=error)
+            return render_template('admin/upload_report.html', form=form, error=error)
         
         # woops, shouldn't happen
-        return render_template('admin/upload_file.html', form=form, error='Something else went wrong')
+        return render_template('admin/upload_report.html', form=form, error='Something else went wrong')
         
-    return render_template('admin/upload_file.html', form=form)
+    return render_template('admin/upload_report.html', form=form)
            

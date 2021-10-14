@@ -7,6 +7,18 @@
 {% block content %}
   <form method="POST" action="{{ url_for('blog.update', id=post['id']) }}">
 	{{ form.hidden_tag() }}
+	{{ form.csrf_token }}
+	
+	<fieldset class="form-field pt-5">
+	{{ form.ticker.label }} {{ form.ticker(size=5) }}
+	{% if form.ticker.errors %}
+		<ul class="errors">
+		{% for error in form.ticker.errors %}
+			<li>{{ error }}</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+	</fieldset>
 	
 	<fieldset class="form-field">
 	{{ form.title.label }} {{ form.title(size=20) }}
