@@ -38,8 +38,9 @@
 			{% if post['category'] == 'business' or post['category'] == 'valuation' %}
 			<div class="disclaimer row d-flex justify-content-center">
 				<div class="border rounded-2 border-danger border-4 shadow-sm col-md-8 mt-5">
-					<div class="disclaimer_heading d-flex justify-content-center p-3">
-						Important notice
+					<div class="d-flex justify-content-center p-3">
+						<span class="contact_font">Important&nbsp;</span>
+						<span class="information_font">notice</span>
 					</div>
 					<div class="disclaimer_text p-3">
 						The Content is for informational purposes only, you should not construe any such information or other material as legal, tax, investment, financial,
@@ -57,22 +58,6 @@
 				</div>
 			</div>
 
-			{% if post['category'] == 'business' or post['category'] == 'valuation' %}
-			<div class="disclaimer row d-flex justify-content-center">
-				<div class="border rounded-2 border-danger border-4 shadow-sm col-md-8 mt-5">
-					<div class="disclaimer_heading d-flex justify-content-center p-3">
-						Important notice
-					</div>
-					<div class="disclaimer_text p-3">
-						The Content is for informational purposes only, you should not construe any such information or other material as legal, tax, investment, financial,
-						or other advice. Nothing contained on our Site constitutes a solicitation, recommendation, endorsement, or offer by HII or any third party service
-						provider to buy or sell any securities or other financial instruments in this or in in any other jurisdiction in which such solicitation or offer
-						would be unlawful under the securities laws of such jurisdiction.
-					</div>
-				</div>
-			</div>
-			{% endif %}
-
 			<div class="row post_info d-flex align-items-center justify-content-center">
 				<div class="col-md-auto pt-2 pb-5">
 					<div>Written by <a href="{{ url_for('user.profile', username=post['username']) }}">{{ post['display_name'] }}</a> on {{ post['created'] }}.</div>
@@ -89,7 +74,6 @@
 			<div class="row d-flex justify-content-center pt-5">
 				<div class="btn-group d-flex justify-content-center" role="group" style="width: 20%;">
 					<a href="{{ url_for('blog.download_post', title=post['title']) }}" type="button" class="btn btn-outline-dark">Download</a>
-					<a type="button" class="btn btn-outline-dark">Share</a>
 				</div>
 			</div>
 

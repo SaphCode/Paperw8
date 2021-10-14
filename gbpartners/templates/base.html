@@ -9,6 +9,16 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
   <link href='https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap' rel='stylesheet' type='text/css'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
   
   {% block extensions %}{% endblock %}
@@ -34,6 +44,7 @@
 						<a class="text-light nav-link {% if active == 'user' %} active {% endif %}" {% if active == 'user' %} aria-current="page" {% endif %} href="{{ url_for('user.profile', username='janik') }}">Janik</a>
 						<a class="text-light nav-link {% if active == 'user' %} active {% endif %}" {% if active == 'user' %} aria-current="page" {% endif %} href="{{ url_for('user.profile', username='chris') }}">Chris</a>
 						<a class="text-light nav-link {% if active == 'contact' %} active {% endif %}" {% if active == 'contact' %} aria-current="page" {% endif %} href="{{ url_for('contact.contact') }}">Contact</a>
+						<a class="text-light nav-link {% if active == 'disclaimer' %} active {% endif %}" {% if active == 'disclaimer' %} aria-current="page" {% endif %} href="{{ url_for('disclaimer.disclaimer') }}">Disclaimer</a>
 					</div>
 				</div>
 			</div>

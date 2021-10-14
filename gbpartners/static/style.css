@@ -402,6 +402,42 @@
 	opacity:.5;
 }
 
+.contact_font{
+	font-family: 'Crimson Pro', serif;
+	font-size:50px;
+	font-weight: bold;
+}
+
+.information_font{
+	font-family: 'Crimson Pro', serif;
+	font-size:50px;
+	font-weight: 100;
+}
+
+.info_text{
+	font-family: 'Merriweather Sans', sans-serif;
+	font-size:20px;
+	font-weight: 400;
+}
+
+.info_contact{
+	font-family: 'Merriweather Sans', sans-serif;
+	font-size:20px;
+	font-weight: 300;
+}
+
+.forest-bg{
+	background-image: url('{{ url_for("static/images/contact/forest2.jpg") }}');
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.ink-bg{
+	background-image: url('pictures/photoshop/contact_bg.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
 .mt-6{
 	margin-top:100px;
 }
