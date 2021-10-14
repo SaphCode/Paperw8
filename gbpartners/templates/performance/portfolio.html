@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Investing portfolio performance
+Portfolio performance
 {% endblock %}
 
 {% block content %}
@@ -29,14 +29,9 @@ function yearChanged(event) {
 
 function calculateMoneyNow(amount, startYear, endYear) {
 	performance = {{ annualized_returns|tojson }};
-	console.log(performance);
 	for (year = startYear; year <= endYear; year++) {
-		console.log(year);
-		console.log(amount);
 		amount *= (1 + performance[year][1][1]/100);
-		console.log(performance[year][1][1]/100)
 	}
-	console.log(amount);
 	return amount;
 }
 </script>
@@ -104,6 +99,7 @@ function calculateMoneyNow(amount, startYear, endYear) {
 						<th scope="col">Year</th>
 						<th scope="col">S&P 500</th>
 						<th scope="col">Beri</th>
+						<th scope="col">Cumulative</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -113,6 +109,7 @@ function calculateMoneyNow(amount, startYear, endYear) {
 						{% for t in annualized_returns[year] %}
 						<td>{{ "{:.1f}".format(t[1]) }}%</td>
 						{% endfor %}
+						<td id="{{ 'cumulative_return_' + year }}"></td>
 					</tr>
 					{% endfor %}
 				 </tbody>
@@ -164,7 +161,16 @@ function calculateMoneyNow(amount, startYear, endYear) {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="module">
 
-/* Amount */
+/* Cumulative Returns display */
+const annualized_performance = {{ annualized_returns|tojson }};
+let value = 1;
+Object.keys(annualized_performance).forEach( year => {
+	value *= (1 + annualized_performance[year][1][1]/100);
+	const cumulative_return = (value - 1)*100;
+	$('#cumulative_return_' + year).text(numberWithCommas(Math.round(cumulative_return)) + '%');
+});
+
+/* Amount display */
 const mockYear = {target: {value: $('#year_selector option:selected').text()}}
 const mockAmount = {target: {value: $('#amount_input').val()}}
 yearChanged(mockYear);

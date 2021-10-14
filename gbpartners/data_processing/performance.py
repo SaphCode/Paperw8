@@ -95,5 +95,6 @@ def index():
     annualized_returns = {datetime.strftime(s[1], '%Y'): [(t[0], t[2]) for t in annualized_returns if t[1] == s[1]] for s in annualized_returns}
     for year in annualized_returns:
         annualized_returns[year].sort(key=lambda t: t[0], reverse=True)
+        
     
     return render_template('performance/portfolio.html', active='home', last_year=last_year, annualized_returns=annualized_returns)
