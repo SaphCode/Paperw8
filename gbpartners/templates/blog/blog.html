@@ -4,13 +4,13 @@
 
 {% block content %}
 
-<div class="container-fluid p-0 bg-light">
+<div class="container-fluid p-0 m-0 bg-light">
 	<img src="{{url_for('static', filename='images/bp_banner_hq.png')}}" class="img-fluid"></img>
 </div>
 
-<div class="container-fluid bg-light" style="height:1000px">
+<div class="container-fluid bg-light m-0 p-0">
 
-	<div class="row d-flex justify-content-center pt-5">
+	<div class="d-flex justify-content-center pt-5">
 		<div class="col-md-4">
 			<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 				<a type="button" href="{{ url_for('blog.blog', group_by='all', sort_by=sort_by, page=1) }}" class="btn btn-outline-dark btn-lg {% if group_by == 'all' %} active {% endif %}">All</a>
@@ -41,7 +41,7 @@
 	</div>
   {% endif %}
 
-  <div class="container pt-5">
+  <div class="container pt-5 pb-5">
 	  {% for post in posts %}
 		<article class="col-md-12 all {{ post['category'] }}">
 			<div class="bg-white row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -64,8 +64,8 @@
 	  {% endfor %}
   </div>
   
-  <div class="container d-flex justify-content-center mb-5">
-	<a {% if (max_posts <= (page+1)*5) %} style="display:none;" {% endif %} type="button" class="btn btn-primary" href="{{ url_for('blog.blog', group_by=group_by, sort_by=sort_by, page=page+1) }}">Older Posts</a>
-  </div>
+	<div class="container d-flex justify-content-center bg-light pb-6">
+		<a {% if (max_posts <= (page+1)*5) %} style="display:none;" {% endif %} type="button" class="btn btn-primary" href="{{ url_for('blog.blog', group_by=group_by, sort_by=sort_by, page=page+1) }}">Older Posts</a>
+	</div>
  </div>
 {% endblock %}
