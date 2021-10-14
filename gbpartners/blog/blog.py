@@ -186,6 +186,9 @@ def create():
     
     # load all dirs into Parent dir field
     root_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'images')
+    print(current_app.config['UPLOAD_FOLDER'])
+    print(root_dir)
+    
     choices_parent = [(name.lower(), name) for name in os.listdir(root_dir) if os.path.isdir(os.path.join(root_dir, name))]
     form.parent_dir.choices = choices_parent
     
@@ -208,6 +211,8 @@ def create():
         except FileExistsError as e:
             return render_template('blog/create.html', form=form, error=e)
         
+        import sys
+        sys.stdout.flush()
         # save the path in db so we can load it from html later
         title_img_parent = parent_dir
         title_img_path = filename
