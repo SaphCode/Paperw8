@@ -94,7 +94,7 @@ def new_folder():
     if form.validate_on_submit():
         #create a new folder in parent dir if not exists
         parent_dir = os.path.join(root_dir, secure_filename(form.parent_dir.data))
-        new_folder_name = secure_filename(form.new_folder.data)
+        new_folder_name = secure_filename(form.new_folder.data.lower())
         
         if not os.path.isdir(os.path.join(parent_dir, new_folder_name)):
             os.mkdir(os.path.join(parent_dir, new_folder_name))

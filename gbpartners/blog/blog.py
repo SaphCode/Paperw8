@@ -32,6 +32,9 @@ class BlogForm(FlaskForm):
     category = SelectField('Category', choices=[('business', 'Business'), ('annual', 'Annual Report'), ('education', 'Education')], validators=[InputRequired()])
     related_to = SelectMultipleField('Related to', coerce=int)
     
+@bp.route('/blog')
+def blog_redirect():
+    return redirect(url_for('blog.blog', group_by='all', sort_by='date_desc', page=1))
 
 @bp.route('/blog/<group_by>/<int:page>/<sort_by>')
 def blog(group_by, sort_by, page):
