@@ -52,5 +52,9 @@ def create_app():
     # import contact module
     from gbpartners.contact import contact
     app.register_blueprint(contact.bp)
+    
+    # import disclaimer module
+    from gbpartners.disclaimer import disclaimer
+    app.register_blueprint(disclaimer.bp)
 
     return app
