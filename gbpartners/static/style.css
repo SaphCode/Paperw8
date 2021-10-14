@@ -172,10 +172,11 @@
 }
 
 .post_title{
-	font-size: 60px;
+	font-family: 'Bebas Neue', cursive;
+	font-size: 70px;
+	letter-spacing: 0.15em;
 	line-height:120%;
 	color: black;
-	font-weight: 500;
 }
 
 .post_info{
@@ -185,7 +186,13 @@
 	line-height: 120%;
 }
 
-
+.important-notice{
+	font-family: 'Bebas Neue', cursive;
+	font-size: 40px;
+	letter-spacing: 0.15em;
+	line-height:120%;
+	color: black;
+}
 
 .catch_phrase{
 	font-size:30px;
@@ -344,10 +351,17 @@
   left: 0;
 }
 
-.merri-font-flow{
+.post-content-flow-old{
     font-family: 'Merriweather', serif;
 	font-size:18px;
 	line-height:180%;
+}
+
+.post-content-flow{
+    font-family: 'Crimson Pro', serif;
+	font-weight: 400;
+	font-size:25px;
+	line-height:160%;
 }
 
 .bodoni-font-flow{
