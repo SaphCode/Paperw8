@@ -54,7 +54,7 @@ def user_list():
 def post_list():
     db = get_db()
     posts = db.execute(
-        'SELECT id, title, category, created, last_edit'
+        'SELECT id, title, category, created, last_edit, title_img_parent_dir, title_img'
         ' FROM post'
     ).fetchall()
     if len(posts) > 0:
