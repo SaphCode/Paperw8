@@ -56,7 +56,7 @@
 
 			<div class="row d-flex justify-content-center pt-5">
 				<div class="btn-group d-flex justify-content-center" role="group" style="width: 20%;">
-					<a href="{{ url_for('blog.download_post', title=post['title']) }}" type="button" class="btn btn-outline-dark">Download</a>
+					<a href="{{ url_for('blog.download_post', title=post['title'], filename=post['pdf_file']) }}" type="button" class="btn btn-outline-dark">Download</a>
 				</div>
 			</div>
 			
@@ -82,7 +82,7 @@
 
 			<div class="row post_pic d-flex align-items-center justify-content-center pt-5">
 				<div class="col-md-8 post-content-flow pb-5">
-					{{ post['content']|safe }}
+					{{ html_file }}
 				</div>
 			</div>
 

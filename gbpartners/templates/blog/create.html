@@ -59,10 +59,21 @@
 	</fieldset>
 	
 	<fieldset class="form-field">
-	{{ form.content.label }} {{ form.content(rows=10) }}
-	{% if form.content.errors %}
+	{{ form.html_file.label }} {{ form.html_file() }}
+	{% if form.html_file.errors %}
 		<ul class="errors">
-		{% for error in form.content.errors %}
+		{% for error in form.html_file.errors %}
+			<li>{{ error }}</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+	</fieldset>
+	
+	<fieldset class="form-field">
+	{{ form.pdf_file.label }} {{ form.pdf_file() }}
+	{% if form.pdf_file.errors %}
+		<ul class="errors">
+		{% for error in form.pdf_file.errors %}
 			<li>{{ error }}</li>
 		{% endfor %}
 		</ul>

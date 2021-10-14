@@ -13,6 +13,3 @@
 - Create an admin account: "flask create-user admin 'password'" (password in quotes is important)
 - Run the website on localhost by doing: "flask run"
 - Upload the performance file of your portfolio in the /admin/home console
-
-# Additional stuff
-For the download to work you need to have wkhtmltopdf.

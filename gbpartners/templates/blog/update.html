@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-  <form method="POST" action="{{ url_for('blog.update', id=post['id']) }}">
+  <form method="POST" action="{{ url_for('blog.update', id=post['id']) }}" enctype="multipart/form-data">
 	{{ form.hidden_tag() }}
 	{{ form.csrf_token }}
 	
@@ -24,7 +24,7 @@
 	{{ form.title.label }} {{ form.title(size=20) }}
 	{% if form.title.errors %}
 		<ul class="errors">
-		{% for error in form.title %}
+		{% for error in form.title.errors %}
 			<li>{{ error }}</li>
 		{% endfor %}
 		</ul>
@@ -32,10 +32,10 @@
 	</fieldset>
 	
 	<fieldset class="form-field">
-	{{ form.title_img.label }} {{ form.title_img(size=20) }}
-	{% if form.title_img.errors %}
+	{{ form.html_file.label }} {{ form.html_file() }}
+	{% if form.html_file.errors %}
 		<ul class="errors">
-		{% for error in form.title_img %}
+		{% for error in form.html_file.errors %}
 			<li>{{ error }}</li>
 		{% endfor %}
 		</ul>
@@ -43,10 +43,10 @@
 	</fieldset>
 	
 	<fieldset class="form-field">
-	{{ form.content.label }} {{ form.content(size=100) }}
-	{% if form.content.errors %}
+	{{ form.pdf_file.label }} {{ form.pdf_file() }}
+	{% if form.pdf_file.errors %}
 		<ul class="errors">
-		{% for error in form.content.errors %}
+		{% for error in form.pdf_file.errors %}
 			<li>{{ error }}</li>
 		{% endfor %}
 		</ul>

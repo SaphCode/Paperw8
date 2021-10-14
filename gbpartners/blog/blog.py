@@ -28,8 +28,17 @@ class BlogForm(FlaskForm):
     ticker = StringField('Ticker')
     title = StringField('Title', validators=[InputRequired()])
     parent_dir = SelectField('Parent Directory', validators=[InputRequired()])
+    html_file = FileField('Html', validators=[FileRequired(), FileAllowed(['html'], message='Only html allowed.')])
+    pdf_file = FileField('PDF', validators=[FileRequired(), FileAllowed(['pdf'], message='Only pdf allowed.')])
     title_img = FileField('Image', validators=[FileRequired(), FileAllowed(['jpg', 'png', 'JPG', 'jpeg', 'gif'], message="File must end in one of the following: .jpg, .JPG, .jpeg, .gif, .png")])
-    content = PageDownField('Markdown', validators=[InputRequired()])
+    category = SelectField('Category', choices=[('business', 'Business'), ('annual', 'Annual Report'), ('education', 'Education')], validators=[InputRequired()])
+    related_to = SelectMultipleField('Related to', coerce=int)
+    
+class UpdateForm(FlaskForm):  
+    ticker = StringField('Ticker')
+    title = StringField('Title', validators=[InputRequired()])
+    html_file = FileField('Html', validators=[FileAllowed(['html'], message='Only html allowed.')])
+    pdf_file = FileField('PDF', validators=[FileAllowed(['pdf'], message='Only pdf allowed.')])
     category = SelectField('Category', choices=[('business', 'Business'), ('annual', 'Annual Report'), ('education', 'Education')], validators=[InputRequired()])
     related_to = SelectMultipleField('Related to', coerce=int)
     
@@ -53,7 +62,7 @@ def blog(group_by, sort_by, page):
         sql_sort = 'title ASC, last_edit DESC'
    
     # build sql one by one
-    sql = 'SELECT p.id, ticker, title, title_img_parent_dir, title_img, p.content, p.created, p.author_id, p.last_edit, p.category, u.display_name'\
+    sql = 'SELECT p.id, ticker, title, title_img_parent_dir, title_img, p.created, html_file, pdf_file, p.author_id, p.last_edit, p.category, u.display_name'\
             ' FROM post p'\
             ' JOIN user u ON p.author_id = u.id'
     # also build max posts sql
@@ -81,44 +90,25 @@ def blog(group_by, sort_by, page):
     
     return render_template('blog/blog.html', active='blog', posts=posts, page=page, sort_by=sort_by, group_by=group_by, max_posts=max_posts)
 
-@bp.route('/post/<title>/download')
-def download_post(title):
-    print('downloading')
-    # get db connection
+
+@bp.route('/post/<title>/download/<path:filename>')
+def download_post(title, filename):
     db = get_db()
-    # get post from db
     post = db.execute(
-        'SELECT p.id AS id, author_id, title, title_img_parent_dir, title_img, content, created, last_edit, display_name, username'
-        ' FROM post p'
-        ' JOIN user u ON p.author_id = u.id'
-        ' WHERE title = ?',
-        (title,)
+        'SELECT title_img_parent_dir AS parent_dir, pdf_file'
+        ' FROM post'
+        f' WHERE title="{title}"'
     ).fetchone()
     
-    # get directories
     root_dir = current_app.config['UPLOAD_FOLDER']
     data_dir = 'data'
-    parent_dir = post['title_img_parent_dir']
+    parent_dir = post['parent_dir']
     
-    # see if parent dir exists in data
-    if not os.path.isdir(safe_join(root_dir, data_dir, parent_dir)):
-        os.mkdir(safe_join(root_dir, data_dir, parent_dir))
-    
-    filename = secure_filename(post['title']) + '.pdf'
-    
-    # see if file exists
-    if not os.path.exists(safe_join(root_dir, data_dir, parent_dir, filename)):
-        # if file does not exists, generate one
-        html = markdown.markdown(post['content'])
+    print(os.getcwd())
+    print(os.path.join(root_dir, data_dir, parent_dir, post["pdf_file"]))
 
-        import pdfkit
-        pdfkit.from_string(html, output_path = safe_join(root_dir, data_dir, parent_dir, filename))
-        #with open(file, 'w') as f:
-        #    f.write(pdf)
-    
+    return send_from_directory(os.path.join(current_app.config['UPLOAD_FOLDER'], data_dir, parent_dir), path=os.path.join(root_dir, data_dir, parent_dir, post["pdf_file"]), as_attachment=True)
 
-    # finally serve the file
-    return send_from_directory(os.path.join(os.getcwd(), root_dir, data_dir, parent_dir), filename=filename, as_attachment=True)
 
 @bp.route('/post/<title>')    
 def post(title):
@@ -127,7 +117,7 @@ def post(title):
     
     # get post by title
     post = db.execute(
-        'SELECT p.id AS id, ticker, author_id, title, category, title_img_parent_dir, title_img, content, created, last_edit, display_name, username'
+        'SELECT p.id AS id, ticker, author_id, title, category, title_img_parent_dir, title_img, html_file, pdf_file, created, last_edit, display_name, username'
         ' FROM post p'
         ' JOIN user u ON p.author_id = u.id'
         ' WHERE title = ?',
@@ -159,7 +149,7 @@ def post(title):
     related_posts = []
     for id in related_posts_id:
         related_posts.append(db.execute(
-            'SELECT p.id, title, title_img_parent_dir, title_img, created, display_name, username'
+            'SELECT p.id, title, html_file, title_img_parent_dir, title_img, created, display_name, username'
             ' FROM post p'
             ' JOIN user u ON u.id=p.author_id'
             f' WHERE p.id={id}'
@@ -173,9 +163,16 @@ def post(title):
         filtered_related_posts.append(related_post)
         
     post = dict(post)
-    post['content'] = markdown.markdown(post['content'])
+    
+    print(os.path.join(current_app.config['UPLOAD_FOLDER'], 'data', post['title_img_parent_dir'], post['html_file']))
+    
+    '''
+    import codecs
+    html_content = codecs.open(os.path.join('gbpartners', 'static', 'data', post['title_img_parent_dir'], post['html_file']), 'r').read()
+    print(html_content)
+    '''
 
-    return render_template('blog/post.html', post=post, related_posts=filtered_related_posts)
+    return render_template('blog/post.html', html_file=os.path.join(current_app.config['UPLOAD_FOLDER'], 'data', post['title_img_parent_dir'], post['html_file']), post=post, related_posts=filtered_related_posts)
     
     
 @bp.route('/blog/create', methods=('GET', 'POST'))
@@ -200,16 +197,32 @@ def create():
     
     # validate form
     if form.validate_on_submit():
-        # get upload dir
-        root_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'images')
+    
+        # get upload dir for html & pdf
+        data_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'data')
         # get parent directory from form
         parent_dir = secure_filename(form.parent_dir.data)
+        # get secure filename
+        html_filename = secure_filename(form.html_file.data.filename)
+        pdf_filename = secure_filename(form.pdf_file.data.filename)
+        
+        html_path = os.path.join(root_dir, parent_dir, html_filename)
+        pdf_path = os.path.join(root_dir, parent_dir, pdf_filename)
+            
+        try:
+            upload_file(os.path.join(data_dir, parent_dir), html_filename, form.html_file.data)
+            upload_file(os.path.join(data_dir, parent_dir), pdf_filename, form.pdf_file.data)
+        except FileExistsError as e:
+            return render_template('blog/create.html', form=form, error=e)
+    
+        # get upload dir
+        image_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'images')
         # get secure filename
         filename = secure_filename(form.title_img.data.filename)
         
         # upload image (dir, filename, file (form.field.data))
         try:
-            upload_file(os.path.join(root_dir, parent_dir), filename, form.title_img.data)
+            upload_file(os.path.join(image_dir, parent_dir), filename, form.title_img.data)
         except FileExistsError as e:
             return render_template('blog/create.html', form=form, error=e)
         
@@ -219,9 +232,9 @@ def create():
     
         # insert new post
         db.execute(
-            'INSERT INTO post (author_id, title, ticker, title_img_parent_dir, title_img, content, category, last_edit)'
-            ' VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)',
-            (g.user['id'], form.title.data, form.ticker.data, title_img_parent, title_img_path, form.content.data, form.category.data)
+            'INSERT INTO post (author_id, title, ticker, html_file, pdf_file, title_img_parent_dir, title_img, category, last_edit)'
+            ' VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)',
+            (g.user['id'], form.title.data, form.ticker.data, html_filename, pdf_filename, title_img_parent, title_img_path, form.category.data)
         )
         # get last inserted id
         query = db.execute(
@@ -270,12 +283,7 @@ def update(id):
     post = get_post(id)
     
     # create form
-    form = BlogForm(ticker=post['ticker'], title=post['title'], content=post['content'], category=post['category'])
-    
-    # load all dirs into Parent dir field
-    root_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'images')
-    choices_parent = [(name.lower(), name) for name in os.listdir(root_dir) if os.path.isdir(os.path.join(root_dir, name))]
-    form.parent_dir.choices = choices_parent
+    form = UpdateForm(ticker=post['ticker'], title=post['title'], category=post['category'])
     
     # get db connection
     db = get_db()
@@ -286,30 +294,41 @@ def update(id):
     form.related_to.choices = choices_posts
 
     if form.validate_on_submit():
+    
+    
         # get upload dir
-        root_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'images')
+        data_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'data')
         # get parent directory from form
-        parent_dir = secure_filename(form.parent_dir.data)
-        # get secure filename
-        filename = secure_filename(form.title_img.data.filename)
+        parent_dir = secure_filename(post['title_img_parent_dir'])
         
-        # upload image (dir, filename, file (form.field.data))
-        try:
-            upload_image(os.path.join(root_dir, parent_dir), filename, form.title_img.data)
-        except FileExistsError as e:
-            return render_template('blog/create.html', form=form, error=e)
-        
-        # save the path in db so we can load it from html later
-        title_img_parent = parent_dir
-        title_img_path = filename
+        if form.html_file.data.filename:
+            # get secure filename
+            html_filename = secure_filename(form.html_file.data.filename)
+            html_path = os.path.join(root_dir, parent_dir, html_filename)
+            if os.path.isfile(html_path):
+                os.remove(html_path)
+            try:
+                upload_file(os.path.join(data_dir, parent_dir), html_filename, form.html_file.data)
+            except Error as e:
+                return render_template('blog/create.html', form=form, error=e)
+            
+        if form.pdf_file.data.filename:
+            pdf_filename = secure_filename(form.pdf_file.data.filename)
+            pdf_path = os.path.join(root_dir, parent_dir, pdf_filename)
+            if os.path.isfile(pdf_path):
+                os.remove(pdf_path)
+            try:
+                upload_file(os.path.join(data_dir, parent_dir), pdf_filename, form.pdf_file.data)
+            except Error as e:
+                return render_template('blog/create.html', form=form, error=e)        
     
         # get db connection
         db = get_db()
         # update post
         db.execute(
-            'UPDATE post SET title = ?, ticker = ?, title_img_parent_dir = ?, title_img = ?, content = ?, category = ?, last_edit = CURRENT_TIMESTAMP'
+            'UPDATE post SET title = ?, ticker = ?, html_file = ?, pdf_file = ?, category = ?, last_edit = CURRENT_TIMESTAMP'
             ' WHERE id = ?',
-            (form.title.data, form.ticker.data, title_img_parent, title_img_path, form.content.data, form.category.data, id)
+            (form.title.data, form.ticker.data, html_filename, pdf_filename, form.category.data, id)
         )
         db.commit()
         return redirect(url_for('blog.blog', group_by='all', sort_by='date_desc', page=1))
@@ -323,4 +342,4 @@ def delete(id):
     db = get_db()
     db.execute('DELETE FROM post WHERE id = ?', (id,))
     db.commit()
-    return redirect(url_for('blog.blog'))
+    return redirect(url_for('blog.blog', group_by='all', sort_by='date_desc', page=1))

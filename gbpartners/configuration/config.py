@@ -6,7 +6,7 @@ class Config(object):
     CSRF_ENABLED = True
     UPLOAD_FOLDER = os.path.join('gbpartners', 'static')
     MAX_FILE_SIZE = 3 * 10**3 * 10**3
-    STATIC_FOLDER='static'
+    STATIC_FOLDER = 'static'
     
 class DevelopmentConfig(Config):
     ENV = "development"
