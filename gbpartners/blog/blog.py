@@ -93,23 +93,6 @@ def blog(group_by, sort_by, page):
 @bp.route('/post/<title>/download/<path:filename>')
 def download_post(title, filename):
     raise NotImplementedError()
-    db = get_db()
-    post = db.execute(
-        'SELECT title_img_parent_dir AS parent_dir, pdf_file'
-        ' FROM post'
-        f' WHERE title="{title}"'
-    ).fetchone()
-    
-    root_dir = current_app.config['UPLOAD_FOLDER']
-    data_dir = 'data'
-    parent_dir = post['parent_dir']
-
-    return send_from_directory(
-        current_app.config['UPLOAD_FOLDER'], 
-        path=os.path.join(data_dir, parent_dir),
-        filename=filename,
-        as_attachment=True
-    )
 
 
 @bp.route('/post/<title>')    
@@ -208,9 +191,8 @@ def create():
             written_soup = BeautifulSoup(form.html_file.data, 'html.parser')
             img_tags = written_soup.findAll('img')
             for img_tag in img_tags:
-                print(img_tag['src'])
                 img_tag['src'] = '''{{ url_for("static", filename="''' + img_tag['src'] + '''") }}'''
-                print(img_tag['src'])
+                #img_tag['class'] += ' w-100'
             
             div.append(written_soup)
         
@@ -274,7 +256,7 @@ def create():
 
 def get_post(id, check_author=True):
     post = get_db().execute(
-        'SELECT p.id, title, ticker, content, created, author_id, category'
+        'SELECT p.id, title, ticker, title_img_parent_dir, html_file, pdf_file, created, author_id, category'
         ' FROM post p'
         ' WHERE p.id = ?',
         (id,)
@@ -315,22 +297,25 @@ def update(id):
         # get parent directory from form
         parent_dir = secure_filename(post['title_img_parent_dir'])
         
-        if form.html_file.data.filename:
+        html_filename = secure_filename(form.html_file.data.filename)
         
-            # get secure filename
-            html_filename = secure_filename(form.html_file.data.filename)
+        with open(os.path.join('gbpartners', 'templates', 'blog', 'post.html'), 'r') as f:
+            # read the template file
+            post_soup = BeautifulSoup(f, 'html.parser')
+            # add the html to the div
+            div = post_soup.find('div', id='html_text')
             
-            with open(os.path.join('gbpartners', 'templates', 'blog', 'post.html'), 'r') as f:
-                # read the template file
-                post_soup = BeautifulSoup(f, 'html.parser')
-                # add the html to the div
-                div = post_soup.find('div', id='html_text')
-                div.append(BeautifulSoup(form.html_file.data))
+            written_soup = BeautifulSoup(form.html_file.data, 'html.parser')
+            img_tags = written_soup.findAll('img')
+            for img_tag in img_tags:
+                img_tag['src'] = '''{{ url_for("static", filename="''' + img_tag['src'] + '''") }}'''
+                #img_tag['class'] += ' w-100'
             
-                # save the new html file to the designated folder
-                html_path = os.path.join('gbpartners', 'templates', 'blog', parent_dir, html_filename)
-                with open(html_path, 'w', encoding='utf-8') as f:
-                    f.write(str(post_soup))
+            div.append(written_soup)
+            
+            html_path = os.path.join('gbpartners', 'templates', 'blog', parent_dir, html_filename)
+            with open(html_path, 'w', encoding='utf-8') as f:
+                f.write(str(post_soup))
             
             '''
             if os.path.isfile(html_path):
@@ -343,7 +328,7 @@ def update(id):
             
         if form.pdf_file.data.filename:
             pdf_filename = secure_filename(form.pdf_file.data.filename)
-            pdf_path = os.path.join(root_dir, parent_dir, pdf_filename)
+            pdf_path = os.path.join(data_dir, parent_dir, pdf_filename)
             if os.path.isfile(pdf_path):
                 os.remove(pdf_path)
             try:
