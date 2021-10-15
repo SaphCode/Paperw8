@@ -2,10 +2,8 @@ import os
 from gbpartners.configuration.config import DevelopmentConfig
 
 from flask import Flask
-from flask_pagedown import PageDown
 
 import sys
-
 
 def create_app():
     # create and configure the app
@@ -39,8 +37,6 @@ def create_app():
     app.register_blueprint(performance.bp)
     app.add_url_rule('/', endpoint='performance')
     
-    # load pagedown module for blog
-    pagedown = PageDown(app)
     # import blog module
     from gbpartners.blog import blog
     app.register_blueprint(blog.bp)

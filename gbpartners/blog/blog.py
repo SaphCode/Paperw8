@@ -4,14 +4,12 @@ from flask import (
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 
-from flask_pagedown.fields import PageDownField
 from wtforms import StringField, SelectField, SelectMultipleField
 from wtforms.validators import InputRequired, Length
 from werkzeug.exceptions import abort
 from werkzeug.utils import secure_filename, safe_join
 
 from datetime import datetime
-import markdown 
 
 from gbpartners.user.auth import login_required, admin_login_required
 from gbpartners.database.db import get_db
