@@ -19,6 +19,7 @@ from gbpartners.data_processing.utils import upload_file
 
 from sqlite3 import OperationalError
 import os
+from bs4 import BeautifulSoup
 
 
 
@@ -103,11 +104,13 @@ def download_post(title, filename):
     root_dir = current_app.config['UPLOAD_FOLDER']
     data_dir = 'data'
     parent_dir = post['parent_dir']
-    
-    print(os.getcwd())
-    print(os.path.join(root_dir, data_dir, parent_dir, post["pdf_file"]))
 
-    return send_from_directory(os.path.join(current_app.config['UPLOAD_FOLDER'], data_dir, parent_dir), path=os.path.join(root_dir, data_dir, parent_dir, post["pdf_file"]), as_attachment=True)
+    return send_from_directory(
+        current_app.config['UPLOAD_FOLDER'], 
+        path=os.path.join(data_dir, parent_dir),
+        filename=filename,
+        as_attachment=True
+    )
 
 
 @bp.route('/post/<title>')    
@@ -164,15 +167,7 @@ def post(title):
         
     post = dict(post)
     
-    print(os.path.join(current_app.config['UPLOAD_FOLDER'], 'data', post['title_img_parent_dir'], post['html_file']))
-    
-    '''
-    import codecs
-    html_content = codecs.open(os.path.join('gbpartners', 'static', 'data', post['title_img_parent_dir'], post['html_file']), 'r').read()
-    print(html_content)
-    '''
-
-    return render_template('blog/post.html', html_file=os.path.join(current_app.config['UPLOAD_FOLDER'], 'data', post['title_img_parent_dir'], post['html_file']), post=post, related_posts=filtered_related_posts)
+    return render_template('blog/' + post['title_img_parent_dir'] + '/' + post['html_file'], post=post, related_posts=filtered_related_posts)
     
     
 @bp.route('/blog/create', methods=('GET', 'POST'))
@@ -186,9 +181,9 @@ def create():
     query = db.execute('SELECT id, title FROM post').fetchall()
     
     # load all dirs into Parent dir field
-    root_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'images')
+    image_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'images')
     
-    choices_parent = [(name.lower(), name) for name in os.listdir(root_dir) if os.path.isdir(os.path.join(root_dir, name))]
+    choices_parent = [(name.lower(), name) for name in os.listdir(image_dir) if os.path.isdir(os.path.join(image_dir, name))]
     form.parent_dir.choices = choices_parent
     
     # load all titles into the MultipleSelectField
@@ -204,19 +199,31 @@ def create():
         parent_dir = secure_filename(form.parent_dir.data)
         # get secure filename
         html_filename = secure_filename(form.html_file.data.filename)
-        pdf_filename = secure_filename(form.pdf_file.data.filename)
         
-        html_path = os.path.join(root_dir, parent_dir, html_filename)
-        pdf_path = os.path.join(root_dir, parent_dir, pdf_filename)
+        with open(os.path.join('gbpartners', 'templates', 'blog', 'post.html'), 'r') as f:
+            # read the template file
+            post_soup = BeautifulSoup(f, 'html.parser')
+            # add the html to the div
+            div = post_soup.find('div', id='html_text')
+            div.append(BeautifulSoup(form.html_file.data))
+        
+            # save the new html file to the designated folder
+            if not os.path.isdir(os.path.join('gbpartners', 'templates', 'blog', parent_dir)):
+                os.mkdir(os.path.join('gbpartners', 'templates', 'blog', parent_dir))
+            
+            html_path = os.path.join('gbpartners', 'templates', 'blog', parent_dir, html_filename)
+            with open(html_path, 'w', encoding='utf-8') as f:
+                f.write(str(post_soup))
+        
+        
+        pdf_filename = secure_filename(form.pdf_file.data.filename)
+        pdf_path = os.path.join(data_dir, parent_dir, pdf_filename)
             
         try:
-            upload_file(os.path.join(data_dir, parent_dir), html_filename, form.html_file.data)
             upload_file(os.path.join(data_dir, parent_dir), pdf_filename, form.pdf_file.data)
         except FileExistsError as e:
             return render_template('blog/create.html', form=form, error=e)
     
-        # get upload dir
-        image_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'images')
         # get secure filename
         filename = secure_filename(form.title_img.data.filename)
         
@@ -302,15 +309,30 @@ def update(id):
         parent_dir = secure_filename(post['title_img_parent_dir'])
         
         if form.html_file.data.filename:
+        
             # get secure filename
             html_filename = secure_filename(form.html_file.data.filename)
-            html_path = os.path.join(root_dir, parent_dir, html_filename)
+            
+            with open(os.path.join('gbpartners', 'templates', 'blog', 'post.html'), 'r') as f:
+                # read the template file
+                post_soup = BeautifulSoup(f, 'html.parser')
+                # add the html to the div
+                div = post_soup.find('div', id='html_text')
+                div.append(BeautifulSoup(form.html_file.data))
+            
+                # save the new html file to the designated folder
+                html_path = os.path.join('gbpartners', 'templates', 'blog', parent_dir, html_filename)
+                with open(html_path, 'w', encoding='utf-8') as f:
+                    f.write(str(post_soup))
+            
+            '''
             if os.path.isfile(html_path):
                 os.remove(html_path)
             try:
                 upload_file(os.path.join(data_dir, parent_dir), html_filename, form.html_file.data)
             except Error as e:
                 return render_template('blog/create.html', form=form, error=e)
+            '''
             
         if form.pdf_file.data.filename:
             pdf_filename = secure_filename(form.pdf_file.data.filename)
