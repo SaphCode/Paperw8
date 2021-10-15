@@ -92,6 +92,7 @@ def blog(group_by, sort_by, page):
 
 @bp.route('/post/<title>/download/<path:filename>')
 def download_post(title, filename):
+    raise NotImplementedError()
     db = get_db()
     post = db.execute(
         'SELECT title_img_parent_dir AS parent_dir, pdf_file'
@@ -203,7 +204,15 @@ def create():
             post_soup = BeautifulSoup(f, 'html.parser')
             # add the html to the div
             div = post_soup.find('div', id='html_text')
-            div.append(BeautifulSoup(form.html_file.data))
+            
+            written_soup = BeautifulSoup(form.html_file.data, 'html.parser')
+            img_tags = written_soup.findAll('img')
+            for img_tag in img_tags:
+                print(img_tag['src'])
+                img_tag['src'] = '''{{ url_for("static", filename="''' + img_tag['src'] + '''") }}'''
+                print(img_tag['src'])
+            
+            div.append(written_soup)
         
             # save the new html file to the designated folder
             if not os.path.isdir(os.path.join('gbpartners', 'templates', 'blog', parent_dir)):
@@ -360,6 +369,27 @@ def update(id):
 @admin_login_required
 def delete(id):
     db = get_db()
+    
+    post = db.execute(f'SELECT * FROM post WHERE id={id}').fetchone()
+    
+    # delete title_img, pdf and html
+    upload_dir = current_app.config['UPLOAD_FOLDER']
+    data_dir = 'data'
+    img_dir = 'images'
+    
+    
+    try:
+        # delete html
+        os.remove(os.path.join('gbpartners', 'templates', 'blog', post['title_img_parent_dir'], post['html_file']))
+        # delete pdf
+        os.remove(os.path.join(upload_dir, data_dir, post['title_img_parent_dir'], post['pdf_file']))
+        # delete img
+        os.remove(os.path.join(upload_dir, img_dir, post['title_img_parent_dir'], post['title_img']))
+    except FileNotFoundError as e:
+        print(e)
+        flash(e)
+    
+    
     db.execute('DELETE FROM post WHERE id = ?', (id,))
     db.commit()
     return redirect(url_for('blog.blog', group_by='all', sort_by='date_desc', page=1))
