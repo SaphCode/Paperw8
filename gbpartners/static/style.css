@@ -116,6 +116,23 @@
   background: #00e676;
 }
 
+.center-img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+
+.blog-link {
+	color:#e03444;
+	text-decoration:none;
+}
+
+.blog-link:hover {
+	color:#e03444;
+	text-decoration:none;
+}
+
 .inner{
 	overflow: hidden;
 }

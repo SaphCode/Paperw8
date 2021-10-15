@@ -191,8 +191,8 @@ def create():
             written_soup = BeautifulSoup(form.html_file.data, 'html.parser')
             img_tags = written_soup.findAll('img')
             for img_tag in img_tags:
-                img_tag['src'] = '''{{ url_for("static", filename="''' + img_tag['src'] + '''") }}'''
-                #img_tag['class'] += ' w-100'
+                img_tag['src'] = '''{{ url_for("static", filename="''' + img_tag.get('src', '') + '''") }}'''
+                img_tag['class'] = img_tag.get('class', []) + ['center-img']
             
             div.append(written_soup)
         
@@ -308,9 +308,14 @@ def update(id):
             written_soup = BeautifulSoup(form.html_file.data, 'html.parser')
             img_tags = written_soup.findAll('img')
             for img_tag in img_tags:
-                img_tag['src'] = '''{{ url_for("static", filename="''' + img_tag['src'] + '''") }}'''
-                #img_tag['class'] += ' w-100'
-            
+                img_tag['src'] = '''{{ url_for("static", filename="''' + img_tag.get('src', '') + '''") }}'''
+                img_tag['class'] = img_tag.get('class', []) + ['img-fluid', 'mx-auto', 'd-block']
+            table_tags = written_soup.findAll('table')
+            for table_tag in table_tags:
+                table_tag['class'] = table_tag.get('class', []) + ['table', 'table-striped']
+            a_tags = written_soup.findAll('a')
+            for a_tag in a_tags:
+                a_tag['class'] = a_tag.get('class', []) + ['blog-link']
             div.append(written_soup)
             
             html_path = os.path.join('gbpartners', 'templates', 'blog', parent_dir, html_filename)
