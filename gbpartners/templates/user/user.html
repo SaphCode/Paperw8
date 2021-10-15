@@ -48,21 +48,12 @@
 	
 		<!--- profile text --->
 		<div class="order-first order-md-0 col-md-5 pt-2 text-monospace text-decoration-none d-flex align-items-center justify-content-end">
-			<div id="black_heading_2">
+			<div class="black_heading_2">
 				<span style="color: grey;">Hi, I'm </span>
 				<span style="color: black;">{{ user['username'].capitalize() }}, </span><br>
 				<span style="color: grey;">founder of </span><br>
 				<span style="color: black;">Beri Partners.</span>
 			</div>
-			<a href="{{ url_for('user.profile', username='janik') }}" id="black_heading_2_reversed" class="bg-light text-decoration-none">
-				<span style="color: black;">Make sure </span>
-				<span style="color: grey;">to <br>check out </span>
-				<span style="color: black;">Janik </span><br>
-				<span style="color: grey;">as well. </span>
-				<span style="color: grey;">He's a </span><br>
-				<span style="color: black;">pretty chill </span>
-				<span style="color: grey;">guy.</span>
-			</a>
 		</div>
 		<!--- profile text --->
 	
@@ -89,11 +80,11 @@
 		<!--- About me --->	
 		<div class="d-flex justify-content-center">
 			<div class="col-md-6">
-				<div class="heading_2 pt-8">
-					<span style="color: gray;">About me</span>
+				<div class="about_heading pt-8 ps-3 pe-3">
+					<span style="color: gray;">About me.</span>
 				</div>
-				<div class="about_text mb-7">
 				{% if user['username'] == 'janik' %}
+				<div class="about_text mb-7 p-3">
 					<span style="color: gray;">I started investing when I was </span>
 					<span style="color: white;">19 years </span>
 					<span style="color: gray;">old. It was actually </span>
@@ -104,7 +95,9 @@
 					<span style="color: white;">completely honest, </span>
 					<span style="color: gray;">at that time I didn't understand a </span>
 					<span style="color: white;">single word...</span>
+				</div>
 				{% elif user['username'] == 'chris' %}
+				<div class="about_text mb-7 p-3">
 					<span style="color: gray;">I was always interest in a lot of </span>
 					<span style="color: white;">different</span>
 					<span style="color: gray;">things. I</span>
@@ -126,9 +119,8 @@
 					<span style="color: gray;">world of today?</span>
 					<span style="color: gray;">Now I know that in investing,</span>
 					<span class="text-decoration-underline" style="color: white;">no knowledge is without use.</span>
-				{% endif %}
-					
 				</div>
+				{% endif %}
 			</div>
 		</div>
 		<!--- About me --->	
@@ -237,8 +229,8 @@
 	{% if user['username'] == 'janik' %}
 	<div class="lights-bg-image" style="height: 1600px; background-image: url('{{ url_for ('static', filename='images/bg/lights_black.jpg') }}');">
 		<div class="d-flex justify-content-center">
-			<div class="col-md-6 mt-8">
-				<p class="heading_2">
+			<div class="col-md-6 mt-8 p-2">
+				<p class="about_text">
 				
 					<span style="color: gray;">My favourite quote.</span><br>
 					<span style="color: gray;">It's only when </span>
@@ -329,42 +321,48 @@
 </div>
 <!--- about, gallery and quote --->
 {% if user['username'] == 'janik' %}
-<div class="border container-fluid bg-light">
+<div class="container-fluid bg-light">
 	<!--- story 1 --->
-	<div class="border row d-flex justify-content-center pt-8">
-		<div class="border col-lg-4 pe-2">
-			<p class="black_heading_2 mt-6">Story continued
+	<div class="row d-flex justify-content-center pt-8">
+		<div class="col-lg-4">
+			<p class="black_heading_2 text-end mt-6">Story continued
 			</p>
-			<div class="border mb-5">
-				<p class="bold_gray_text">
+			<div class="col-lg-8 float-end mb-5">
+				<p class="bold_gray_text text-end">
 					In July of 2018, Chris and I each invested $1000 in Regi at an average price of roughly $16.50 per share. By September of the same year the stock had surged to $27.
 					We sold our position. Our initial $1000 had turned into $1600 over the course of just three months. Making money is that easy...?
 				</p>
 			</div>
 		</div>
-		<div class="border col-lg-2 d-flex align-items-center">
+		<div class="col-lg-2 d-flex align-items-center">
 			<img
 			src="{{ url_for('static', filename='images/profile/' + user['username'] + '/story/1.jpg') }}"
 			style="width:100%;"
 			alt=""
 			/>
 		</div>
+		<div class="col-lg-1">
+		<!--- for alignment --->
+		</div>
 	</div>
 	<!--- end of story 1 --->
 	
 	<!--- story 2 --->
-	<div class="border row d-flex justify-content-center pt-8">
-		<div class="border col-lg-2 d-flex align-items-center">
+	<div class="row d-flex justify-content-center pt-5 pb-7">
+		<div class="col-lg-2">
+		<!--- for alignment --->
+		</div>
+		<div class="col-lg-2 d-flex align-items-center">
 			<img
 			src="{{ url_for('static', filename='images/profile/' + user['username'] + '/story/2.jpg') }}"
 			style="width:100%;"
 			alt=""
 			/>
 		</div>
-		<div class="border col-lg-4 pe-2">
+		<div class="col-lg-4 pe-2">
 			<p class="black_heading_2 mt-6">In retrospect
 			</p>
-			<div class="border mb-5">
+			<div class="col-lg-8 mb-5">
 				<p class="bold_gray_text">
 					In July of 2018, Chris and I each invested $1000 in Regi at an average price of roughly $16.50 per share. By September of the same year the stock had surged to $27.
 					We sold our position. Our initial $1000 had turned into $1600 over the course of just three months. Making money is that easy...?
@@ -374,34 +372,6 @@
 	</div>
 	<!--- end of story 2 --->
 	
-	<!--- end of story 2 --->
-	<div class="border d-flex justify-content-center mt-6 pb-7">
-		<div class="border col-lg-2">
-			<img
-			src="{{ url_for('static', filename='images/profile/' + user['username'] + '/story/2.jpg') }}"
-			style="width:100%;"
-			alt=""
-			/>
-		</div>
-		<div class="border col-lg-3 mb-5 ps-5">
-			<p class="border black_heading_2">In retrospect
-			</p>
-			<div class="border mb-5">
-				<p class="bold_gray_text">
-					Now, four years and a dozen investing books later, I don't think we would have made the same decision again.
-					Nevertheless, I don't now if I would have ever gotten interested in the stock market if it wasn't for this lucky pick.
-				</p>
-				<p class="bold_gray_text">
-				Thanks for showing me this fascinating world Chris!
-				</p>
-				<p class="bold_gray_text">
-					<span style="color: gray;">P.S. While writing this I checked the price of Regi for the first time since we sold our position. </span>
-					<span style="color: black;">Oh my god... </span>
-				</p>
-			</div>
-		</div>
-	</div>
-	<!--- end of story 2 --->
 </div>
 {% endif %}
 

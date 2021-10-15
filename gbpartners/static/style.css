@@ -339,6 +339,26 @@
 	line-height: 120%;
 }
 
+@media only screen and (max-width: 1000px) {
+	.about_text{
+	font-size: 40px;
+	line-height: 120%;
+	}
+}
+
+.about_heading{
+	font-size: 70px;
+	line-height: 100%;
+}
+
+@media only screen and (max-width: 1000px) {
+	.about_heading{
+	font-size: 40px;
+	line-height: 100%;
+	text-align: justify;
+	}
+}
+
 .catch_line_text{
 	font-size: 40px;
 	line-height: 120%;
