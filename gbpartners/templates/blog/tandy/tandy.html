@@ -6,7 +6,7 @@
 
 {% block content %}
 
-{% with message='Check out this post by Beri Partners: ' + post['title'], url=url_for(request.endpoint, **request.view_args) %}
+{% with title=post['title'], ticker=post['ticker'], url=request.url %}
 	{% include 'share_buttons.html' %}
 {% endwith %}
 

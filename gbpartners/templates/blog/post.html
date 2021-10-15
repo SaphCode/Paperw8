@@ -6,7 +6,7 @@
 
 {% block content %}
 
-{% with message='Check out this post by Beri Partners: ' + post['title'], url=url_for(request.endpoint, **request.view_args) %}
+{% with title=post['title'], ticker=post['ticker'], url=request.url %}
 	{% include 'share_buttons.html' %}
 {% endwith %}
 
@@ -99,7 +99,7 @@
 			</div>
 
 			{% for related_post in related_posts %}
-			<a class="btn" href="{{ url_for('blog.post', title=related_post['title']) }}">
+			<a class="btn" href="{{ url_for('blog.post', id=related_post['id']) }}">
 				<div class="border bg-white rounded shadow-sm row d-flex align-items-center justify-content-center">
 					<div class="col-md-6 p-3">
 						<div class="small-text">{{ related_post['title'] }}</div>

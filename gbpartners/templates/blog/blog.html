@@ -54,7 +54,7 @@
 						{% if g.user['id'] == post['author_id'] or g.user['username'] == 'admin' %}
 						<a class="action" href="{{ url_for('blog.update', id=post['id']) }}" class="text-decoration-none" style="color:#e03444">Edit</a>
 						{% endif %}
-						<a href="{{ url_for('blog.post', title=post['title']) }}" class="stretched-link text-decoration-none" style="color:#e03444">Read</a>
+						<a href="{{ url_for('blog.post', id=post['id']) }}" class="stretched-link text-decoration-none" style="color:#e03444">Read</a>
 					</div>
 					<div class="col-auto d-none d-lg-block">
 						<svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><img src="{{url_for('static', filename='images/' + post['title_img_parent_dir'] + '/' + post['title_img'])}}" width='auto' height='250px'></img></svg>

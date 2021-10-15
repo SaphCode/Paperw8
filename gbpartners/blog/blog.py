@@ -95,18 +95,18 @@ def download_post(title, filename):
     raise NotImplementedError()
 
 
-@bp.route('/post/<title>')    
-def post(title):
+@bp.route('/post/<int:id>')    
+def post(id):
     # get db
     db = get_db()
     
-    # get post by title
+    # get post by id
     post = db.execute(
         'SELECT p.id AS id, ticker, author_id, title, category, title_img_parent_dir, title_img, html_file, pdf_file, created, last_edit, display_name, username'
         ' FROM post p'
         ' JOIN user u ON p.author_id = u.id'
-        ' WHERE title = ?',
-        (title,)
+        ' WHERE p.id = ?',
+        (id,)
     ).fetchone()
     
     # get related posts by joining on both columns of the related table (see schema.sql)
@@ -132,12 +132,12 @@ def post(title):
     
     # find the ids in the post table and get the relevant columns
     related_posts = []
-    for id in related_posts_id:
+    for rel_id in related_posts_id:
         related_posts.append(db.execute(
             'SELECT p.id, title, html_file, title_img_parent_dir, title_img, created, display_name, username'
             ' FROM post p'
             ' JOIN user u ON u.id=p.author_id'
-            f' WHERE p.id={id}'
+            f' WHERE p.id={rel_id}'
         ).fetchone())
     
     # don't include the post that's being viewed in related
