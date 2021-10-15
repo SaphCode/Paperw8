@@ -45,8 +45,8 @@
 
 			<div class="row post_info d-flex align-items-center justify-content-center">
 				<div class="col-md-auto pt-2 pb-5">
-					<div>Written by <a href="{{ url_for('user.profile', username=post['username']) }}" class="text-decoration-none" style="color:#e03444">{{ post['display_name'] }}</a> on {{ post['created'] }}.</div>
-					{% if post['created'].strftime('%Y-%m-%d') != post['last_edit'].strftime('%Y-%m-%d') %}<div>Last edit on {{ post['last_edit'] }}.</div>{% endif %}
+					<div>Written by <a href="{{ url_for('user.profile', username=post['username']) }}" class="text-decoration-none" style="color:#e03444">{{ post['display_name'] }}</a> on {{ post['created'].strftime('%Y-%m-%d') }}.</div>
+					{% if post['created'].strftime('%Y-%m-%d') != post['last_edit'].strftime('%Y-%m-%d') %}<div>Last edit on {{ post['last_edit'].strftime('%Y-%m-%d') }}.</div>{% endif %}
 				</div>
 			</div>
 
