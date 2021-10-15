@@ -11,40 +11,37 @@
 {% endblock %}
 
 {% block content %}
+
+	
+
 <!--- profile section --->
-<div class="pt-3 bg-light">
+<div class="container-fluid pt-3 bg-light">
+	
 	{% if user['username'] == 'janik' %}
-	<div class="d-flex justify-content-center">
+	<div class="row d-flex justify-content-center">
+	
 		<div class="col-md-2">
 		</div>
 		<!--- profile picture --->
-		<div class="col-md-5 pt-2">
-			<div class="imageInn align-items-end">
+		<div class="col-md-5 pt-2 d-flex align-items-end">
+			<div class="imageInn d-flex align-items-end">
 				<img src="{{ url_for('static', filename='images/profile/' + user['username'] + '/pb.png') }}" width="100%" height="auto" alt="Founder of Beri Partners">
 			</div>
 		</div>
 		<!--- profile picture --->
 		
 		<!--- profile text --->
-		<div class="order-first order-md-0 col-md-5 pt-2 text-monospace text-decoration-none d-flex align-items-center">
-			<div id="black_heading_2">
+		<div class="order-first order-md-0  col-md-5 pt-2 text-monospace text-decoration-none d-flex align-items-center">
+			<div class="black_heading_2">
 				<span style="color: grey;">Hi, I'm </span>
 				<span style="color: black;">{{ user['username'].capitalize() }}, </span><br>
 				<span style="color: grey;">founder of </span><br>
 				<span style="color: black;">Beri Partners.</span>
 			</div>
-			<a href="{{ url_for('user.profile', username='chris') }}" id="black_heading_2_reversed" class="bg-light text-decoration-none">
-				<span style="color: black;">Make sure </span>
-				<span style="color: grey;">to <br>check out </span>
-				<span style="color: black;">Chris </span><br>
-				<span style="color: grey;">as well. </span>
-				<span style="color: grey;">He's a </span><br>
-				<span style="color: black;">pretty chill </span>
-				<span style="color: grey;">guy.</span>
-			</a>
 		</div>
 		<!--- profile text --->
 	</div>
+	<!--- profile section --->
 	
 	{% elif user['username'] == 'chris' %}
 	<div class="row p-0 m-0">
@@ -70,8 +67,8 @@
 		<!--- profile text --->
 	
 		<!--- profile picture --->
-		<div class="col-md-5 pt-2">
-			<div class="imageInn align-items-end">
+		<div class="col-md-5 pt-2 d-flex align-items-end">
+			<div class="imageInn d-flex align-items-end">
 				<img src="{{ url_for('static', filename='images/profile/' + user['username'] + '/pb.png') }}" width="100%" height="auto" alt="Founder of Beri Partners">
 			</div>
 		</div>
@@ -332,20 +329,20 @@
 </div>
 <!--- about, gallery and quote --->
 {% if user['username'] == 'janik' %}
-<div class="bg-light">
-	<!--- end of story 1 --->
-	<div class="d-flex justify-content-center pt-8">
-		<div class="col-lg-4 pe-7">
-			<p class="black_heading_2 mt-6">Story <br>continued
+<div class="border container-fluid bg-light">
+	<!--- story 1 --->
+	<div class="border row d-flex justify-content-center pt-8">
+		<div class="border col-lg-4 pe-2">
+			<p class="black_heading_2 mt-6">Story continued
 			</p>
-			<div class="mb-5">
+			<div class="border mb-5">
 				<p class="bold_gray_text">
 					In July of 2018, Chris and I each invested $1000 in Regi at an average price of roughly $16.50 per share. By September of the same year the stock had surged to $27.
 					We sold our position. Our initial $1000 had turned into $1600 over the course of just three months. Making money is that easy...?
 				</p>
 			</div>
 		</div>
-		<div class="col-lg-2">
+		<div class="border col-lg-2 d-flex align-items-center">
 			<img
 			src="{{ url_for('static', filename='images/profile/' + user['username'] + '/story/1.jpg') }}"
 			style="width:100%;"
@@ -355,19 +352,41 @@
 	</div>
 	<!--- end of story 1 --->
 	
-	<!--- end of story 2 --->
-	<div class="d-flex justify-content-center mt-6 pb-7">
-		<div class="col-lg-2">
+	<!--- story 2 --->
+	<div class="border row d-flex justify-content-center pt-8">
+		<div class="border col-lg-2 d-flex align-items-center">
 			<img
 			src="{{ url_for('static', filename='images/profile/' + user['username'] + '/story/2.jpg') }}"
 			style="width:100%;"
 			alt=""
 			/>
 		</div>
-		<div class="col-lg-3 mb-5 ps-5">
-			<p class="black_heading_2">In retrospect
+		<div class="border col-lg-4 pe-2">
+			<p class="black_heading_2 mt-6">In retrospect
 			</p>
-			<div class="mb-5">
+			<div class="border mb-5">
+				<p class="bold_gray_text">
+					In July of 2018, Chris and I each invested $1000 in Regi at an average price of roughly $16.50 per share. By September of the same year the stock had surged to $27.
+					We sold our position. Our initial $1000 had turned into $1600 over the course of just three months. Making money is that easy...?
+				</p>
+			</div>
+		</div>
+	</div>
+	<!--- end of story 2 --->
+	
+	<!--- end of story 2 --->
+	<div class="border d-flex justify-content-center mt-6 pb-7">
+		<div class="border col-lg-2">
+			<img
+			src="{{ url_for('static', filename='images/profile/' + user['username'] + '/story/2.jpg') }}"
+			style="width:100%;"
+			alt=""
+			/>
+		</div>
+		<div class="border col-lg-3 mb-5 ps-5">
+			<p class="border black_heading_2">In retrospect
+			</p>
+			<div class="border mb-5">
 				<p class="bold_gray_text">
 					Now, four years and a dozen investing books later, I don't think we would have made the same decision again.
 					Nevertheless, I don't now if I would have ever gotten interested in the stock market if it wasn't for this lucky pick.
