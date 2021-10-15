@@ -176,7 +176,39 @@
 	font-size: 70px;
 	letter-spacing: 0.15em;
 	line-height:120%;
+	text-align: center;
+}
+
+@media only screen and (max-width: 1560px) {
+	.post_title{
+	font-family: 'Bebas Neue', cursive;
+	font-size: 40px;
+	letter-spacing: 0.15em;
+	line-height:120%;
+	text-align: center;
+	}
+}
+
+.post_ticker{
+	font-family: 'Bebas Neue', cursive;
+	color: gray;
+	font-size: 70px;
+	letter-spacing: 0.15em;
+	line-height:120%;
 	color: black;
+	text-align: center;
+}
+
+@media only screen and (max-width: 1560px) {
+	.post_ticker{
+	font-family: 'Bebas Neue', cursive;
+	color: gray;
+	font-size: 70px;
+	letter-spacing: 0.15em;
+	line-height:120%;
+	color: black;
+	text-align: center;
+	}
 }
 
 .post_info{
@@ -192,6 +224,16 @@
 	letter-spacing: 0.15em;
 	line-height:120%;
 	color: black;
+}
+
+@media only screen and (max-width: 1560px) {
+	.important-notice{
+	font-family: 'Bebas Neue', cursive;
+	font-size: 25px;
+	letter-spacing: 0.15em;
+	line-height:120%;
+	color: black;
+	}
 }
 
 .catch_phrase{

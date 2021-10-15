@@ -35,9 +35,11 @@
 	<div class="row d-flex justify-content-center">
 		<div class="border rounded shadow bg-white col-md-7 ms-5 mb-5 me-5">
 
-			<div class="row post_title d-flex justify-content-center pt-6">
-				<div class="col-md-auto">
-				{{ post['title'] }}
+			<div class="border row d-flex justify-content-center pt-6">
+				<div class="col-md-10 d-flex justify-content-center">
+					<div class="post_title">
+						<span class="d-flex justify-content-center" style="color:black">{{ post['title'] }}</span><span style="color:gray"> - {{ post['ticker'] }}</span>
+					</div>
 				</div>
 			</div>
 
