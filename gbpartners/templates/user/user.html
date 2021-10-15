@@ -27,12 +27,21 @@
 		
 		<!--- profile text --->
 		<div class="order-first order-md-0 col-md-5 pt-2 text-monospace text-decoration-none d-flex align-items-center">
-			<div class="black_heading_2">
+			<div id="black_heading_2">
 				<span style="color: grey;">Hi, I'm </span>
 				<span style="color: black;">{{ user['username'].capitalize() }}, </span><br>
 				<span style="color: grey;">founder of </span><br>
 				<span style="color: black;">Beri Partners.</span>
 			</div>
+			<a href="{{ url_for('user.profile', username='chris') }}" id="black_heading_2_reversed" class="bg-light text-decoration-none">
+				<span style="color: black;">Make sure </span>
+				<span style="color: grey;">to <br>check out </span>
+				<span style="color: black;">Chris </span><br>
+				<span style="color: grey;">as well. </span>
+				<span style="color: grey;">He's a </span><br>
+				<span style="color: black;">pretty chill </span>
+				<span style="color: grey;">guy.</span>
+			</a>
 		</div>
 		<!--- profile text --->
 	</div>
@@ -42,12 +51,21 @@
 	
 		<!--- profile text --->
 		<div class="order-first order-md-0 col-md-5 pt-2 text-monospace text-decoration-none d-flex align-items-center justify-content-end">
-			<div class="black_heading_2">
+			<div id="black_heading_2">
 				<span style="color: grey;">Hi, I'm </span>
 				<span style="color: black;">{{ user['username'].capitalize() }}, </span><br>
 				<span style="color: grey;">founder of </span><br>
 				<span style="color: black;">Beri Partners.</span>
 			</div>
+			<a href="{{ url_for('user.profile', username='janik') }}" id="black_heading_2_reversed" class="bg-light text-decoration-none">
+				<span style="color: black;">Make sure </span>
+				<span style="color: grey;">to <br>check out </span>
+				<span style="color: black;">Janik </span><br>
+				<span style="color: grey;">as well. </span>
+				<span style="color: grey;">He's a </span><br>
+				<span style="color: black;">pretty chill </span>
+				<span style="color: grey;">guy.</span>
+			</a>
 		</div>
 		<!--- profile text --->
 	
@@ -316,18 +334,18 @@
 {% if user['username'] == 'janik' %}
 <div class="bg-light">
 	<!--- end of story 1 --->
-	<div class="border d-flex justify-content-center pt-8">
-		<div class="border col-lg-4 pe-5">
+	<div class="d-flex justify-content-center pt-8">
+		<div class="col-lg-4 pe-7">
 			<p class="black_heading_2 mt-6">Story <br>continued
 			</p>
-			<div class="border mb-5">
+			<div class="mb-5">
 				<p class="bold_gray_text">
 					In July of 2018, Chris and I each invested $1000 in Regi at an average price of roughly $16.50 per share. By September of the same year the stock had surged to $27.
 					We sold our position. Our initial $1000 had turned into $1600 over the course of just three months. Making money is that easy...?
 				</p>
 			</div>
 		</div>
-		<div class="border col-lg-2">
+		<div class="col-lg-2">
 			<img
 			src="{{ url_for('static', filename='images/profile/' + user['username'] + '/story/1.jpg') }}"
 			style="width:100%;"
@@ -338,18 +356,18 @@
 	<!--- end of story 1 --->
 	
 	<!--- end of story 2 --->
-	<div class="border d-flex justify-content-center mt-6 pb-7">
-		<div class="border col-lg-2">
+	<div class="d-flex justify-content-center mt-6 pb-7">
+		<div class="col-lg-2">
 			<img
 			src="{{ url_for('static', filename='images/profile/' + user['username'] + '/story/2.jpg') }}"
 			style="width:100%;"
 			alt=""
 			/>
 		</div>
-		<div class="border col-lg-4 mb-5 ps-5">
+		<div class="col-lg-3 mb-5 ps-5">
 			<p class="black_heading_2">In retrospect
 			</p>
-			<div class="border mb-5">
+			<div class="mb-5">
 				<p class="bold_gray_text">
 					Now, four years and a dozen investing books later, I don't think we would have made the same decision again.
 					Nevertheless, I don't now if I would have ever gotten interested in the stock market if it wasn't for this lucky pick.
