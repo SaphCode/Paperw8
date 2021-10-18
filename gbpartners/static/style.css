@@ -588,6 +588,16 @@
 	}
 }
 
+.text-round-corners{
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+}
+
+.bild-round-corners{
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
 
 
 
@@ -705,3 +715,14 @@
 .pe-10{
 	padding-right:500px;
 }
+
+
+
+
+
+
+
+
+
+
+
