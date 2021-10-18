@@ -570,6 +570,27 @@
 	font-weight: bold;
 }
 
+.blog_title{
+	font-family: 'Merriweather', serif;
+	font-weight:600;
+	font-size: 35px;
+	letter-spacing: 0.05em;
+	line-height:120%;
+}
+
+@media only screen and (max-width: 1560px) {
+	.blog_title{
+	font-family: 'Merriweather', serif;
+	font-weight:600;
+	font-size: 20px;
+	letter-spacing: 0.05em;
+	line-height:120%;
+	}
+}
+
+
+
+
 .mt-6{
 	margin-top:100px;
 }
