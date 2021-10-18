@@ -186,7 +186,7 @@ def process_html_file(html_file, parent_dir):
             caption_text = caption.getText()
             # insert figcaption into figure
             figcaption = written_soup.new_tag('figcaption')
-            figcaption['class'] = ['figure-caption', 'text-right']
+            figcaption['class'] = ['figure-caption']
             figcaption.string = caption_text
             figure.append(figcaption)
             
@@ -218,8 +218,6 @@ def process_html_file(html_file, parent_dir):
         for a_tag in a_tags:
             a_tag['class'] = a_tag.get('class', []) + ['blog-link']
 
-        contents = written_soup.find('body').findChildren(recursive=False)
-        print(contents)
         div.extend(written_soup.find('body').findChildren(recursive=False))
     
         # save the new html file to the designated folder
@@ -392,7 +390,6 @@ def delete(id):
         # delete img
         os.remove(os.path.join(upload_dir, img_dir, post['title_img_parent_dir'], post['title_img']))
     except FileNotFoundError as e:
-        print(e)
         flash(e)
     
     
