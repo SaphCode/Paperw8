@@ -26,7 +26,6 @@ def format_date(unformatted):
 
 def upload_file(parent_dir, filename, file):
     if not os.path.exists(os.path.join(parent_dir, secure_filename(filename))):
-        print(os.path.join(parent_dir, secure_filename(filename)))
         file.save(os.path.join(parent_dir, secure_filename(filename)))
     else:
         raise FileExistsError(f'File already exists: {secure_filename(filename)}')

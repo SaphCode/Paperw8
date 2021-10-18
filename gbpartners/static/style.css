@@ -123,6 +123,11 @@
 	width: 50%;
 }
 
+.table_scrolling {
+	
+	overflow: scroll;
+}
+
 .blog-link {
 	color:#e03444;
 	text-decoration:none;

@@ -151,7 +151,94 @@ def post(id):
     
     return render_template('blog/' + post['title_img_parent_dir'] + '/' + post['html_file'], post=post, related_posts=filtered_related_posts)
     
+
+def wrap(to_wrap, wrap_in):
+    contents = to_wrap.replace_with(wrap_in)
+    wrap_in.append(contents)
+
+def process_html_file(html_file, parent_dir):
+    # get secure filename
+    html_filename = secure_filename(html_file.data.filename)
     
+    with open(os.path.join('gbpartners', 'templates', 'blog', 'post.html'), 'r') as f:
+        # read the template file
+        post_soup = BeautifulSoup(f, 'html.parser')
+        # add the html to the div
+        div = post_soup.find('div', id='html_text')
+        
+        written_soup = BeautifulSoup(html_file.data, 'html.parser')
+        
+        # modify images
+        img_tags = written_soup.findAll('img')
+        for img_tag in img_tags:
+            img_tag['src'] = '''{{ url_for("static", filename="''' + img_tag.get('src', '') + '''") }}'''
+            
+            # make img responsive and centered
+            img_tag['class'] = img_tag.get('class', []) + ['figure-img', 'img-fluid', 'mx-auto', 'd-block']
+            
+            # wrap a figure around image
+            figure = written_soup.new_tag('figure')
+            figure['class'] = ['figure']
+            wrap(img_tag, figure)
+            
+            # get an em tag after figure
+            caption = figure.find_next_sibling('em')
+            caption_text = caption.getText()
+            # insert figcaption into figure
+            figcaption = written_soup.new_tag('figcaption')
+            figcaption['class'] = ['figure-caption', 'text-right']
+            figcaption.string = caption_text
+            figure.append(figcaption)
+            
+            caption.decompose()
+           
+        # modify tables
+        table_tags = written_soup.findAll('table')
+        for table_tag in table_tags:
+            table_tag['class'] = table_tag.get('class', []) + ['table', 'table-striped', 'caption-top']
+            
+            # get caption before table
+            #caption = table_tag.find_previous_sibling('em')
+            #caption_text = caption.getText()
+            
+            # insert caption into table
+            #caption_tag = written_soup.new_tag('caption')
+            #caption_tag.string = caption_text
+            #table_tag.insert(0, caption_tag)
+
+            # wrap a col around
+            col = written_soup.new_tag("div")
+            col['class'] = ['overflow-auto', 'col']
+            wrap(table_tag.parent, col)
+            
+            #caption.decompose()
+            
+        # modify links
+        a_tags = written_soup.findAll('a')
+        for a_tag in a_tags:
+            a_tag['class'] = a_tag.get('class', []) + ['blog-link']
+
+        contents = written_soup.find('body').findChildren(recursive=False)
+        print(contents)
+        div.extend(written_soup.find('body').findChildren(recursive=False))
+    
+        # save the new html file to the designated folder
+        if not os.path.isdir(os.path.join('gbpartners', 'templates', 'blog', parent_dir)):
+            os.mkdir(os.path.join('gbpartners', 'templates', 'blog', parent_dir))
+        
+        html_path = os.path.join('gbpartners', 'templates', 'blog', parent_dir, html_filename)
+        with open(html_path, 'w', encoding='utf-8') as f:
+            f.write(str(post_soup))
+
+def process_pdf_file(pdf_file, parent_dir):
+    pdf_filename = secure_filename(pdf_file.data.filename)
+    pdf_path = os.path.join(current_app.config['UPLOAD_FOLDER'], 'data', parent_dir, pdf_filename)
+    
+    if os.path.isfile(pdf_path):
+        os.remove(pdf_path)
+    upload_file(os.path.join(current_app.config['UPLOAD_FOLDER'], 'data', parent_dir), pdf_filename, pdf_file.data)
+
+
 @bp.route('/blog/create', methods=('GET', 'POST'))
 @login_required
 def create():
@@ -175,50 +262,15 @@ def create():
     # validate form
     if form.validate_on_submit():
     
-        # get upload dir for html & pdf
-        data_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'data')
         # get parent directory from form
         parent_dir = secure_filename(form.parent_dir.data)
-        # get secure filename
-        html_filename = secure_filename(form.html_file.data.filename)
         
-        with open(os.path.join('gbpartners', 'templates', 'blog', 'post.html'), 'r') as f:
-            # read the template file
-            post_soup = BeautifulSoup(f, 'html.parser')
-            # add the html to the div
-            div = post_soup.find('div', id='html_text')
-            
-            written_soup = BeautifulSoup(form.html_file.data, 'html.parser')
-            img_tags = written_soup.findAll('img')
-            for img_tag in img_tags:
-                img_tag['src'] = '''{{ url_for("static", filename="''' + img_tag.get('src', '') + '''") }}'''
-                img_tag['class'] = img_tag.get('class', []) + ['img-fluid', 'mx-auto', 'd-block']
-            table_tags = written_soup.findAll('table')
-            for table_tag in table_tags:
-                table_tag['class'] = table_tag.get('class', []) + ['table', 'table-striped']
-            a_tags = written_soup.findAll('a')
-            for a_tag in a_tags:
-                a_tag['class'] = a_tag.get('class', []) + ['blog-link']
-
-            div.append(written_soup)
-        
-            # save the new html file to the designated folder
-            if not os.path.isdir(os.path.join('gbpartners', 'templates', 'blog', parent_dir)):
-                os.mkdir(os.path.join('gbpartners', 'templates', 'blog', parent_dir))
-            
-            html_path = os.path.join('gbpartners', 'templates', 'blog', parent_dir, html_filename)
-            with open(html_path, 'w', encoding='utf-8') as f:
-                f.write(str(post_soup))
-        
-        
-        pdf_filename = secure_filename(form.pdf_file.data.filename)
-        pdf_path = os.path.join(data_dir, parent_dir, pdf_filename)
-            
+        process_html_file(form.html_file, parent_dir)
         try:
-            upload_file(os.path.join(data_dir, parent_dir), pdf_filename, form.pdf_file.data)
-        except FileExistsError as e:
+            process_pdf_file(form.pdf_file, parent_dir)
+        except FileExistsError:
             return render_template('blog/create.html', form=form, error=e)
-    
+        
         # get secure filename
         filename = secure_filename(form.title_img.data.filename)
         
@@ -236,7 +288,7 @@ def create():
         db.execute(
             'INSERT INTO post (author_id, title, ticker, html_file, pdf_file, title_img_parent_dir, title_img, category, last_edit)'
             ' VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)',
-            (g.user['id'], form.title.data, form.ticker.data, html_filename, pdf_filename, title_img_parent, title_img_path, form.category.data)
+            (g.user['id'], form.title.data, form.ticker.data, secure_filename(form.html_file.data.filename), secure_filename(form.pdf_file.data.filename), title_img_parent, title_img_path, form.category.data)
         )
         # get last inserted id
         query = db.execute(
@@ -296,56 +348,14 @@ def update(id):
     form.related_to.choices = choices_posts
 
     if form.validate_on_submit():
-    
-    
+
         # get upload dir
         data_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'data')
         # get parent directory from form
         parent_dir = secure_filename(post['title_img_parent_dir'])
         
-        html_filename = secure_filename(form.html_file.data.filename)
-        
-        with open(os.path.join('gbpartners', 'templates', 'blog', 'post.html'), 'r') as f:
-            # read the template file
-            post_soup = BeautifulSoup(f, 'html.parser')
-            # add the html to the div
-            div = post_soup.find('div', id='html_text')
-            
-            written_soup = BeautifulSoup(form.html_file.data, 'html.parser')
-            img_tags = written_soup.findAll('img')
-            for img_tag in img_tags:
-                img_tag['src'] = '''{{ url_for("static", filename="''' + img_tag.get('src', '') + '''") }}'''
-                img_tag['class'] = img_tag.get('class', []) + ['img-fluid', 'mx-auto', 'd-block']
-            table_tags = written_soup.findAll('table')
-            for table_tag in table_tags:
-                table_tag['class'] = table_tag.get('class', []) + ['table', 'table-striped']
-            a_tags = written_soup.findAll('a')
-            for a_tag in a_tags:
-                a_tag['class'] = a_tag.get('class', []) + ['blog-link']
-            div.append(written_soup)
-            
-            html_path = os.path.join('gbpartners', 'templates', 'blog', parent_dir, html_filename)
-            with open(html_path, 'w', encoding='utf-8') as f:
-                f.write(str(post_soup))
-            
-            '''
-            if os.path.isfile(html_path):
-                os.remove(html_path)
-            try:
-                upload_file(os.path.join(data_dir, parent_dir), html_filename, form.html_file.data)
-            except Error as e:
-                return render_template('blog/create.html', form=form, error=e)
-            '''
-            
-        if form.pdf_file.data.filename:
-            pdf_filename = secure_filename(form.pdf_file.data.filename)
-            pdf_path = os.path.join(data_dir, parent_dir, pdf_filename)
-            if os.path.isfile(pdf_path):
-                os.remove(pdf_path)
-            try:
-                upload_file(os.path.join(data_dir, parent_dir), pdf_filename, form.pdf_file.data)
-            except Error as e:
-                return render_template('blog/create.html', form=form, error=e)        
+        process_html_file(form.html_file, parent_dir)
+        process_pdf_file(form.pdf_file, parent_dir)
     
         # get db connection
         db = get_db()
@@ -353,7 +363,7 @@ def update(id):
         db.execute(
             'UPDATE post SET title = ?, ticker = ?, html_file = ?, pdf_file = ?, category = ?, last_edit = CURRENT_TIMESTAMP'
             ' WHERE id = ?',
-            (form.title.data, form.ticker.data, html_filename, pdf_filename, form.category.data, id)
+            (form.title.data, form.ticker.data, secure_filename(form.html_file.data.filename), secure_filename(form.pdf_file.data.filename), form.category.data, id)
         )
         db.commit()
         return redirect(url_for('blog.blog', group_by='all', sort_by='date_desc', page=1))
