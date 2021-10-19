@@ -30,7 +30,7 @@ class BlogForm(FlaskForm):
     html_file = FileField('Html', validators=[FileRequired(), FileAllowed(['html'], message='Only html allowed.')])
     pdf_file = FileField('PDF', validators=[FileRequired(), FileAllowed(['pdf'], message='Only pdf allowed.')])
     title_img = FileField('Image', validators=[FileRequired(), FileAllowed(['jpg', 'png', 'JPG', 'jpeg', 'gif'], message="File must end in one of the following: .jpg, .JPG, .jpeg, .gif, .png")])
-    category = SelectField('Category', choices=[('business', 'Business'), ('annual', 'Annual Report'), ('education', 'Education')], validators=[InputRequired()])
+    category = SelectField('Category', choices=[('business', 'Business'), ('annual', 'Annual Report'), ('education', 'Education'), ('book', 'Book')], validators=[InputRequired()])
     related_to = SelectMultipleField('Related to', coerce=int)
     
 class UpdateForm(FlaskForm):  
