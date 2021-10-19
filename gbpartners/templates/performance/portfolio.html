@@ -331,6 +331,8 @@ function removeTooltip() {
   if (tooltipLine) tooltipLine.attr('stroke', 'none');
 }
 
+removeTooltip();
+
 function drawTooltip(event) {
   const mousePos = d3.pointer(event);
   const date = new Date(x.invert(mousePos[0]));

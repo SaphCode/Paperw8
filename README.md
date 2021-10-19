@@ -13,3 +13,9 @@
 - Create an admin account: "flask create-user admin password" (password in quotes is important)
 - Run the website on localhost by doing: "flask run"
 - Upload the performance file of your portfolio in the /admin/home console
+
+# When creating a blog post
+- Make sure the title image is 1280x720
+- Title image cannot be changed easily atm
+- Always write captions below images, but don't make a new paragraph (go to last character of image link ")" and do shift+enter)
+- Tables don't have captions atm
