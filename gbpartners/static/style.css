@@ -573,16 +573,34 @@
 .blog_title{
 	font-family: 'Merriweather', serif;
 	font-weight:600;
-	font-size: 35px;
+	font-size: 27px;
+	letter-spacing: 0.05em;
+	line-height:120%;
+}
+
+@media only screen and (max-width: 1760px) {
+	.blog_title{
+	font-family: 'Merriweather', serif;
+	font-weight:600;
+	font-size: 18px;
+	letter-spacing: 0.05em;
+	line-height:120%;
+	}
+}
+
+.blog_ticker{
+	font-family: 'Merriweather', serif;
+	font-weight:600;
+	font-size: 17px;
 	letter-spacing: 0.05em;
 	line-height:120%;
 }
 
 @media only screen and (max-width: 1560px) {
-	.blog_title{
+	.blog_ticker{
 	font-family: 'Merriweather', serif;
 	font-weight:600;
-	font-size: 20px;
+	font-size: 13px;
 	letter-spacing: 0.05em;
 	line-height:120%;
 	}

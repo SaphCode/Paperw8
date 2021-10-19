@@ -44,38 +44,38 @@
 
 	<div class="container-fluid pb-6">
 		{% for post in posts %}
-		<div class="row d-flex justify-content-center">
-			<div class="col-md-10 d-flex justify-content-center mt-4" style="height:100%;" >
-
+		<div class="row d-flex justify-content-center" style="height:100%;">
+			<div class="col-md-8">
 				{% if g.user['id'] == post['author_id'] or g.user['username'] == 'admin' %}
-				<a class="col-md-1 text-decoration-none bg-danger d-flex justify-content-center align-items-center fw-bold me-2" href="{{ url_for('blog.update', id=post['id']) }}" style="width:5em; height:auto; color:white;">
+				<a class="col-md-2 text-decoration-none bg-danger d-flex justify-content-center align-items-center fw-bold me-2" href="{{ url_for('blog.update', id=post['id']) }}" style="width:5em; height:auto; color:white;">
 					Edit
 				</a>
 				{% endif %}
 
-				<a class="bg-white border text-decoration-none col-md-6 {{ post['category'] }} p-3 overflow-auto" href="{{ url_for('blog.post', id=post['id']) }}">
-					<div class="d-inline-block mb-3 text-decoration-none fw-bold" style="color:#e03444">
-						{{ post['category'].capitalize() }}
+				<a class="bg-white border shadow text-decoration-none row {{ post['category'] }} overflow-auto" href="{{ url_for('blog.post', id=post['id']) }}">
+					<div class="col-md-6 overflow-auto">
+						<div class="d-inline-block mb-4 text-decoration-none fw-bold" style="color:#e03444">
+							{{ post['category'].capitalize() }}
+						</div>
+						<div class="blog_ticker mb-2" style="color:gray;">
+							{{ post['ticker'] }}
+						</div>
+						<div class="blog_title mb-2" style="color:black;">
+							{{ post['title'] }}
+						</div>
+						<div class="mb-1 text-muted">
+							<span style="color:gray">by </span>
+							<span style="color:#e03444">{{ post['display_name'] }} </span>
+							<span style="color:gray">on {{ post['created'].strftime('%Y-%m-%d') }}</span>
+						</div>
 					</div>
-					<div class="blog_title mb-1" style="color:black;">
-						{{ post['ticker'] }}
-					</div><div class="blog_title mb-1" style="color:black;">
-						{{ post['title'] }}
+					<div class="col-md-4 d-none d-md-none d-xl-block d-xxl-block">
+						<img src="{{url_for('static', filename='images/' + post['title_img_parent_dir'] + '/' + post['title_img'])}}" style="max-width:500px"></img>
 					</div>
-					<div class="mb-1 text-muted">
-						<span style="color:gray">by </span>
-						<span style="color:#e03444">{{ post['display_name'] }} </span>
-						<span style="color:gray">on {{ post['created'].strftime('%Y-%m-%d') }}</span>
-					</div>
-
 				</a>
-
-				<a class="col-md-2 d-none d-md-none d-xl-block d-xxl-block" href="{{ url_for('blog.post', id=post['id']) }}">
-					<img href="{{ url_for('blog.post', id=post['id']) }}" src="{{url_for('static', filename='images/' + post['title_img_parent_dir'] + '/' + post['title_img'])}}" style="height:200px; width:auto;"></img>
-				</a>
-
 			</div>
 		</div>
+
 		{% endfor %}
 	</div>
 
