@@ -9,7 +9,7 @@
 	</div>
 
 	<div class="container-fluid bg-light m-0 p-0">
-		<div class="d-flex justify-content-center pt-5">
+		<div class="d-flex justify-content-center pt-5 pb-4">
 			<div class="col-md-4 d-flex justify-content-center">
 				<div class="btn-group d-flex justify-content-center" role="group" aria-label="Button group with nested dropdown">
 					<a type="button" href="{{ url_for('blog.blog', group_by='all', sort_by=sort_by, page=1) }}" class="btn btn-sm btn-outline-dark btn-lg {% if group_by == 'all' %} active {% endif %}">All</a>
@@ -42,36 +42,44 @@
 
 
 
-	<div class="container-fluid pb-6">
+	<div class="container-fluid pb-6 pt-3">
 		{% for post in posts %}
 		<div class="row d-flex justify-content-center" style="height:100%;">
-			<div class="col-md-8">
+			<div class="col-md-8 pb-4">
 				{% if g.user['id'] == post['author_id'] or g.user['username'] == 'admin' %}
-				<a class="col-md-2 text-decoration-none bg-danger d-flex justify-content-center align-items-center fw-bold me-2" href="{{ url_for('blog.update', id=post['id']) }}" style="width:5em; height:auto; color:white;">
+				<a class="col-md-2 text-decoration-none bg-danger d-flex justify-content-center align-items-center fw-bold me-2"
+				   href="{{ url_for('blog.update', id=post['id']) }}"
+				   style="width:5em; height:auto; color:white;">
 					Edit
 				</a>
 				{% endif %}
 
-				<a class="bg-white border shadow text-decoration-none row {{ post['category'] }} d-flex justify-content-between" href="{{ url_for('blog.post', id=post['id']) }}">
-					<div class="col-md-6 overflow-auto">
-						<div class="d-inline-block mb-4 text-decoration-none fw-bold" style="color:#e03444">
-							{{ post['category'].capitalize() }}
-						</div>
-						<div class="blog_ticker mb-2" style="color:gray;">
-							{{ post['ticker'] }}
-						</div>
-						<div class="blog_title mb-2" style="color:black;">
-							{{ post['title'] }}
-						</div>
-						<div class="mb-1 text-muted">
-							<span style="color:gray">by </span>
-							<span style="color:#e03444">{{ post['display_name'] }} </span>
-							<span style="color:gray">on {{ post['created'].strftime('%Y-%m-%d') }}</span>
+				<a class="bg-white border shadow text-decoration-none row rounded-corners {{ post['category'] }} d-flex justify-content-between"
+				   href="{{ url_for('blog.post', id=post['id']) }}">
+					
+					<div class="col-md-6 overflow-auto rounded-corners">
+						<div class="p-3">
+							<div class="mb-4 text-decoration-none fw-bold" style="color:#e03444">
+								{{ post['category'].capitalize() }}
+							</div>
+							<div class="blog_ticker mb-2" style="color:gray;">
+								{{ post['ticker'] }}
+							</div>
+							<div class="blog_title mb-2" style="color:black;">
+								{{ post['title'] }}
+							</div>
+							<div class="mb-1 text-muted">
+								<span style="color:gray">by </span>
+								<span style="color:#e03444">{{ post['display_name'] }} </span>
+								<span style="color:gray">on {{ post['created'].strftime('%Y-%m-%d') }}</span>
+							</div>
 						</div>
 					</div>
-					<div class="col-md-4 d-none d-md-none d-xl-block d-xxl-block">
-						<img src="{{url_for('static', filename='images/' + post['title_img_parent_dir'] + '/' + post['title_img'])}}" style="max-width:500px"></img>
+					
+					<div class="col-md-4 d-none d-md-block d-xl-block d-xxl-block p-0">
+						<img class="img-fluid rounded-corners" src="{{url_for('static', filename='images/' + post['title_img_parent_dir'] + '/' + post['title_img'])}}" style="height:100%;"></img>
 					</div>
+					
 				</a>
 			</div>
 		</div>
