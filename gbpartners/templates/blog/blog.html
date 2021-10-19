@@ -39,48 +39,55 @@
 			</div>
 		</div>
 		{% endif %}
-	
+
+
+
+	<div class="container-fluid">
 		{% for post in posts %}
-			<div class="row-auto d-flex justify-content-center mt-4">
+		<div class="row d-flex justify-content-center">
+			<div class="col-md-10 d-flex justify-content-center mt-4" style="height:100%;" >
+
 				{% if g.user['id'] == post['author_id'] or g.user['username'] == 'admin' %}
-					<a class="action text-decoration-none" href="{{ url_for('blog.update', id=post['id']) }}" style="color:white">
-						<div class="col-md-1 bg-danger d-flex justify-content-center align-items-center" style="width:5em; height:100%;">
-						Edit
-						</div>
-					</a>
+				<a class="col-md-1 text-decoration-none bg-danger d-flex justify-content-center align-items-center fw-bold me-2" href="{{ url_for('blog.update', id=post['id']) }}" style="width:5em; height:auto; color:white;">
+					Edit
+				</a>
 				{% endif %}
-			
-			<article class="col-md-7 all {{ post['category'] }}">
-				<div class="bg-white row g-0 border rounded overflow-hidden flex-md-row shadow-sm h-md-250 position-relative">
-					<div class="col d-flex flex-column position-static">
-						<div class="p-3">
-							<strong class="d-inline-block mb-2" style="color:#e03444">{{ post['category'].capitalize() }}</strong>
-							<h1 class="blog_title">{{ post['title'] }}</h1>
-							<div class="mb-1 text-muted">by {{ post['display_name'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
-							<div class="about font-italic">
-								{% if post['created'].strftime('%Y-%m-%d') != post['last_edit'].strftime('%Y-%m-%d') %}last edit on {{ post['last_edit'].strftime('%Y-%m-%d') }}{% endif %}
-								<a href="{{ url_for('blog.post', id=post['id']) }}" class="stretched-link text-decoration-none" style="color:#e03444">Read</a>
-							</div>
-							
-						</div>
-						<div class="col-auto d-none d-lg-block">
-							<img src="{{url_for('static', filename='images/' + post['title_img_parent_dir'] + '/' + post['title_img'])}}" width='auto' height='250px'></img></svg>
-						</div>
+
+				<a class="bg-white border text-decoration-none col-md-6 {{ post['category'] }} p-3 overflow-auto" href="{{ url_for('blog.post', id=post['id']) }}">
+					<div class="d-inline-block mb-3 text-decoration-none fw-bold" style="color:#e03444">
+						{{ post['category'].capitalize() }}
 					</div>
-				</div>
-			</article>
+					<div class="blog_title mb-1" style="color:black;">
+						{{ post['title'] }}
+					</div>
+					<div class="mb-1 text-muted">
+						<span style="color:gray">by </span>
+						<span style="color:#e03444">{{ post['display_name'] }} </span>
+						<span style="color:gray">on {{ post['created'].strftime('%Y-%m-%d') }}</span>
+					</div>
+
+					<div class="about font-italic">
+						{% if post['created'].strftime('%Y-%m-%d') != post['last_edit'].strftime('%Y-%m-%d') %}
+						<span style="color:gray">last edit on {{ post['last_edit'].strftime('%Y-%m-%d') }}</span>
+						{% endif %}
+					</div>
+				</a>
+
+				<a class="col-md-2 d-none d-md-none d-xl-block d-xxl-block" href="{{ url_for('blog.post', id=post['id']) }}">
+					<img href="{{ url_for('blog.post', id=post['id']) }}" src="{{url_for('static', filename='images/' + post['title_img_parent_dir'] + '/' + post['title_img'])}}" style="height:200px; width:auto;"></img>
+				</a>
+
+			</div>
 		</div>
-	  {% endfor %}
-	  
+		{% endfor %}
+	</div>
+
+
 		{% if (max_posts >= (page+1)*5) %}
 		<div class="container d-flex justify-content-center bg-light mt-4 pb-6">
 			<a type="button" class="btn btn-dark" href="{{ url_for('blog.blog', group_by=group_by, sort_by=sort_by, page=page+1) }}">Older Posts</a>
 		</div>
 		{% endif %}
-	</div>	
+	</div>
 
 {% endblock %}
-
-
-
-
