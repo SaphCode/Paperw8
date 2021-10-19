@@ -42,7 +42,7 @@
 
 
 
-	<div class="container-fluid">
+	<div class="container-fluid pb-6">
 		{% for post in posts %}
 		<div class="row d-flex justify-content-center">
 			<div class="col-md-10 d-flex justify-content-center mt-4" style="height:100%;" >
@@ -58,6 +58,8 @@
 						{{ post['category'].capitalize() }}
 					</div>
 					<div class="blog_title mb-1" style="color:black;">
+						{{ post['ticker'] }}
+					</div><div class="blog_title mb-1" style="color:black;">
 						{{ post['title'] }}
 					</div>
 					<div class="mb-1 text-muted">
