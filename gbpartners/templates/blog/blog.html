@@ -68,11 +68,6 @@
 						<span style="color:gray">on {{ post['created'].strftime('%Y-%m-%d') }}</span>
 					</div>
 
-					<div class="about font-italic">
-						{% if post['created'].strftime('%Y-%m-%d') != post['last_edit'].strftime('%Y-%m-%d') %}
-						<span style="color:gray">last edit on {{ post['last_edit'].strftime('%Y-%m-%d') }}</span>
-						{% endif %}
-					</div>
 				</a>
 
 				<a class="col-md-2 d-none d-md-none d-xl-block d-xxl-block" href="{{ url_for('blog.post', id=post['id']) }}">

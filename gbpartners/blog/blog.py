@@ -19,8 +19,6 @@ from sqlite3 import OperationalError
 import os
 from bs4 import BeautifulSoup
 
-
-
 bp = Blueprint('blog', __name__)
 
 class BlogForm(FlaskForm):
