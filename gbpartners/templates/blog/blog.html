@@ -52,7 +52,7 @@
 				</a>
 				{% endif %}
 
-				<a class="bg-white border shadow text-decoration-none row {{ post['category'] }} overflow-auto" href="{{ url_for('blog.post', id=post['id']) }}">
+				<a class="bg-white border shadow text-decoration-none row {{ post['category'] }} d-flex justify-content-between" href="{{ url_for('blog.post', id=post['id']) }}">
 					<div class="col-md-6 overflow-auto">
 						<div class="d-inline-block mb-4 text-decoration-none fw-bold" style="color:#e03444">
 							{{ post['category'].capitalize() }}
