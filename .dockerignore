@@ -9,7 +9,7 @@ README.md
 .gitignore
 __pycache__
 .pytest_cache
-BeriPartners.egg-info
+Paperw8.egg-info
 tests
 setup.cfg
 setup.py

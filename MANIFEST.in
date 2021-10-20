@@ -1,4 +1,4 @@
-include gbpartners/schema.sql
-graft gbpartners/static
-graft gbpartners/templates
+include paperw8/database/schema.sql
+graft paperw8/static
+graft paperw8/templates
 global-exclude *.pyc

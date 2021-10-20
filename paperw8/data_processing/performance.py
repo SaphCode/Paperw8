@@ -3,7 +3,7 @@ from flask import (
 )
 from werkzeug.exceptions import abort
 
-from gbpartners.database.db import get_db
+from paperw8.database.db import get_db
 
 import json
 from datetime import datetime, date
@@ -11,8 +11,10 @@ from itertools import tee
 
 bp = Blueprint('performance', __name__)
 
+
 def percent(number):
     return number/100
+
 
 def unnest(d, keys=[]):
     result = []
@@ -22,6 +24,7 @@ def unnest(d, keys=[]):
         else:
             result.append(tuple(keys + [k, v]))
     return result
+
 
 @bp.route('/')
 def index():

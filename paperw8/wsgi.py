@@ -1,4 +1,4 @@
-from gbpartners.app import create_app
+from paperw8.app import create_app
 
 app = create_app()
 

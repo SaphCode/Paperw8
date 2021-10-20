@@ -6,7 +6,7 @@
 - Make sure you have flask installed.
 - Run "pip install -r requirements.txt"
 - Run "pip install -e ." (e stands for editable, is for development only!)
-- Set environment variable: "set FLASK_APP=gbpartners/wsgi.py:app" (windows)
+- Set environment variable: "set FLASK_APP=paperw8/wsgi.py:app" (windows)
 - Set environment variable: "set FLASK_ENV=development" if developing
 - Set environment variable: "set GBPARTNERS_SETTINGS=settings.cfg" and create such a file in the instance folder
 - Initialize the db: "flask init-db"

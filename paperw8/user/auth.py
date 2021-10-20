@@ -8,7 +8,7 @@ from wtforms import StringField, PasswordField
 from wtforms.validators import InputRequired, Length
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from gbpartners.database.db import get_db
+from paperw8.database.db import get_db
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
