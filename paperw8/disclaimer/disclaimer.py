@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for, current_app
+    Blueprint, render_template
 )
 
 bp = Blueprint('disclaimer', __name__)

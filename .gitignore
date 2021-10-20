@@ -116,8 +116,8 @@ dmypy.json
 # Custom
 .flaskenv
 instance/
-BeriPartners.egg-info/
-gbpartners/static/images/
-gbpartners/static/data/
-gbpartners/static/js/
+Paperw8.egg-info/
+paperw8/static/images/
+paperw8/static/data/
+paperw8/static/js/
 settings.cfg

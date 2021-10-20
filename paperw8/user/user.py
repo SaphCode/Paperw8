@@ -4,7 +4,7 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, current_app
 )
 
-from gbpartners.database.db import get_db
+from paperw8.database.db import get_db
 
 import os
 

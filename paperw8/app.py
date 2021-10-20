@@ -1,8 +1,8 @@
-import os
-from gbpartners.configuration.config import DevelopmentConfig
+from paperw8.configuration.config import DevelopmentConfig
 
 from flask import Flask
 
+import os
 import sys
 
 def create_app():
@@ -18,39 +18,39 @@ def create_app():
         pass
     
     # override config with env_variable_config
-    app.config.from_envvar('GBPARTNERS_SETTINGS')
+    app.config.from_envvar('PAPERW8_SETTINGS')
 
     # import db commands & functionality
-    from gbpartners.database import db
+    from paperw8.database import db
     db.init_app(app)
 
     # import login module
-    from gbpartners.user import auth
+    from paperw8.user import auth
     app.register_blueprint(auth.bp)
     
     # import admin module
-    from gbpartners.data_processing import admin
+    from paperw8.data_processing import admin
     app.register_blueprint(admin.bp)
     
     # import chart module and set as home
-    from gbpartners.data_processing import performance
+    from paperw8.data_processing import performance
     app.register_blueprint(performance.bp)
     app.add_url_rule('/', endpoint='performance')
     
     # import blog module
-    from gbpartners.blog import blog
+    from paperw8.blog import blog
     app.register_blueprint(blog.bp)
     
     # import user module
-    from gbpartners.user import user
+    from paperw8.user import user
     app.register_blueprint(user.bp)
     
     # import contact module
-    from gbpartners.contact import contact
+    from paperw8.contact import contact
     app.register_blueprint(contact.bp)
     
     # import disclaimer module
-    from gbpartners.disclaimer import disclaimer
+    from paperw8.disclaimer import disclaimer
     app.register_blueprint(disclaimer.bp)
 
     return app

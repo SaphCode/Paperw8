@@ -3,7 +3,7 @@ from flask import (
 )
 from werkzeug.exceptions import abort
 
-from gbpartners.database.db import get_db
+from paperw8.database.db import get_db
 
 import json
 from datetime import datetime, date

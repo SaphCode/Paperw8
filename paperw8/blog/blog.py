@@ -11,9 +11,9 @@ from werkzeug.utils import secure_filename, safe_join
 
 from datetime import datetime
 
-from gbpartners.user.auth import login_required, admin_login_required
-from gbpartners.database.db import get_db
-from gbpartners.data_processing.utils import upload_file
+from paperw8.user.auth import login_required, admin_login_required
+from paperw8.database.db import get_db
+from paperw8.data_processing.utils import upload_file
 
 from sqlite3 import OperationalError
 import os
@@ -158,7 +158,7 @@ def process_html_file(html_file, parent_dir):
     # get secure filename
     html_filename = secure_filename(html_file.data.filename)
     
-    with open(os.path.join('gbpartners', 'templates', 'blog', 'post.html'), 'r') as f:
+    with open(os.path.join('paperw8', 'templates', 'blog', 'post.html'), 'r') as f:
         # read the template file
         post_soup = BeautifulSoup(f, 'html.parser')
         # add the html to the div
@@ -219,10 +219,10 @@ def process_html_file(html_file, parent_dir):
         div.extend(written_soup.find('body').findChildren(recursive=False))
     
         # save the new html file to the designated folder
-        if not os.path.isdir(os.path.join('gbpartners', 'templates', 'blog', parent_dir)):
-            os.mkdir(os.path.join('gbpartners', 'templates', 'blog', parent_dir))
+        if not os.path.isdir(os.path.join('paperw8', 'templates', 'blog', parent_dir)):
+            os.mkdir(os.path.join('paperw8', 'templates', 'blog', parent_dir))
         
-        html_path = os.path.join('gbpartners', 'templates', 'blog', parent_dir, html_filename)
+        html_path = os.path.join('paperw8', 'templates', 'blog', parent_dir, html_filename)
         with open(html_path, 'w', encoding='utf-8') as f:
             f.write(str(post_soup))
 
@@ -382,7 +382,7 @@ def delete(id):
     
     try:
         # delete html
-        os.remove(os.path.join('gbpartners', 'templates', 'blog', post['title_img_parent_dir'], post['html_file']))
+        os.remove(os.path.join('paperw8', 'templates', 'blog', post['title_img_parent_dir'], post['html_file']))
         # delete pdf
         os.remove(os.path.join(upload_dir, data_dir, post['title_img_parent_dir'], post['pdf_file']))
         # delete img
