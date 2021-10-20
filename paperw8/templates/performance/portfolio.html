@@ -55,7 +55,7 @@ function calculateMoneyNow(amount, startYear, endYear) {
 		
 			<div class="col-md-auto d-block d-md-none d-xl-none d-xxl-none" style="height:2em;"></div>
 			<div class="text-center"><span class="company_fat">Paper</span><span class="company_thin">weight</span></div>
-			<div class="text-center pt-5"><span class="catch_phrase_1_thin">Think Once, Think Twice,<br> Think </span><span class="catch_phrase_1_fat">Paper</span><span class="catch_phrase_1_thin">weight.</span></div>
+			<div class="text-center pt-5"><span class="catch_phrase_1_thin">Investing is hard.<br>Let us do the work for you.</span></div><!--<span class="catch_phrase_1_fat">Paper</span>-->
 			<div class="col-md-auto d-block d-md-none d-xl-none d-xxl-none" style="height:4em;"></div>
 			
 		</div>
@@ -93,20 +93,21 @@ function calculateMoneyNow(amount, startYear, endYear) {
 					<tr>
 						<th class="text-center" scope="col">Year</th>
 						<th class="text-center" scope="col">S&P 500</th>
-						<th class="text-center" scope="col">Beri</th>
+						<th class="text-center" scope="col">Paperweight</th>
 						<th class="text-center" scope="col">Cumulative</th>
 					</tr>
 				</thead>
 				<tbody>
 					{% for year in annualized_returns %}
+					{% set outer_loop = loop %}
 					<tr>
 						<th class="text-center" scope="row">{{ year }}</th>
 						{% for t in annualized_returns[year] %}
-						<td class="text-center">{{ "{:.1f}".format(t[1]) }}%</td>
+						<td class="text-center">{{ "{:.1f}".format(t[1]) }}%{% if outer_loop.last %}*{% endif %}</td>
 						{% endfor %}
 						<td class="text-center" id="{{ 'cumulative_return_' + year }}"></td>
 						{% if loop.last %}
-						<td class="bold_table text-center">* preliminary</td>
+						<td class="bold_table text-center">*preliminary</td>
 						{%endif%}
 					</tr>
 					
@@ -164,9 +165,18 @@ function calculateMoneyNow(amount, startYear, endYear) {
 const annualized_performance = {{ annualized_returns|tojson }};
 let value = 1;
 Object.keys(annualized_performance).forEach( year => {
+	
+	
 	value *= (1 + annualized_performance[year][1][1]/100);
 	const cumulative_return = (value - 1)*100;
-	$('#cumulative_return_' + year).text(numberWithCommas(Math.round(cumulative_return)) + '%');
+	
+	const current_year = new Date().getFullYear();
+	if (year == current_year) {
+		$('#cumulative_return_' + year).text(numberWithCommas(Math.round(cumulative_return)) + '%*');
+	} else {
+		$('#cumulative_return_' + year).text(numberWithCommas(Math.round(cumulative_return)) + '%');
+	}
+	
 });
 
 /* Amount display */
