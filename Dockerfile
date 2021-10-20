@@ -11,10 +11,10 @@ RUN apt-get update && apt-get install -y \
 # Copy local code to the container image.
 COPY . ./
 
-ENV FLASK_APP gbpartners
+ENV FLASK_APP paperw8
 ENV FLASK_ENV production # production is enabled by default
 
-ENV GBPARTNERS_SETTINGS settings.cfg
+ENV PAPERW8_SETTINGS settings.cfg
 
 # Install production dependencies.
 RUN pip install --no-cache-dir -r requirements.txt
@@ -24,4 +24,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 # For environments with multiple CPU cores, increase the number of workers
 # to be equal to the cores available.
 # Timeout is set to 0 to disable the timeouts of the workers to allow Cloud Run to handle instance scaling.
-CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 gbpartners.wsgi:app
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 paperw8.wsgi:app

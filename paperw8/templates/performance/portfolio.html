@@ -103,7 +103,7 @@ function calculateMoneyNow(amount, startYear, endYear) {
 					<tr>
 						<th class="text-center table-text-thin" scope="row">{{ year }}</th>
 						{% for t in annualized_returns[year] %}
-						<td class="text-center table-text-thin">{{ "{:.1f}".format(t[1]) }}%{% if outer_loop.last %}*{% endif %}</td>
+						<td class="text-center table-text-thin">{{ "{:.0f}".format(t[1]) }}%{% if outer_loop.last %}*{% endif %}</td>
 						{% endfor %}
 						<td class="text-center table-text-thin" id="{{ 'cumulative_return_' + year }}"></td>
 						{% if loop.last %}
