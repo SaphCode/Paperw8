@@ -278,7 +278,7 @@ const data = d3.csv("{{ url_for('static', filename='data/performance_measurement
 		.attr("x", "7%")
 		.attr("y", "52px")
 		.attr("class", "chart-legend")
-		.text("Portfolio")
+		.text("Paperweight")
 		.style("font-size", "15px")
 		.style("font-weight", "500")
 		.style("fill","white")
@@ -369,16 +369,29 @@ function drawTooltip(event) {
   const monthName = monthNames[date.getMonth()];
   const year = date.getFullYear();
 
+  if (mousePos[0] < width/2) {
+	  tooltip.html(`${day} ${monthName} ${year}`)
+		.style('display', 'block')
+		.style('left', ($('#chart').position().left + margin.left + mousePos[0] + 10) + "px")
+		.style('top', ($('#chart').position().top + margin.top +  mousePos[1] - 10) + "px")
+		.selectAll()
+		.data(performance.slice(0,2)).enter()
+		.append('div')
+		.style('color', d => color(d.name))
+		.html(d => d.name.replace("SPXTR", "S&P 500").replace("PORTFOLIO", "Portfolio") + ': ' + Math.round(d.value) + '%');
+  }
+  else {
+	tooltip.html(`${day} ${monthName} ${year}`)
+		.style('display', 'block')
+		.style('left', ($('#chart').position().left + margin.left + mousePos[0] - 120) + "px")
+		.style('top', ($('#chart').position().top + margin.top +  mousePos[1] - 10) + "px")
+		.selectAll()
+		.data(performance.slice(0,2)).enter()
+		.append('div')
+		.style('color', d => color(d.name))
+		.html(d => d.name.replace("SPXTR", "S&P 500").replace("PORTFOLIO", "Portfolio") + ': ' + Math.round(d.value) + '%');
+  }
   
-  tooltip.html(`${day} ${monthName} ${year}`)
-	.style('display', 'block')
-	.style('left', ($('#chart').position().left + margin.left + mousePos[0] + 10) + "px")
-	.style('top', ($('#chart').position().top + margin.top +  mousePos[1] - 10) + "px")
-	.selectAll()
-	.data(performance.slice(0,2)).enter()
-	.append('div')
-	.style('color', d => color(d.name))
-	.html(d => d.name.replace("SPXTR", "S&P 500").replace("PORTFOLIO", "Portfolio") + ': ' + Math.round(d.value) + '%');
 	
 }
 
