@@ -198,7 +198,7 @@
 	@media only screen and (min-width:999px) and (max-width: 1660px) {
 		.company_thin{
 		font-family: 'Quicksand', sans-serif;
-		font-size:40px;
+		font-size:50px;
 		line-height:120%;
 		font-weight:300;
 		}
@@ -616,6 +616,48 @@
 					margin-left: auto;
 				}
 			}	
+
+.black_heading_3{
+	font-size: 70px;
+	font-weight:300;
+	line-height: 100%;
+}
+
+	@media only screen and (min-width:999px) and (max-width: 1660px) {
+		.black_heading_3{
+			font-size: 50px;
+			font-weight:300;
+			line-height: 100%;
+		}
+	}
+
+		@media only screen and (min-width:751px) and (max-width: 999px) {
+			.black_heading_3{
+				font-size: 30px;
+				font-weight:300;
+				line-height: 100%;
+			}
+		}
+		
+			@media only screen and (min-width:1px) and (max-width: 751px) {
+				.black_heading_3{
+					font-size: 30px;
+					font-weight:300;
+					line-height: 100%;
+				}
+			}
+
+.div-center{
+}
+
+@media only screen and (min-width:1px) and (max-width: 751px) {
+.div-center{
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	}
+}
+					
 
 #black_heading_2{
 	font-size: 70px;
