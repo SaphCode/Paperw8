@@ -39,11 +39,11 @@
 			<div class="col d-flex align-items-end">
 				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 					<div class="navbar-nav">
-						<a class="text-light name-navbar-thin nav-link {% if active == 'blog' %} active {% endif %}" {% if active == 'blog' %} aria-current="page" {% endif %} href="{{ url_for('blog.blog', group_by='all', sort_by='date_desc', page=1) }}">Blog</a>
-						<a class="text-light name-navbar-thin nav-link {% if active == 'user' %} active {% endif %}" {% if active == 'user' %} aria-current="page" {% endif %} href="{{ url_for('user.profile', username='janik') }}">Janik</a>
-						<a class="text-light name-navbar-thin nav-link {% if active == 'user' %} active {% endif %}" {% if active == 'user' %} aria-current="page" {% endif %} href="{{ url_for('user.profile', username='chris') }}">Chris</a>
-						<a class="text-light name-navbar-thin nav-link {% if active == 'contact' %} active {% endif %}" {% if active == 'contact' %} aria-current="page" {% endif %} href="{{ url_for('contact.contact') }}">Contact</a>
-						<a class="text-light name-navbar-thin nav-link {% if active == 'disclaimer' %} active {% endif %}" {% if active == 'disclaimer' %} aria-current="page" {% endif %} href="{{ url_for('disclaimer.disclaimer') }}">Disclaimer</a>
+						<a class="text-light navbar-thin nav-link {% if active == 'blog' %} active {% endif %}" {% if active == 'blog' %} aria-current="page" {% endif %} href="{{ url_for('blog.blog', group_by='all', sort_by='date_desc', page=1) }}">Blog</a>
+						<a class="text-light navbar-thin nav-link {% if active == 'user' %} active {% endif %}" {% if active == 'user' %} aria-current="page" {% endif %} href="{{ url_for('user.profile', username='janik') }}">Janik</a>
+						<a class="text-light navbar-thin nav-link {% if active == 'user' %} active {% endif %}" {% if active == 'user' %} aria-current="page" {% endif %} href="{{ url_for('user.profile', username='chris') }}">Chris</a>
+						<a class="text-light navbar-thin nav-link {% if active == 'contact' %} active {% endif %}" {% if active == 'contact' %} aria-current="page" {% endif %} href="{{ url_for('contact.contact') }}">Contact</a>
+						<a class="text-light navbar-thin nav-link {% if active == 'disclaimer' %} active {% endif %}" {% if active == 'disclaimer' %} aria-current="page" {% endif %} href="{{ url_for('disclaimer.disclaimer') }}">Disclaimer</a>
 					</div>
 				</div>
 			</div>

@@ -272,6 +272,61 @@
 			}
 		}
 
+.table-text-thin{
+	font-family: 'Quicksand', sans-serif;
+	font-size:25px;
+	line-height:120%;
+	font-weight:300;
+}
+
+	@media only screen and (min-width:768px) and (max-width: 1660px) {
+		.table-text-thin{
+		font-family: 'Quicksand', sans-serif;
+		font-size:20px;
+		line-height:120%;
+		font-weight:300;
+		}
+	}
+
+		@media only screen and (min-width:1px) and (max-width: 450px) {
+			.table-text-thin{
+			font-family: 'Quicksand', sans-serif;
+			font-size:10px;
+			line-height:120%;
+			font-weight:300;
+			}
+		}
+		
+.table-text-fat{
+	font-family: 'Quicksand', sans-serif;
+	font-size:25px;
+	line-height:120%;
+	font-weight:600;
+}
+
+	@media only screen and (min-width:768px) and (max-width: 1660px) {
+		.table-text-fat{
+		font-family: 'Quicksand', sans-serif;
+		font-size:20px;
+		line-height:120%;
+		font-weight:600;
+		}
+	}
+
+		@media only screen and (min-width:1px) and (max-width: 450px) {
+			.table-text-fat{
+			font-family: 'Quicksand', sans-serif;
+			font-size:10px;
+			line-height:120%;
+			font-weight:600;
+			}
+		}
+
+
+
+
+
+
 .name-navbar-fat{
 	font-family: 'Quicksand', sans-serif;
 	font-size:20px;
@@ -282,6 +337,13 @@
 .name-navbar-thin{
 	font-family: 'Quicksand', sans-serif;
 	font-size:20px;
+	line-height:120%;
+	font-weight:300;
+}
+
+.navbar-thin{
+	font-family: 'Quicksand', sans-serif;
+	font-size:15px;
 	line-height:120%;
 	font-weight:300;
 }
