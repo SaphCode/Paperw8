@@ -23,6 +23,8 @@
 		<div class="col-md-2">
 		</div>
 		<!--- profile picture --->
+		<div class="col-md-auto d-block d-md-none d-xl-none d-xxl-none" style="height:2em;">
+		</div>
 		<div class="col-md-5 pt-2 d-flex align-items-end">
 			<div class="imageInn d-flex align-items-end">
 				<img src="{{ url_for('static', filename='images/profile/' + user['username'] + '/pb.png') }}" width="100%" height="auto" alt="Founder of Beri Partners">
@@ -36,7 +38,7 @@
 				<span style="color: grey;">Hi, I'm </span>
 				<span style="color: black;">{{ user['username'].capitalize() }}, </span><br>
 				<span style="color: grey;">founder of </span><br>
-				<span style="color: black;">Beri Partners.</span>
+				<span style="color: black;">Paperweight.</span>
 			</div>
 		</div>
 		<!--- profile text --->
@@ -52,12 +54,14 @@
 				<span style="color: grey;">Hi, I'm </span>
 				<span style="color: black;">{{ user['username'].capitalize() }}, </span><br>
 				<span style="color: grey;">founder of </span><br>
-				<span style="color: black;">Beri Partners.</span>
+				<span style="color: black;">Paperweight.</span>
 			</div>
 		</div>
 		<!--- profile text --->
 	
 		<!--- profile picture --->
+		<div class="col-md-auto d-block d-md-none d-xl-none d-xxl-none" style="height:2em;">
+		</div>
 		<div class="col-md-5 pt-2 d-flex align-items-end">
 			<div class="imageInn d-flex align-items-end">
 				<img src="{{ url_for('static', filename='images/profile/' + user['username'] + '/pb.png') }}" width="100%" height="auto" alt="Founder of Beri Partners">
