@@ -1,5 +1,5 @@
-# GrassbergerPartners
- Website to track the success of Grassberger Partners.
+# Paperw8
+ Website to track the success of Paperweight.
 
 # How to install
 - Make sure you have the latest Python installation.
@@ -8,7 +8,7 @@
 - Run "pip install -e ." (e stands for editable, is for development only!)
 - Set environment variable: "set FLASK_APP=paperw8/wsgi.py:app" (windows)
 - Set environment variable: "set FLASK_ENV=development" if developing
-- Set environment variable: "set GBPARTNERS_SETTINGS=settings.cfg" and create such a file in the instance folder
+- Set environment variable: "set PAPERW8_SETTINGS=settings.cfg" and create such a file in the instance folder
 - Initialize the db: "flask init-db"
 - Create an admin account: "flask create-user admin password" (password in quotes is important)
 - Run the website on localhost by doing: "flask run"
