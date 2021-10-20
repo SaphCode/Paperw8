@@ -106,14 +106,15 @@ function calculateMoneyNow(amount, startYear, endYear) {
 						<td class="text-center table-text-thin">{{ "{:.0f}".format(t[1]) }}%{% if outer_loop.last %}*{% endif %}</td>
 						{% endfor %}
 						<td class="text-center table-text-thin" id="{{ 'cumulative_return_' + year }}"></td>
-						{% if loop.last %}
-						<td class="table-text-thin text-center">*preliminary</td>
-						{%endif%}
+						
 					</tr>
 					
 					{% endfor %}
 				 </tbody>
 			</table>
+			<div class="d-flex justify-content-end">
+				<span class="table-text-thin text-center" style="color: white;">*preliminary</span>
+			</div>	
 		</div>
 	</div>
 </div>
