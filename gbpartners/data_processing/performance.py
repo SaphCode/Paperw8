@@ -11,8 +11,10 @@ from itertools import tee
 
 bp = Blueprint('performance', __name__)
 
+
 def percent(number):
     return number/100
+
 
 def unnest(d, keys=[]):
     result = []
@@ -22,6 +24,7 @@ def unnest(d, keys=[]):
         else:
             result.append(tuple(keys + [k, v]))
     return result
+
 
 @bp.route('/')
 def index():
