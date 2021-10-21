@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-									
+
 {% block title %}
 {{ post['title'] }}
 {% endblock %}
@@ -11,9 +11,9 @@
 {% endwith %}
 
 <div class="container-fluid p-0 bg-light">
-		<a href="{{ url_for('blog.blog', group_by='all', sort_by='date_desc', page=1) }}">
-			<img src="{{url_for('static', filename='images/paperweight_banner.png')}}" class="img-fluid"></img>
-		</a>
+	<a href="{{ url_for('blog.blog', group_by='all', sort_by='date_desc', page=1) }}">
+		<img src="{{url_for('static', filename='images/paperweight_banner.png')}}" class="img-fluid"></img>
+	</a>
 </div>
 
 <div class="container post p-0 bg-light">
@@ -31,21 +31,31 @@
 		</div>
 		{% endif %}
 	</div>
+</div>
 
+<div class="container-fluid post p-0 bg-light">
 	<div class="row d-flex justify-content-center">
-		<div class="border rounded shadow bg-white col-md-7 ms-5 mb-5 me-5 ps-5 pe-5">
 
-			<div class="pt-6 post_title text-center">
-				<span style="color:black">{{ post['title'] }}</span><span style="color:gray"> - {{ post['ticker'] }}</span>
+		<div class="border rounded shadow bg-white col-md-7 ms-5 mb-5 me-5">
+			<div class="d-flex justify-content-center pt-6">
+				<div class="col-md-10 d-flex justify-content-center">
+					<div class="post_title">
+						<span style="color:black">{{ post['title'] }}</span><span style="color:gray"> - {{ post['ticker'] }}</span>
+					</div>
+				</div>
 			</div>
 
-			<div class="post_info pt-2 pb-5 text-center">
-				<div>Written by <a href="{{ url_for('user.profile', username=post['username']) }}" class="text-decoration-none" style="color:#e03444">{{ post['display_name'] }}</a> on {{ post['created'].strftime('%Y-%m-%d') }}.</div>
-				{% if post['created'].strftime('%Y-%m-%d') != post['last_edit'].strftime('%Y-%m-%d') %}<div>Last edit on {{ post['last_edit'].strftime('%Y-%m-%d') }}.</div>{% endif %}
+			<div class="post_info d-flex align-items-center justify-content-center">
+				<div class="col-md-auto pt-2 pb-5">
+					<div>Written by <a href="{{ url_for('user.profile', username=post['username']) }}" class="text-decoration-none" style="color:#e03444">{{ post['display_name'] }}</a> on {{ post['created'].strftime('%Y-%m-%d') }}.</div>
+					{% if post['created'].strftime('%Y-%m-%d') != post['last_edit'].strftime('%Y-%m-%d') %}<div>Last edit on {{ post['last_edit'].strftime('%Y-%m-%d') }}.</div>{% endif %}
+				</div>
 			</div>
 
-			<div class="m-3 text-center">
-				<img class="img-fluid" src="{{url_for('static', filename='images/' + post['title_img_parent_dir'] + '/' + post['title_img'])}}"></img>
+			<div class="post_pic d-flex align-items-center justify-content-center m-3">
+				<div class="col-md-8">
+					<img src="{{url_for('static', filename='images/' + post['title_img_parent_dir'] + '/' + post['title_img'])}}" style="width:100%;"></img>
+				</div>
 			</div>
 
 			<!--<div class="row d-flex justify-content-center pt-5">
@@ -53,17 +63,17 @@
 					<a href="{{ url_for('blog.download_post', title=post['title'], filename=post['pdf_file']) }}" type="button" class="btn btn-outline-dark">Download</a>
 				</div>
 			</div>-->
-			
+
 			{% if post['category'] == 'business' or post['category'] == 'valuation' %}
-			<div class="disclaimer row d-flex justify-content-center">
+			<div class="disclaimer d-flex justify-content-center">
 				<div class="border rounded-2 border-danger border-4 shadow-sm col-md-8 mt-5">
 					<div class="d-flex justify-content-center important-notice pt-3 ps-3 pe-3">
 						Important&nbsp;notice
 					</div>
 					<div class="disclaimer_text p-3">
 						The Content is for informational purposes only, you should not construe any such information or other material as legal, tax, investment, financial,
-						or other advice. Nothing contained on our Site constitutes a solicitation, recommendation, endorsement, or offer by SGI or any third party service 
-						provider to buy or sell any securities or other financial instruments in this or in in any other jurisdiction in which such solicitation or offer 
+						or other advice. Nothing contained on our Site constitutes a solicitation, recommendation, endorsement, or offer by SGI or any third party service
+						provider to buy or sell any securities or other financial instruments in this or in in any other jurisdiction in which such solicitation or offer
 						would be unlawful under the securities laws of such jurisdiction.
 						<br><br>
 						<a href="{{ url_for('disclaimer.disclaimer') }}" class="text-decoration-none" style="color:#e03444">
@@ -76,7 +86,7 @@
 
 			<div class="row post_pic d-flex align-items-center justify-content-center pt-5">
 				<div id="html_text" class="col-md-10 post-content-flow pb-5">
-					
+
 				</div>
 			</div>
 
@@ -99,7 +109,7 @@
 							<div>Written by {{ related_post['display_name'] }} on {{ related_post['created'].strftime('%Y-%m-%d') }}</div>
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-6 d-block d-md-none d-xl-none d-xxl-block">
 						<img src="{{url_for('static', filename='images/' + related_post['title_img_parent_dir'] + '/' + related_post['title_img'])}}" style="width:100%;"></img>
 					</div>
 				</div>

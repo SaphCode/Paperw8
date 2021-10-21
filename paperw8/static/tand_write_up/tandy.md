@@ -1,0 +1,274 @@
+# Tandy Leather - A business worth buying?
+
+## Introduction
+
+It&#39;s truly rare to find 1$ of value for 50c in today&#39;s market. Even more so when the underlying business can consistently earn 15% on every dollar invested, being protected by virtue of operating in a niche market. We believe Tandy Leather Factory is such an opportunity, and we are buyers at the prevailing prices.
+
+## Shameless Plug
+
+If you are a visual learner or simply want to listen to something while you're driving in your car you might prefer to watch the video we made and posted on YouTube instead of reading this report. Here's the link should you be interested:
+
+https://youtu.be/I0TCs1yw_ZA
+
+Ok, grab yourself some coffee and let's get started.
+
+## Business History
+
+To understand the current situation, we have to dig into the history of the business a bit.
+
+Tandy Leather Factory is actually a combination of 2 very similar businesses: The Leather Factory &amp; Tandy Leather. As Tandy Leather came first, we start with that.
+
+### Tandycrafts
+
+![Dave Tandy](images/tandy/dave_tandy.jpg)
+*Dave Tandy founded Tandy Leather.*
+
+The Tandy Leather company was founded in 1919 by Dave Tandy. It started as a small leather supplier for shoe repair dealers. The business almost had to be shut down during WWII due to leather rationing. Sensing an opportunity for growth in the leathercraft market, Charles Tandy, son of Dave Tandy, reoriented the business away from mail-order leather supplies towards retail leathercrafting. In the army, he had seen many examples of men being taught knitting and needlework as part of recuperative therapy. He felt they would prefer leathercrafting, and he was right. We can get a look at the spirit of the company back then by listening to this father-son founder pair.
+
+&quot;During my younger days, leather tooling was a secret&quot; Tandy said, sitting at his desk on the second floor of his downtown store. &quot;It was a closed industry, with the secrets of tooling passed on from father to son and jealously guarded.&quot; &quot;But now,&quot; he said, pointing to the stacks of leathercraft kits and the dozens of people working in the large room, &quot;anybody can learn to tool leather.&quot; &quot;We teach them ourselves. I even write the instruction booklets.&quot;
+
+The company has $200,000 invested in movies concerning leathercraft which are shown at schools and to public gatherings. &quot;This is primarily a business of education,&quot; Dave Tandy said. &quot;We must teach people leathercrafts, thereby making them interested in doing it.&quot;
+
+![Charles Tandy](images/tandy/charles_tandy.jpg)
+*Charles Tandy, son of Dave Tandy, reoriented the business towards retail leathercrafting.*
+
+So part of what we might call a moat seems to come from the unique way that Tandy has approached customer acquisition: getting people interested by educating them, which needs educated people. In other words: to run the business, you need people who know leathercrafting, of which there are not many, as it&#39;s a niche.
+
+Tandy Leather opened new stores and acquired handicraft companies until it had about 125 stores. The company then bought RadioShack, a distressed spare parts retailer that was frequented by hobbyists. Charles Tandy turned a $4 million loss into a $4 million profit by eliminating unnecessary products and refocusing the business. Tandy was now a large conglomerate called Tandy Corp, and it kept expanding. In 1978, Charles Tandy unexpectedly died from a heart attack at age 60 and management of Tandy was now in the hands of RadioShack.
+
+Since we are only interested in the Leathercraft business, we ignore all the others and we stumble upon a management decision that is at best, questionable. Maybe it illustrates the fervor of the market at the time.
+
+In 1999, Tandy Leather had about 120 retail stores, bringing in about 45$ Million in revenue, or about 375,000$ in revenue per store. In the tech-craze climate of the time, the management shut the doors on all of its retail stores to focus on Internet, catalog and mail order sales: revenues dropped from $45 million to $7 in one year - its last year.
+
+### The Leather Factory
+
+Wray Thompson was promoted to President of Tandy Leather Company in 1976 and Dave Ferrill was promoted to the position of National Sales Manager; they oversaw 288 stores. Ron Morgan was promoted to the Eastern Divisional VP in 1977. Although they opened their 300th store that year, the popularity of Nature-Tand&#39;s products had begun to slide as reflected by their sales and profit records. When Charles Tandy died and shareholders started second guessing management, Wray Thompson resigned from his position as President. 
+
+Wray Thompson&#39;s future in the leathercraft industry was uncertain, however Ron Morgan paid Wray Thompson a visit and the two colleagues began to brainstorm; before the evening was over, they had developed an informal plan for a shared new enterprise in the leathercraft industry.
+
+They knew the industry well and knew they would be successful if they went out on their own, Morgan said, because the new leadership at Tandy simply &quot;didn&#39;t know leather or the direction they wanted to take the company.&quot;
+
+Each invested $7,000 and they formed The Leather Factory.
+
+In 1980 the Midas Leathercraft Tool Company was founded by, quelle surprise, Wray Thompson. Midas&#39; original business activity focused on the distribution of certain leathercraft tools.
+
+In addition, the founders of Midas entered into a consulting agreement with Brown Group, Inc., a major footwear retailer, as a result of their proposal to develop a multi-location chain of wholesale distribution centers known as &quot;The Leather Factory.&quot; In 1985, Midas purchased the assets of The Leather Factory from Brown Shoe Group, which then consisted of six distribution centers. In 1993, Midas changed its name to &quot;The Leather Factory, Inc.&quot;
+
+By 2000, TLF had grown to twenty-seven Leather Factory centers located in the United States and two Leather Factory centers in Canada. Their expansion of the wholesale chain occurred via the opening of new centers as well as numerous acquisitions of small businesses in strategic geographic locations including the acquisition of their Canadian distributor, The Leather Factory of Canada, Ltd.
+
+In the year 2000, The Leather Factory took over Tandy, primarily eyeing its brand.
+
+## The economics
+
+We&#39;ll split this into 3 easy-to-digest parts. These 3 parts illustrate different aspects of the business and will also tell us the ideal way to run the business.
+
+### Good artists copy, great artists steal (2001-2006: Wray Thompson, 2007: Ronald Morgan)
+
+When The Leather Factory bought Tandy Leather Company, it was with the sole intention of getting their brand name. It was the most recognized leather crafting brand in all of the US, and customers must have been disappointed when their hobby stores disappeared virtually overnight.
+
+Wray Thompson and Ron Morgan had been waiting to buy Tandy for quite some time. They made multiple offers but were always rejected, in part because there was always the issue of doing business with &quot;traitors&quot;. Let&#39;s listen to their own words:
+
+When Tandycrafts, the parent to Tandy Leather, hit a difficult financial period and began selling off individual companies (Tandy Leather, Cargo Furniture) in the late 1990&#39;s, Thompson and Morgan saw their opportunity to acquire Tandy Leather. &quot;It was just a matter of time before it went up for sale anyway,&quot; Thompson said.
+
+What followed was the expansion of the Tandy retail store at a rate of about 12 stores/year. Let&#39;s look at the economics of a Tandy store back then. A typical Tandy brings in about 340,000$ sales /year. Purchasing goods &amp; stocking the stores costs about 135,000$/year. Management, advertising, sales &amp; delivery to the customer cost about 175,000$/year. That leaves about 30,000$/year in operating profit, or about 22,000$ after tax.
+
+We cannot, however, determine a ROIC number for the retail stores without factoring in the larger Leather Factory stores that are used to supply the retail stores. They basically act like warehouses, making the invested capital of a retail store higher than we would initially think. We opt here to report the ROIC of the business instead, which was 20%, pre-tax.
+
+### The Son takes over (2009-2016: Jon Thompson, 2017-2018: Shannon Greene)
+
+Since the business generated huge cash flows, cash quickly piled up. In 2005, TLF had a cash balance of $3 Million, while in 2008, they already had $8 Million, even though they used their capital for the expansion of retail stores during this time.
+
+When Jon Thompson took over in 2009, he was thus sitting on a lot of cash. There are 4 primary ways to allocate capital in this market:
+
+- Expand retail stores
+- Buy back shares
+- Pay dividends
+- Make retail stores larger
+
+Jon Thompson did not expand the retail store base significantly, only adding 9 stores during his 7 year time as CEO, which is a meager 1.3 stores per year. One reason he cited in the annuals was the lack of store managers. They need to be trained in one location, but then have to move to another. The compensation at the time was too small to warrant such a move for many people. But this does not seem quite right when considering the earlier years, where we expanded at a rate of about 10 stores per year. Since they did not have a single store in many U.S. states, a lack of suitable locations was likely also not the problem. In conclusion, they were not very transparent about the slowing expansion of the retail stores.
+
+Management did buy back shares, but historically they always wanted to buy back more than they could. Tandy has a small shareholder base of about 300, with a low average daily trading volume. It is simply hard to buy back a significant number of shares.
+
+He did choose to pay out special dividends in 3 years, which aggregated to about $12.5 Million.
+
+The rest of the capital was deployed by increasing retail store space. When first hearing this, it sounds like a trap, exchanging sales for capital employed. But it turns out that the pre-tax ROIC of the business has actually stagnated at about 20%, when looking at an average across 2009-2016. But taking a closer look reveals that the strategy worked well early on, but its usefulness was at best questionable later.
+
+![Jon Thompson strategy](images/tandy/jon_thompson_strategy.PNG)
+*The increase in assets/store (blue) was effective only in the beginning, as we see by increases above the 2 green lines.*
+
+Taking 2009 as a starting point, the first 3 years an increase in retail space was an effective strategy to deploy capital. However, from then on incremental capital had little effect. What might have happened is that the locations with highest demand were chosen first, and thus the returns got smaller every time. Existing locations might have, by virtue of being larger, attracted customers away from smaller stores. This explains the decline in ROIC from high levels of 24% in 2013 to (17% 2016) 10% in 2017 (9% in 2018).
+
+We can thus conclude that for some stores, the expansion of the retail space made a lot of sense and improved the return on invested capital, but beyond a certain point it was eating up the owner&#39;s share.
+
+Before we go to the last section of understanding the business, we note that there were 2 more problems during the later years of this timeframe.
+
+- The 1st one was slowly increasing operating expenses of The Leather Factory stores along with slowly declining sales. We presume this was because we slowly lost wholesale customers (a fact) due to them feeling they were being ripped off (from an earnings call with Janet Carr later) and were spending more on advertising to keep them. (but I think she also said people are still coming, but the average ticket is increasing, so same amount of customers but lower sales) todo
+
+- The 2nd problem was a new item in the risk section.
+
+
+### Total disaster strikes
+
+A perceptive investor might have noticed a storm brewing. When diligently reading the risk section of Tandy&#39;s annual reports everything appears to be standard up until the year 2017. In the 2017 annual report, at the very bottom of the risk section a new item appeared.
+
+![risk section](images/tandy/risk_section.PNG)
+*The new item in the risk section describes accounting systems. It was the 3rd last from the bottom.*
+
+In August of 2019 the news broke. Tandy would not be able to timely file it&#39;s most recent report due to accounting issues.
+
+A storm broke out. The stock price plummets. Shareholders lose confidence. Even though Tandy didn&#39;t file full reports for the next quarters they did publish sales numbers. Due to the management trying to increase inventory turnover by keeping less inventory they soon had a problem of not being able to provide enough products to their customers and revenue responded accordingly. At this point we are back to 2012 levels in terms of sales. The company lost almost $2 million that year. Due to Tandy not filing and becoming dark, the NASDAQ stock exchange suspended trading in the company&#39;s stock after several warnings on August 13, 2020. It is now trading on the OTC exchange.
+
+Has management lost its touch and is taking down Tandy with them?
+
+According to Sherlock Holmes in &quot;A study in scarlet&quot;: &quot;It is a capital mistake to theorize before you have all the evidence.&quot; As an investor we should weigh risk vs payoff, thus let us take a look at the evidence. As of now the reports from 2017 to 2019 have been restated.
+
+*Update: Tandy has only 1 quarter left to file. Quarterlies look good, but it remains to be seen what the run-rate of expenses & sales will be.*
+
+## The restatement
+
+Fundamentally, it was an inventory issue, and they found a lot more minor stuff wrong with accounting.
+
+![restatement items](images/tandy/restatement_items.PNG)
+*Investors found out it was a lot of small stuff later. But there were definitely quite some issues, and rumors of legacy accounting systems. This seems likely to us, since Tandy booked expenses for new software, but then from some year onward wrote the whole software asset off. Soon after they restated.*
+
+In 2016 the net earnings were overstated by roughly $2mio, however, in 2017 the bottom line was understated by about $2.4mio. In essence these two adjustments cancel out each other. Inventory was understated by $300,000 in 2016 and overstated by $3.1mio in 2017. However, a large part of this adjustment is due to management falsely accounting for warehousing and handling expenditures to inventory which actually should be reflected in operating expenses. The old, slow-moving inventory which had been sitting around forever had to be depreciated to realizable value, hence the adjustments to inventory.
+
+The equity of the company was reduced by $1.2mio and $3.6mio for the years 2016 and 2017 respectively.
+
+The operating cash flow of the business remained rather untouched, only being corrected from $2.1mio to $2.4mio in 2016 and from $7.4mio to $7.8mio in 2017.
+
+![restatement_summary](images/tandy/restatement_summary.png)
+*The restatement summary.*
+
+Lamentably, at this point in time we don&#39;t have access to the full report of the year 2019. Judging by the quarterly reports the changes appear to be minor again. For the Three Months Ended March 31, 2019 the operating expenses were decreased by $1.3mio leading to an increased net profit of $650,000.
+
+*Update: Annual out.*
+
+## The current state of the business
+
+Janet Carr took over a nationally known brand which began to show problems. Wholesale customers were not buying as much from Tandy because they felt they were getting ripped off. She adjusted the prices for wholesale customers, which made sales decline. Adding to this shock, she also experimented with lower inventory levels, to increase inventory and therefore ROIC, which was not very effective and also made its impact on that year.
+
+She did however address 3 very important problems:
+
+- The declining wholesale customers are now served by a special sales force that is in direct contact with the customer and has flexible pricing based on quantity. They ditched the old, 5 tier wholesale membership club.
+- This should also save operating expenses, since they still used mail-advertising, which was only proving marginally effective.
+- The ROIC should now go up, since she is closing underperforming stores and focusing not on sales, like the previous management, but on, as they call it, 4-wall cash flow. They are closing stores where they think they will keep a lot of customers, and it seems to have worked thus far. Leaving out 2020 as a comparison, sales in q2 2021 have gone up by 8%, despite operating 11 fewer stores, which represents 10% of their 2019 store base.
+
+We cannot at this time conclusively evaluate management. We are simply lacking the financials, and also the time horizon. What can be said however, is that so far the strategy makes sense and does work. In addition, Jefferson Gramm, a value investor that oversees the Bandera Partners fund, has bought into Tandy, and owns ⅓ of the outstanding shares. He seems to be in close cooperation with Janet Carr.
+
+## Valuation
+
+We want to split the valuation into 4 main parts.
+
+- The business dies because of unforeseeable circumstances
+
+- What if things go south?
+- What if the business stays as it is?
+- What if things go north?
+
+We will assign subjective probabilities to these outcomes. The actual valuation will depend a lot on your beliefs and confidence in the company.
+
+### What if things go south?
+
+Why might the business die? There are some reasons that come to mind:
+
+We cannot finish the restatement because of more deep issues. We cannot get the listing requirements for the nasdaq and never get relisted. Our customers shop at international wholesale. We lose our brand moat. Amazon steals our leather business. Lawsuits about the restatement cost the last of our balance sheet.
+
+Doing a liquidation analysis with the current balance sheet we get a liquidation value of about $7 million, however, even this might disappear in the most adverse of circumstances. This case will value the business at $0.
+
+### What if the business stays the same?
+
+We are well aware that looking at the economics of a business is like looking out of the back window of a car. It lies upon the investor to determine whether the road ahead will look somewhat like the road behind. Therefore, it is necessary to understand the business. As we have stated before, in our opinion, Tandy has multiple moats protecting its margins as they are the largest niche retailer of leather goods in the US. Being the largest retailer enables Tandy to purchase its goods at prices not available to competitors. Furthermore, the company that Dave Tandy founded in 1919 100 years later has become the best known company in the leather crafting industry making the name &quot;Tandy&quot; a brand. Knowledge also plays a huge role when talking about durable competitive advantages. A new customer that wants to start leather crafting, but does not know how, will get excellent support from Tandy&#39;s store managers who in return are inclined to help customers as best as they can for they get paid a percentage of their store&#39;s cash flow. In our opinion, Tandy&#39;s pricing power, brand name and fleet of store managers is what makes Tandy well equipped for bumps on the road ahead.
+
+The current sales level $80 million 2021 estimated, along with a gross margin of 56% (historically, 60%) brings us to gross profits of $42 million.
+
+Adjusted operating expenses were 44.7 Million for 2018, and 42 Million for 2019. It is hard to deduce something from the covid year, but there we had $37.2 million. Since 2019 we permanently closed 9 stores, which is a lot more than the 2 store closures from 2018 to 2019. Let us say we have $39 million in operating expenses at the current store base of 106 stores. We project sales of $80 million for 2021, along with a gross margin of 56% we get to a gross profit of $45 Million. Operating expenses of $39 million give us an operating profit of $6 million. This is quite an improvement in the 3 years that Janet Carr has taken over. What we still like to see and will watch out for is an improvement in gross margin. An improvement to historical levels would give us operating profits of $9 million. Do note that we’re ignoring the restatement costs here.
+
+Let us say the business improves from the $6 million in operating profit to $7 million. Such improvements might come from an increase in sales from wholesale, due to the new strategy, increase in gross margin from a historic low of 56% to average levels of 60%, but also from some decreases in operating expenses, although we don’t think we can save a lot more there. The take-away is that we have a lot of room for improvement here, but we think $7 million is conservative, since the business was producing an average of $9.3 million in operating profit from 2011-2018. The last 2 years were dragged down by operating expenses that crept up without corresponding increases in sales. In late 2018 we saw Janet Carr take over, and from 2019 on we have the restatement & transition costs, so we leave those years out, since they do not reflect normal conditions.
+
+Simply doing a 15-cap gives us about $75 million in business value in this case.
+
+*Interest rates at the time of writing were below 2%. Valuation is an inexact science. A 15 P/E looked reasonable to us at the time of writing.*
+
+### What if it goes north?
+
+We can&#39;t quite say the sky&#39;s the limit, but we do have a lot of expansion capabilities. We do not want to speculate too much, but Tandy did have, mostly unprofitable, international subsidiaries. Perhaps these stores could become profitable with similar margins as the ones in the US, if the company manages to roll out the same strategy that has been proven to work regionally. Nonetheless, let us not factor in any international business success as this would be pure speculation, and instead focus on the US alone.
+
+From the history of the business we can see that there is space for about 120 stores total. Wray Thompson was quite sure that he could successfully open 100-120 retail stores in addition to the 30 warehouse stores he operated. According to him, that would then be 130-150 stores total.
+
+Let&#39;s take the $7 million in operating profit that seem very plausible, and look back to a range of comparable sales levels, where we had operating income of $10-12 million. Assume that $9 million of owner earnings is a very reasonable number, which reflects the lower price levels and higher store manager pay. todo Considering that a store adds about $60,000 in operating profit, and at the current store base of 75 retail stores, we can add 20 more stores, since with the 25 warehouse stores, we arrive at 120 stores total. That adds $1.2 million to the operating profit. This might happen over 10 years, so that we will have $10.2 million operating income by 2031. Slapping a 15x multiple on the taxed income gives us a value of about $110 million.
+
+Getting back to $10-$12 million in operating profit is of course possible, as are better gross margins due to larger amounts of goods purchased. But we leave that as an additional kicker to the thesis.
+
+### Value
+
+|              | Business dies       | Stays the same         | Tandy go BRRRR            |                            |
+| :----------- | ------------------- | ---------------------- | ------------------------- | -------------------------- |
+| Probability  | 5%                  | 70%                    | 25%                       |                            |
+| Value        | $                 - | $           75,000,000 | $           110,000,000   | **Intrinsic Value**        |
+| Contribution | $                 - | $           52,500,000 | $              27,500,000 | **$           80,000,000** |
+
+**If interest rates change, our estimates for value will do too. You do your own valuation. We are not responsible for any losses you make. Do your own research, we are not your financial advisors. Again, this report is for entertainment purposes only and not meant to be taken as investment advice. You are on your own here.**
+
+## Catalysts
+
+**Restatement**
+
+**Earnings normalize**
+
+**Store openings**
+
+**Value**
+
+## Invert, always invert (Jacobi)
+
+**Amazon kills the business**
+
+- You don&#39;t go to amazon with plans to craft a wallet. You want the expertise of our store managers.
+
+**Another wholesaler kills our business**
+
+- Ivan Leathercraft comes to mind. Has been a supplier, but no new info. Tandy&#39;s brand name partially protects us against this, but it remains a risk.
+- To this day Tandy does not have a big competitor that could materially harm the business. We believe this is due to Tandy&#39;s brand moat. There is, however, one company that focuses on wholesale, but also supplies retail - Ivan Leathercraft, who, at least in the past, was a supplier of Tandy. If rubber meets the road we believe Tandy would come out on top thanks to our brand which is more than likely why Ivan is blatantly copying our online shop. Or we might have copied theirs, with which we would be ok.
+
+**Leathercrafting will not be interesting anymore**
+
+- The business has a 100 year history, Charles and Dave Tandy have stated that it is all about educating the customer. As long as Tandy does not lose their knowledgeable employees, there will be demand for a niche hobby.
+
+**The restatement never happens**
+
+- Bandera Partners 33% owner, value investor. Janet Carr 7.5% ownership. Insiders are incentivized to relist.
+
+**CO2 tax makes hides a lot more expensive, lowering the demand for leathercrafting**
+
+- This will most likely take some time, especially in the US. We are all about CO2 tax, but demand will likely take a hit. We have to reevaluate the business once a CO2 tax is on the horizon.
+
+**New management is too experimental and takes too many wrong turns**
+
+- We have to reevaluate the business when there&#39;s more info, but so far we are on board with Janet Carr&#39;s decisions.
+
+## Final words
+
+I sincerely want to thank you for making it this far and actually reading the whole report. We put a lot of time and effort into it without knowing if it would be helpful to anyone else.  If you found some value in this article, **please** let us know so we are motivated to make more of these reports. If you think reading this post was a complete waste of time and you hope we quit investing as a whole, we are even more interested in your opinion.
+
+
+
+How to reach us:
+
+You can either comment on our YouTube video:
+
+https://youtu.be/I0TCs1yw_ZA
+
+
+
+Or shoot us an email at:
+
+stanek@paperw8.at
+
+
+
+Thanks,
+
+
+
+*Chris & Janik*
