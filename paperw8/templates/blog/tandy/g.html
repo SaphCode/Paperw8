@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-									
+
 {% block title %}
 {{ post['title'] }}
 {% endblock %}
@@ -15,9 +15,9 @@
 <img class="img-fluid" src="{{url_for('static', filename='images/paperweight_banner.png')}}"/>
 </a>
 </div>
-<div class="container-fluid post p-0 bg-light">
-<div class="d-flex justify-content-center pt-3 pb-3">
-<div class="p-0 col-md-7">
+<div class="container post bg-light">
+<div class="row d-flex justify-content-center pt-3 pb-3">
+<div class="col-md-7">
 <a class="btn btn-outline-dark" href="{{ url_for('blog.blog', group_by='all', sort_by='date_desc', page=1) }}" type="button">← Blog</a>
 </div>
 		{% if related_posts %}
@@ -30,43 +30,35 @@
 		{% endif %}
 	</div>
 </div>
-<div class="container-fluid post p-0 bg-light">
+<div class="container-fluid post bg-light">
 <div class="row d-flex justify-content-center">
-<div class="border rounded shadow bg-white col-md-7 ms-5 mb-5 me-5">
-<div class="d-flex justify-content-center pt-6">
-<div class="col-md-10 d-flex justify-content-center">
-<div class="post_title">
+<div class="border rounded shadow bg-white col-xxl-7 ms-5 mb-5 me-5">
+<div class="text-center pt-6 post_title">
 <span style="color:black">{{ post['title'] }}</span><span style="color:gray"> - {{ post['ticker'] }}</span>
 </div>
-</div>
-</div>
-<div class="post_info d-flex align-items-center justify-content-center">
-<div class="col-md-auto pt-2 pb-5">
+<div class="post_info text-center pt-2 pb-5">
 <div>Written by <a class="text-decoration-none" href="{{ url_for('user.profile', username=post['username']) }}" style="color:#e03444">{{ post['display_name'] }}</a> on {{ post['created'].strftime('%Y-%m-%d') }}.</div>
-					{% if post['created'].strftime('%Y-%m-%d') != post['last_edit'].strftime('%Y-%m-%d') %}<div>Last edit on {{ post['last_edit'].strftime('%Y-%m-%d') }}.</div>{% endif %}
-				</div>
-</div>
-<div class="post_pic d-flex align-items-center justify-content-center m-3">
-<div class="col-md-8">
-<img src="{{url_for('static', filename='images/' + post['title_img_parent_dir'] + '/' + post['title_img'])}}" style="width:100%;"/>
-</div>
+				{% if post['created'].strftime('%Y-%m-%d') != post['last_edit'].strftime('%Y-%m-%d') %}<div>Last edit on {{ post['last_edit'].strftime('%Y-%m-%d') }}.</div>{% endif %}
+			</div>
+<div class="post_pic text-center m-3">
+<img class="img-fluid" src="{{url_for('static', filename='images/' + post['title_img_parent_dir'] + '/' + post['title_img'])}}"/>
 </div>
 <!--<div class="row d-flex justify-content-center pt-5">
 				<div class="btn-group d-flex justify-content-center" role="group" style="width: 20%;">
 					<a href="{{ url_for('blog.download_post', title=post['title'], filename=post['pdf_file']) }}" type="button" class="btn btn-outline-dark">Download</a>
 				</div>
 			</div>-->
-			
+
 			{% if post['category'] == 'business' or post['category'] == 'valuation' %}
 			<div class="disclaimer d-flex justify-content-center">
 <div class="border rounded-2 border-danger border-4 shadow-sm col-md-8 mt-5">
-<div class="d-flex justify-content-center important-notice pt-3 ps-3 pe-3">
+<div class="text-center important-notice pt-3 ps-3 pe-3">
 						Important notice
 					</div>
 <div class="disclaimer_text p-3">
 						The Content is for informational purposes only, you should not construe any such information or other material as legal, tax, investment, financial,
-						or other advice. Nothing contained on our Site constitutes a solicitation, recommendation, endorsement, or offer by SGI or any third party service 
-						provider to buy or sell any securities or other financial instruments in this or in in any other jurisdiction in which such solicitation or offer 
+						or other advice. Nothing contained on our Site constitutes a solicitation, recommendation, endorsement, or offer by SGI or any third party service
+						provider to buy or sell any securities or other financial instruments in this or in in any other jurisdiction in which such solicitation or offer
 						would be unlawful under the securities laws of such jurisdiction.
 						<br/><br/>
 <a class="text-decoration-none" href="{{ url_for('disclaimer.disclaimer') }}" style="color:#e03444">
@@ -77,7 +69,7 @@
 </div>
 			{% endif %}
 
-			<div class="row post_pic d-flex align-items-center justify-content-center pt-5">
+			<div class="row d-flex justify-content-center pt-5">
 <div class="col-md-10 post-content-flow pb-5" id="html_text">
 <h1 id="tandy-leather---a-business-worth-buying">Tandy Leather - A business worth buying?</h1><h2 id="introduction">Introduction</h2><p>It's truly rare to find 1$ of value for 50c in today's market. Even more so when the underlying business can consistently earn 15% on every dollar invested, being protected by virtue of operating in a niche market. We believe Tandy Leather Factory is such an opportunity, and we are buyers at the prevailing prices.</p><h2 id="shameless-plug">Shameless Plug</h2><p>If you are a visual learner or simply want to listen to something while you're driving in your car you might prefer to watch the video we made and posted on YouTube instead of reading this report. Here's the link should you be interested:</p><p><a class="url blog-link" href="https://youtu.be/I0TCs1yw_ZA" target="_blank">https://youtu.be/I0TCs1yw_ZA</a></p><p>Ok, grab yourself some coffee and let's get started.</p><h2 id="business-history">Business History</h2><p>To understand the current situation, we have to dig into the history of the business a bit.</p><p>Tandy Leather Factory is actually a combination of 2 very similar businesses: The Leather Factory &amp; Tandy Leather. As Tandy Leather came first, we start with that.</p><h3 id="tandycrafts">Tandycrafts</h3><p><figure class="figure"><img alt="Dave Tandy" class="figure-img img-fluid mx-auto d-block" referrerpolicy="no-referrer" src='{{ url_for("static", filename="images/tandy/dave_tandy.jpg") }}'/><figcaption class="figure-caption">Dave Tandy founded Tandy Leather.</figcaption></figure>
 </p><p>The Tandy Leather company was founded in 1919 by Dave Tandy. It started as a small leather supplier for shoe repair dealers. The business almost had to be shut down during WWII due to leather rationing. Sensing an opportunity for growth in the leathercraft market, Charles Tandy, son of Dave Tandy, reoriented the business away from mail-order leather supplies towards retail leathercrafting. In the army, he had seen many examples of men being taught knitting and needlework as part of recuperative therapy. He felt they would prefer leathercrafting, and he was right. We can get a look at the spirit of the company back then by listening to this father-son founder pair.</p><p>"During my younger days, leather tooling was a secret" Tandy said, sitting at his desk on the second floor of his downtown store. "It was a closed industry, with the secrets of tooling passed on from father to son and jealously guarded." "But now," he said, pointing to the stacks of leathercraft kits and the dozens of people working in the large room, "anybody can learn to tool leather." "We teach them ourselves. I even write the instruction booklets."</p><p>The company has $200,000 invested in movies concerning leathercraft which are shown at schools and to public gatherings. "This is primarily a business of education," Dave Tandy said. "We must teach people leathercrafts, thereby making them interested in doing it."</p><p><figure class="figure"><img alt="Charles Tandy" class="figure-img img-fluid mx-auto d-block" referrerpolicy="no-referrer" src='{{ url_for("static", filename="images/tandy/charles_tandy.jpg") }}'/><figcaption class="figure-caption">Charles Tandy, son of Dave Tandy, reoriented the business towards retail leathercrafting.</figcaption></figure>
@@ -124,12 +116,10 @@
 </div>
 
 		{% if related_posts %}
-		<div class="col-md-3 pt-4">
-<div class="row d-flex align-items-center justify-content-center pb-3">
-<div class="col-md-auto normal_text d-flex align-items-center justify-content-center">
-					Related posts
-				</div>
-</div>
+		<div class="col pt-4 ms-3 me-3 mb-5">
+<div class="normal_text text-center pb-3">
+				Related posts
+			</div>
 
 			{% for related_post in related_posts %}
 			<a class="btn" href="{{ url_for('blog.post', id=related_post['id']) }}">
@@ -140,7 +130,7 @@
 <div>Written by {{ related_post['display_name'] }} on {{ related_post['created'].strftime('%Y-%m-%d') }}</div>
 </div>
 </div>
-<div class="col-md-6 d-block d-md-none d-xl-none d-xxl-block">
+<div class="col-md-6">
 <img src="{{url_for('static', filename='images/' + related_post['title_img_parent_dir'] + '/' + related_post['title_img'])}}" style="width:100%;"/>
 </div>
 </div>
