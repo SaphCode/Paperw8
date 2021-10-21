@@ -816,6 +816,12 @@
 	font-weight: 300;
 }
 
+.contact_fat{
+	font-family: 'Merriweather Sans', sans-serif;
+	font-size:20px;
+	font-weight: 600;
+}
+
 .forest-bg{
 	background-image: url('{{ url_for("static/images/contact/forest2.jpg") }}');
 	background-size: cover;
