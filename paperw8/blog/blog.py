@@ -379,7 +379,9 @@ def delete(id):
     data_dir = 'data'
     img_dir = 'images'
     
-    
+    db.execute('DELETE FROM post WHERE id = ?', (id,))
+    db.execute('DELETE FROM related WHERE id = ?', (id,))
+    db.execute('DELETE FROM related WHERE related_to_id = ?', (id,))
     try:
         # delete html
         os.remove(os.path.join('paperw8', 'templates', 'blog', post['title_img_parent_dir'], post['html_file']))
@@ -390,7 +392,6 @@ def delete(id):
     except FileNotFoundError as e:
         flash(e)
     
-    
-    db.execute('DELETE FROM post WHERE id = ?', (id,))
+
     db.commit()
     return redirect(url_for('blog.blog', group_by='all', sort_by='date_desc', page=1))

@@ -115,8 +115,10 @@ dmypy.json
 
 # Custom
 .flaskenv
-instance/
 Paperw8.egg-info/
+
+# comment this out if deploying to cloud
+instance/
 paperw8/static/images/
 paperw8/static/data/
 paperw8/static/js/

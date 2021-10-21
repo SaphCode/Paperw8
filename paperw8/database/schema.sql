@@ -41,7 +41,15 @@ CREATE TABLE post (
 CREATE TABLE related (
   id		  INTEGER			NOT NULL,
   related_to_id	  INTEGER			NOT NULL,
-  FOREIGN KEY(related_to_id) REFERENCES post(id),
-  FOREIGN KEY(id) REFERENCES post(id),
+  CONSTRAINT fk_id
+	FOREIGN KEY(related_to_id) 
+	REFERENCES post(id)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+  CONSTRAINT fk_rel_to_id
+	FOREIGN KEY(id) 
+	REFERENCES post(id)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
   CONSTRAINT related_pair_unique UNIQUE (id, related_to_id)
 );
