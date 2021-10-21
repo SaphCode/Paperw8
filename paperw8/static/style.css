@@ -322,20 +322,35 @@
 			}
 		}
 
-.accordion {
-	
+
+.accordion-button-biology:not(.collapsed) {
+    background-color: #8FD400;
+	color:white;
+	box-shadow: none;
 }
 
+.accordion-button-investing:not(.collapsed) {
+    background-color: #FFDF00;
+	box-shadow: none;
+	color: black;
+}
+
+.accordion-button-physics:not(.collapsed) {
+    background-color: #241571;
+	box-shadow: none;
+	color: white;
+}
+
+.accordion-button-math:not(.collapsed) {
+    background-color: #4E0707;
+	box-shadow: none;
+	color: white;
+}
 
 .accordion-button {
 	background-color: grey;
 	color: white;
 }
-
-.accordion-item {
-	border-color: grey;
-}
-
 
 .name-navbar-fat{
 	font-family: 'Quicksand', sans-serif;

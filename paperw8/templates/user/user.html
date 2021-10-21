@@ -115,7 +115,7 @@
 					<span style="color: gray;">just one calling, when there's 
 					<span style="color: white;">so many interesting things </span>
 					<span style="color: gray;">to do in the world. </span>
-					<span style="color: white;">I simply can't do it. </span>
+					<span style="color: white;">I simply can't. </span>
 					<span style="color: gray;">How was there ever going to be a place for me in the specialized world of today? </span>
 					<span style="color: white;">Turns out that in investing, </span>
 					<span class="text-decoration-underline" style="color: white;">no knowledge is without use.</span>
@@ -247,14 +247,14 @@
 		</div>
 	</div>
 	{% elif user['username'] == 'chris' %}
-	<div class="lights-bg-image" style="height: 1900px;background-color:black;">
-		<div class="container pt-7">
+	<div class="bg-light" style="height: 1900px;background-color:black;">
+		<div class="container mt-7">
 		
-			<div class="small-text-gray-2" style="color: gray;">What I'm studying</div>
+			<div class="display-4 mb-3" style="color:black;">What I'm studying</div>
 			<div class="accordion" id="studyAccordion">
 			  <div class="accordion-item">
 				<h2 class="accordion-header" id="headingBiology">
-					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBiology" aria-expanded="true" aria-controls="collapseBiology">
+					<button class="accordion-button accordion-button-biology collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBiology" aria-expanded="true" aria-controls="collapseBiology">
 						Biology
 					</button>
 				</h2>
@@ -272,7 +272,7 @@
 			  </div>
 			  <div class="accordion-item">
 				<h2 class="accordion-header" id="headingInvesting">
-					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInvesting" aria-expanded="true" aria-controls="collapseInvesting">
+					<button class="accordion-button accordion-button-investing" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInvesting" aria-expanded="true" aria-controls="collapseInvesting">
 						Investing
 					</button>
 				</h2>
@@ -286,7 +286,7 @@
 			  </div>
 			  <div class="accordion-item">
 				<h2 class="accordion-header" id="headingPhysics">
-					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePhysics" aria-expanded="true" aria-controls="collapsePhysics">
+					<button class="accordion-button accordion-button-physics collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePhysics" aria-expanded="true" aria-controls="collapsePhysics">
 						Physics
 					</button>
 				</h2>
@@ -308,7 +308,7 @@
 			  </div>
 				<div class="accordion-item">
 					<h2 class="accordion-header" id="headingMathematics">
-						<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMathematics" aria-expanded="true" aria-controls="collapseMathematics">
+						<button class="accordion-button accordion-button-math collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMathematics" aria-expanded="true" aria-controls="collapseMathematics">
 							Mathematics
 						</button>
 					</h2>
@@ -323,10 +323,6 @@
 					</div>
 			  </div>
 			</div>
-			<div class="text-center">
-				<div class="small-text-gray-2" style="color: gray;">What I'm studying</div>
-				<div class="heading_3" style="color: white;">Biology, Business, Physics, Math</div>
-			</div>
 			
 			<div class="row d-flex justify-content-center mt-8">
 				<div class="col-md-3">
@@ -339,7 +335,13 @@
 				<div class="col-md-4 mt-5">
 					<div class="row">
 						<div class="small-text-gray-2" style="color: gray;">The most inspiring person</div>
-						<div class="heading_3" style="color: white;">Richard Feynman</div>
+						<div class="heading_3" style="color: black;">Richard Feynman</div>
+						<div style="color: grey;">
+							In a way he might have been the ultimate scientist. Tried to boil things down
+							to as simple as they could be, <span style="text-decoration:underline;">never</span>
+							took gibberish from authority. Try to read his book: "Surely you're joking, Mr. Feynman!".
+							He is one of the most respected people in physics for a reason.
+						</div>
 					</div>
 				</div>
 			</div>
@@ -351,12 +353,17 @@
 					class="w-100"
 					alt=""
 					/>
-				</div>
-				<div class="order-first order-md-0 col-md-5 mt-5">
-					<div class="row pb-4">
-						<div class="small-text-gray-2" style="color: gray;">What I like doing</div>
-						<div class="heading_3" style="color: white;">Gardening, Cooking</div>
-					</div>
+				</div>			
+				<div class="order-first order-md-0 col-md-5 mt-5 mb-4" style="color: white;">
+					<h1 class="display-5 mb-4" style="color:black;">What I like doing</h1>
+					<h2 style="color:black;">Cooking</h2>
+					<div style="color:grey;">Oh god, the physicist cooks too?</div>
+					<h2 style="color:black;">Gardening</h2>
+					<div style="color:grey;">So far those experiments have been failures.</div>
+					<h2 style="color:black;">Reading</h2>
+					<div style="color:grey;">Give me a good book about <i>any</i> topic if you don't want to talk to me.</div>
+					<h2 style="color:black;">Sports</h2>
+					<div style="color:grey;">This is just here because I <i>should</i> be doing it.</div>
 				</div>
 				<div class="col-md-5">
 					<img
@@ -367,7 +374,7 @@
 				</div>
 			</div>
 			
-			<div class="row d-flex justify-content-center align-items-center mt-8">
+			<div class="row d-flex justify-content-center align-items-center mt-7">
 				<div class="col-md-4 pb-5">
 					<img
 					src="{{ url_for('static', filename='images/profile/chris/feynman_lectures.jpg') }}"
@@ -375,12 +382,12 @@
 					alt=""
 					/>
 				</div>
-				<div class="col-md-3">
-				</div>
+
 				<div class="col-md-5">
 					<div class="row pb-5">
 						<div class="small-text-gray-2 align-middle" style="color: gray;">My favourite book</div>
-						<div class="heading_3 align-middle" style="color: black;">The Feynman Lectures on Physics I</div>
+						<div class="heading_3 align-middle" style="color: black;">The Feynman Lectures on Physics</div>
+						<div>I went from 0% interested to studying physics at university with this book. Do I need to say anything else?</div>
 					</div>
 				</div>
 			</div>
