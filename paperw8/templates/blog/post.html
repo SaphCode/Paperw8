@@ -16,9 +16,9 @@
 		</a>
 </div>
 
-<div class="container-fluid post p-0 bg-light">
+<div class="container post p-0 bg-light">
 
-	<div class="row-auto d-flex justify-content-center pt-3 pb-3">
+	<div class="row d-flex justify-content-center pt-3 pb-3">
 		<div class="p-0 col-md-7">
 			<a type="button" class="btn btn-outline-dark" href="{{ url_for('blog.blog', group_by='all', sort_by='date_desc', page=1) }}">&#8592 Blog</a>
 		</div>
@@ -32,28 +32,20 @@
 		{% endif %}
 	</div>
 
-	<div class="row-auto d-flex justify-content-center">
-		<div class="border rounded shadow bg-white col-md-7 ms-5 mb-5 me-5">
+	<div class="row d-flex justify-content-center">
+		<div class="border rounded shadow bg-white col-md-7 ms-5 mb-5 me-5 ps-5 pe-5">
 
-			<div class="row d-flex justify-content-center pt-6">
-				<div class="col-md-10 d-flex justify-content-center">
-					<div class="post_title">
-						<span style="color:black">{{ post['title'] }}</span><span style="color:gray"> - {{ post['ticker'] }}</span>
-					</div>
-				</div>
+			<div class="pt-6 post_title text-center">
+				<span style="color:black">{{ post['title'] }}</span><span style="color:gray"> - {{ post['ticker'] }}</span>
 			</div>
 
-			<div class="row post_info d-flex align-items-center justify-content-center">
-				<div class="col-md-auto pt-2 pb-5">
-					<div>Written by <a href="{{ url_for('user.profile', username=post['username']) }}" class="text-decoration-none" style="color:#e03444">{{ post['display_name'] }}</a> on {{ post['created'].strftime('%Y-%m-%d') }}.</div>
-					{% if post['created'].strftime('%Y-%m-%d') != post['last_edit'].strftime('%Y-%m-%d') %}<div>Last edit on {{ post['last_edit'].strftime('%Y-%m-%d') }}.</div>{% endif %}
-				</div>
+			<div class="post_info pt-2 pb-5 text-center">
+				<div>Written by <a href="{{ url_for('user.profile', username=post['username']) }}" class="text-decoration-none" style="color:#e03444">{{ post['display_name'] }}</a> on {{ post['created'].strftime('%Y-%m-%d') }}.</div>
+				{% if post['created'].strftime('%Y-%m-%d') != post['last_edit'].strftime('%Y-%m-%d') %}<div>Last edit on {{ post['last_edit'].strftime('%Y-%m-%d') }}.</div>{% endif %}
 			</div>
 
-			<div class="row post_pic d-flex align-items-center justify-content-center m-3">
-				<div class="col-md-8">
-					<img src="{{url_for('static', filename='images/' + post['title_img_parent_dir'] + '/' + post['title_img'])}}" style="width:100%;"></img>
-				</div>
+			<div class="m-3 text-center">
+				<img class="img-fluid" src="{{url_for('static', filename='images/' + post['title_img_parent_dir'] + '/' + post['title_img'])}}"></img>
 			</div>
 
 			<!--<div class="row d-flex justify-content-center pt-5">
