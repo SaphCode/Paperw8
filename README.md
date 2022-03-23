@@ -19,3 +19,8 @@
 - Title image cannot be changed easily atm
 - Always write captions below images, but don't make a new paragraph (go to last character of image link ")" and do shift+enter)
 - Tables don't have captions atm
+
+# When uploading website
+- cd to project location
+- gcloud run deploy
+- use europe-west1 as server

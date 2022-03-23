@@ -29,7 +29,7 @@
 		</div>
 		<div class="col-md-5 pt-2 d-flex align-items-end">
 			<div class="imageInn d-flex align-items-end">
-				<img src="{{ url_for('static', filename='images/profile/' + user['username'] + '/pb.png') }}" width="100%" height="auto" alt="Founder of Paperweight">
+				<img src="{{ url_for('static', filename='images/profile/' + user['username'] + '/pb.png') }}" class="img-fluid" alt="Founder of Paperweight">
 			</div>
 		</div>
 		<!--- profile picture --->
@@ -55,7 +55,6 @@
 			<div class="div-center">
 				<span class="black_heading_3" style="color: grey;">Hi, I'm </span>
 				<span class="black_heading_3" style="color: black;">{{ user['username'].capitalize() }}, </span><br class=" d-none d-md-block d-xl-block d-xxl-block">
-				<span class="black_heading_3" style="color: grey;">founder of </span><br>
 				<span  class="company_fat">Paper</span><span class="company_thin" style="color: black;">weight</span>
 			</div>
 		</div>
@@ -67,7 +66,7 @@
 		</div>
 		<div class="col-md-5 pt-2 d-flex align-items-end">
 			<div class="imageInn d-flex align-items-end">
-				<img src="{{ url_for('static', filename='images/profile/' + user['username'] + '/pb.png') }}" width="100%" height="auto" alt="Founder of Paperweight">
+				<img src="{{ url_for('static', filename='images/profile/' + user['username'] + '/pb.png') }}" class="img-fluid" alt="Founder of Paperweight">
 			</div>
 		</div>
 		<!--- profile picture --->
@@ -106,19 +105,11 @@
 				</div>
 				{% elif user['username'] == 'chris' %}
 				<div class="about_text mb-7 p-3">
-					<span style="color: gray;">I'm not an  </span>
-					<span style="color: white;">investor, physicist, singer, </span>
-					<span style="color: gray;">or </span>
-					<span style="color: white;">cook</span> 
-					<span style="color: gray;">. Yet I do all those things. It's so difficult </span>
-					<span style="color: white;">to choose</span>
-					<span style="color: gray;">just one calling, when there's 
-					<span style="color: white;">so many interesting things </span>
-					<span style="color: gray;">to do in the world. </span>
-					<span style="color: white;">I simply can't. </span>
-					<span style="color: gray;">How was there ever going to be a place for me in the specialized world of today? </span>
-					<span style="color: white;">Turns out that in investing, </span>
-					<span class="text-decoration-underline" style="color: white;">no knowledge is without use.</span>
+					<span style="color: gray;">I'll try to</span>
+					<span style="color: white;">beat the S\&P 500 </span>
+					<span style="color: gray;">and get good at investing.</span>
+					<span style="color: white;">Why?</span> 
+					<span style="color: gray;">Because I want to study.</span>
 				</div>
 				{% endif %}
 			</div>
@@ -133,13 +124,13 @@
 						<div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
 							<img
 							src="{{ url_for('static', filename='images/profile/janik/side/cards.jpg') }}"
-							class="w-100 shadow-1-strong rounded mb-4"
+							class="img-fluid shadow-1-strong rounded mb-4"
 							alt=""
 							/>
 
 							<img
 							src="{{ url_for('static', filename='images/profile/janik/side/donauinsel.jpg') }}"
-							class="w-100 shadow-1-strong rounded mb-4"
+							class="img-fluid shadow-1-strong rounded mb-4"
 							alt=""
 							/>
 						</div>
@@ -147,13 +138,13 @@
 						<div class="col-lg-4 mb-4 mb-lg-0">
 							<img
 							src="{{ url_for('static', filename='images/profile/janik/side/norway.jpg') }}"
-							class="w-100 shadow-1-strong rounded mb-4"
+							class="img-fluid shadow-1-strong rounded mb-4"
 							alt=""
 							/>
 
 							<img
 							src="{{ url_for('static', filename='images/profile/janik/side/floating.jpg') }}"
-							class="w-100 shadow-1-strong rounded mb-4"
+							class="img-fluid shadow-1-strong rounded mb-4"
 							alt=""
 							/>
 						</div>
@@ -161,13 +152,13 @@
 						<div class="col-lg-4 mb-4 mb-lg-0">
 							<img
 							src="{{ url_for('static', filename='images/profile/janik/side/rnb_face.jpg') }}"
-							class="w-100 shadow-1-strong rounded mb-4"
+							class="img-fluid shadow-1-strong rounded mb-4"
 							alt=""
 							/>
 
 							<img
 							src="{{ url_for('static', filename='images/profile/janik/side/donaukanal.jpg') }}"
-							class="w-100 shadow-1-strong rounded mb-4"
+							class="img-fluid shadow-1-strong rounded mb-4"
 							alt=""
 							/>
 						</div>
@@ -177,13 +168,13 @@
 						<div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
 							<img
 							src="{{ url_for('static', filename='images/profile/chris/side/jacke.jpg') }}"
-							class="w-100 shadow-1-strong rounded mb-4"
+							class="img-fluid shadow-1-strong rounded mb-4"
 							alt=""
 							/>
 
 							<img
 							src="{{ url_for('static', filename='images/profile/chris/side/handstand.jpg') }}"
-							class="w-100 shadow-1-strong rounded mb-4"
+							class="img-fluid shadow-1-strong rounded mb-4"
 							alt=""
 							/>
 						</div>
@@ -191,13 +182,13 @@
 						<div class="col-lg-4 mb-4 mb-lg-0">
 							<img
 							src="{{ url_for('static', filename='images/profile/chris/side/model.jpg') }}"
-							class="w-100 shadow-1-strong rounded mb-4"
+							class="img-fluid shadow-1-strong rounded mb-4"
 							alt=""
 							/>
 
 							<img
 							src="{{ url_for('static', filename='images/profile/chris/side/chris_shoe.jpg') }}"
-							class="w-100 shadow-1-strong rounded mb-4"
+							class="img-fluid shadow-1-strong rounded mb-4"
 							alt=""
 							/>
 						</div>
@@ -205,13 +196,13 @@
 						<div class="col-lg-4 mb-4 mb-lg-0">
 							<img
 							src="{{ url_for('static', filename='images/profile/chris/side/bkick.jpg') }}"
-							class="w-100 shadow-1-strong rounded mb-4"
+							class="img-fluid shadow-1-strong rounded mb-4"
 							alt=""
 							/>
 
 							<img
 							src="{{ url_for('static', filename='images/profile/chris/side/lazy.jpg') }}"
-							class="w-100 shadow-1-strong rounded mb-4"
+							class="img-fluid shadow-1-strong rounded mb-4"
 							alt=""
 							/>
 						</div>
@@ -250,7 +241,7 @@
 	<div class="bg-light" style="height: 1900px;background-color:black;">
 		<div class="container mt-7">
 		
-			<div class="display-4 mb-3" style="color:black;">What I'm studying</div>
+			<div class="display-4 mb-3" style="color:black;">What I'm interested in</div>
 			<div class="accordion" id="studyAccordion">
 			  <div class="accordion-item">
 				<h2 class="accordion-header" id="headingBiology">
@@ -262,10 +253,9 @@
 					<div class="accordion-body">
 						Have you ever thought how weird it is that every day, we fall unconcious for 8 hours straight? 
 						That's called sleep and yes, you need it. 
-						I did try for 2 weeks to do something called uberman sleep schedule, where every 4 hours, you sleep for 20 minutes and just leave out all that 8 hour thing. 
-						Needless to say, I'm now a strong believer in 8 hours of sleep. 
-						I just had to stray and figure it out for myself. 
-						<b>Don't try that at home. People have died from too little sleep. This is seriously dangerous.</b> <i>Awww man</i>, I shouldn't have told you ...
+						I did try for 2 weeks to do something called uberman sleep schedule, where every 4 hours, you sleep for 20 minutes, so 2 hours per day in total. 
+						It did not work for me, and I don't recommend you try it.
+						I'm now a strong believer in 8 hours of sleep. 
 					</div>
 					
 				</div>
@@ -280,7 +270,7 @@
 					<div class="accordion-body">
 						Change the world with <b>Elon Musk</b>, launch the world into the digital age with <b>Bill Gates, Sergey Brin & Larry Page</b>, or launch a whole country into the middle class with <b>Jack Ma</b>.
 						Choose your fighter & what you believe in, simply by buying some (nowadays electronic) piece of paper. 
-						It's <i>ridiculous</i>. We should really be grateful to the hardworking leaders & employees, since they do not only make us rich, but also society as a whole.
+						It's <i>ridiculously efficient</i>. We should empower those who take a risk to make society better.
 					</div>
 				</div>
 			  </div>
@@ -294,15 +284,12 @@
 					<div class="accordion-body">
 						<ul>
 							<li>Why is the sky blue?</li>
-							<li>Why does soup cool down when you blow on it?</li>
 							<li>How does a plant grow?</li>
 							<li>How does a car work? What about a plane? How to build a rocket?</li>
-							<li>When, and why, does it rain?</li>
-							<li>Why can ice be both the most sticky thing (ever touched dry ice with your tongue?) and yet we can also ice skate on it?</li>
+							<li>Why can ice be both the most sticky thing and yet we can also ice skate on it?</li>
 							<li>How does a battery work?</li>
-							<li>It never stops. It just goes on. How amazing is that?</li>
 						</ul>
-						Everything in this world boils down to phyics and can, at least to some degree of understanding, be answered with physics. And I'm a curious man.
+						Physics seems to me to be the fundamental framework with which we can describe the world.
 					</div>
 				</div>
 			  </div>
@@ -314,11 +301,23 @@
 					</h2>
 					<div id="collapseMathematics" class="accordion-collapse collapse" aria-labelledby="headingMathematics" data-bs-parent="#studyAccordion">
 						<div class="accordion-body">
-							There's a fundamental similarity to the way we think about different stuff, and the way we solve problems. 
-							Mathematics is the language of modern problem solving. 
-							It permeates all disciples, they have all been influenced by this way of thinking. 
-							It makes me so sad to see a disinterest in the topic, when in effect, there's just a language barrier. 
-							Math is the most useful tool. There was never even a contender for 2nd place.
+							Mathematics, to me, is an extremely powerful tool, and also fun by itself.
+							It gives you the ability to discover patters between seemingly unrelated matters,
+							and it gives you the ability to translate nature into a decision framework.
+							My math journey is far from over, and I hope to one day be really good at it.
+						</div>
+					</div>
+			  </div>
+			  <div class="accordion-item">
+					<h2 class="accordion-header" id="headingChemistry">
+						<button class="accordion-button accordion-button-math collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseChemistry" aria-expanded="true" aria-controls="collapseChemistry">
+							Chemistry
+						</button>
+					</h2>
+					<div id="collapseChemistry" class="accordion-collapse collapse" aria-labelledby="headingChemistry" data-bs-parent="#studyAccordion">
+						<div class="accordion-body">
+							Recently, I've gotten into Chemistry and it has improved my understanding of some parts of physics tremendously.
+							I never knew it was that interesting!
 						</div>
 					</div>
 			  </div>
@@ -328,7 +327,7 @@
 				<div class="col-md-3">
 					<img
 					src="{{ url_for('static', filename='images/profile/chris/feynman.jpg') }}"
-					class="w-100"
+					class="img-fluid"
 					alt=""
 					/>
 				</div>
@@ -354,14 +353,14 @@
 					<h2 style="color:black;">Gardening</h2>
 					<div style="color:grey;">So far those experiments have been failures.</div>
 					<h2 style="color:black;">Reading</h2>
-					<div style="color:grey;">Give me a good book about <i>any</i> topic if you don't want to talk to me.</div>
+					<div style="color:grey;">Give me a good book about <i>any</i> topic if you don't want to see me anymore.</div>
 					<h2 style="color:black;">Sports</h2>
 					<div style="color:grey;">This is just here because I <i>should</i> be doing it.</div>
 				</div>
 				<div class="col-md-5">
 					<img
 					src="{{ url_for('static', filename='images/profile/chris/cooking.jpg') }}"
-					class="w-100"
+					class="img-fluid"
 					alt=""
 					/>
 				</div>
@@ -371,7 +370,7 @@
 				<div class="col-md-4 pb-5">
 					<img
 					src="{{ url_for('static', filename='images/profile/chris/feynman_lectures.jpg') }}"
-					class="w-100"
+					class="img-fluid"
 					alt=""
 					/>
 				</div>
@@ -380,7 +379,7 @@
 					<div class="row pb-5">
 						<div class="small-text-gray-2 align-middle" style="color: gray;">My favourite book</div>
 						<div class="heading_3 align-middle" style="color: black;">The Feynman Lectures on Physics</div>
-						<div>I went from 0% interested to studying physics at university with this book. Do I need to say anything else?</div>
+						<div>I went from 0% interested to studying physics at university with this book. It's a very interesting book and I could not put it down!</div>
 					</div>
 				</div>
 			</div>
@@ -410,7 +409,7 @@
 		<div class="col-lg-2 d-flex align-items-center">
 			<img
 			src="{{ url_for('static', filename='images/profile/' + user['username'] + '/story/1.jpg') }}"
-			style="width:100%;"
+			class="img-fluid"
 			alt=""
 			/>
 		</div>
@@ -428,7 +427,7 @@
 		<div class="col-lg-2 d-flex align-items-center">
 			<img
 			src="{{ url_for('static', filename='images/profile/' + user['username'] + '/story/2.jpg') }}"
-			style="width:100%;"
+			class="img-fluid"
 			alt=""
 			/>
 		</div>
