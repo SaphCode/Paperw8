@@ -1,6 +1,8 @@
 # Paperw8
  Website to track the success of Paperweight.
 
+ ![website_screenshot](https://github.com/user-attachments/assets/bc27f7fb-c049-4979-bd91-a53a3f9c5d17)
+
 # How to install
 - Make sure you have the latest Python installation.
 - Make sure you have flask installed.
@@ -21,6 +23,7 @@
 - Tables don't have captions atm
 
 # When uploading website
+
 - cd to project location
 - gcloud run deploy
 - use europe-west1 as server
