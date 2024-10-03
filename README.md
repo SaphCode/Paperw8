@@ -22,6 +22,8 @@
 - Always write captions below images, but don't make a new paragraph (go to last character of image link ")" and do shift+enter)
 - Tables don't have captions atm
 
+![website_screenshot_blog](https://github.com/user-attachments/assets/b6b6ea83-c2c4-4920-b1ef-c6dbbc532a55)
+
 # When uploading website
 
 - cd to project location
